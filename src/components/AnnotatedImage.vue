@@ -764,6 +764,23 @@ const handleDragging = (event) => {
     draggedPoint.value.point.x = x
     draggedPoint.value.point.y = y
 
+    const linked = annotationStore.getLinkedAnnotation(draggedPoint.value.point);
+    if (linked) {
+      const crop = draggedPoint.value.point.isSubImageAnnotation
+        ? draggedPoint.value.point.subImageCrop
+        : linked.subImageCrop;
+      const scale = canvasStore.imageScale;
+      if (crop) {
+        if (draggedPoint.value.point.isSubImageAnnotation) {
+          linked.x = x + crop.x * scale;
+          linked.y = y + crop.y * scale;
+        } else {
+          linked.x = x - crop.x * scale;
+          linked.y = y - crop.y * scale;
+        }
+      }
+    }
+
   } else {
   const newOffsetX = event.clientX - canvasStore.dragStartX;
   const newOffsetY = event.clientY - canvasStore.dragStartY;

@@ -4,6 +4,7 @@ import { useLoggingStore } from "./LoggStore";
 import { useImageStore } from "./ImageStore";
 import { useShortcutStore } from "./ShortcutStore";
 import { useCanvasStore } from "./CanvasStore";
+import { v4 as uuidv4 } from "uuid";
 
 export const useAnnotationStore = defineStore("annotation", {
   state: () => ({
@@ -149,17 +150,31 @@ export const useAnnotationStore = defineStore("annotation", {
         const mappedX = x + activeSubImage.crop.x * scale;
         const mappedY = y + activeSubImage.crop.y * scale;
 
+        const linkedId = uuidv4();
+        annotation.linkedAnnotationId = linkedId;
+        annotation.isSubImageAnnotation = true;
+        annotation.subImageCrop = activeSubImage.crop;
+
         const mappedAnnotation = {
           ...annotation,
           id: this.annotations.length + 1,
           imageId: activeSubImage.parentImageId,
           x: mappedX,
           y: mappedY,
+          linkedAnnotationId: linkedId,
           isMappedFromSubImage: true,
+          isSubImageAnnotation: false,
           sourceSubImageId: activeSubImage.imageId,
         };
         this.annotations.push(mappedAnnotation);
       }
+    },
+
+    getLinkedAnnotation(annotation) {
+      if (!annotation.linkedAnnotationId) return null;
+      return this.annotations.find(
+        (a) => a.linkedAnnotationId === annotation.linkedAnnotationId && a.id !== annotation.id,
+      ) || null;
     },
 
     addAIannotation(imageId, microtubularDefectValue, x1, y1, x2, y2) {
@@ -276,6 +291,12 @@ export const useAnnotationStore = defineStore("annotation", {
       });
 
       this.updateHistory("modify", this.annotations[index], previousState);
+
+      const linked = this.getLinkedAnnotation(this.annotations[index]);
+      if (linked) {
+        linked.dyneinArms = this.annotations[index].dyneinArms;
+        linked.dyneinArmsValue = this.annotations[index].dyneinArmsValue;
+      }
     },
 
     deleteAllAnnotations() {
@@ -450,6 +471,13 @@ export const useAnnotationStore = defineStore("annotation", {
         (annotation) => annotation.id === id,
       );
       this.updateHistory("modify", this.annotations[index], previousState);
+
+      const linked = this.getLinkedAnnotation(this.annotations[index]);
+      if (linked) {
+        linked.microtubularDefect = this.annotations[index].microtubularDefect;
+        linked.microtubularDefectValue = this.annotations[index].microtubularDefectValue;
+        linked.color = this.annotations[index].color;
+      }
     },
 
     updateAnnotationArms(id, arms) {
@@ -510,6 +538,12 @@ export const useAnnotationStore = defineStore("annotation", {
         (annotation) => annotation.id === id,
       );
       this.updateHistory("modify", this.annotations[index], previousState);
+
+      const linked = this.getLinkedAnnotation(this.annotations[index]);
+      if (linked) {
+        linked.dyneinArms = this.annotations[index].dyneinArms;
+        linked.dyneinArmsValue = this.annotations[index].dyneinArmsValue;
+      }
     },
 
     updateAnnotationDescription(id, description) {
@@ -542,6 +576,9 @@ export const useAnnotationStore = defineStore("annotation", {
         (annotation) => annotation.id === id,
       );
       this.updateHistory("modify", this.annotations[index], previousState);
+
+      const linked = this.getLinkedAnnotation(this.annotations[index]);
+      if (linked) linked.description = description;
     },
 
     updateAnnotationAngle(id, angle) {
@@ -573,6 +610,9 @@ export const useAnnotationStore = defineStore("annotation", {
         (annotation) => annotation.id === id,
       );
       this.updateHistory("modify", this.annotations[index], previousState);
+
+      const linked = this.getLinkedAnnotation(this.annotations[index]);
+      if (linked) linked.angle = angle;
     },
 
     updateAnnotationDistance(id, distance) {
@@ -605,6 +645,9 @@ export const useAnnotationStore = defineStore("annotation", {
         (annotation) => annotation.id === id,
       );
       this.updateHistory("modify", this.annotations[index], previousState);
+
+      const linked = this.getLinkedAnnotation(this.annotations[index]);
+      if (linked) linked.distance = distance;
     },
 
     updateAnnotationActive(annot, currentOpacity, currentSize) {
@@ -641,14 +684,19 @@ export const useAnnotationStore = defineStore("annotation", {
     },
 
     deleteAnnotation(annotation) {
-      this.annotations = this.annotations.filter(
-        (annot) => annot.id !== annotation.id,
-      );
-      this.microtubularDefects.find(
-        (defect) => defect.value === annotation.microtubularDefectValue,
-      ).count--;
-      this.dyneinArms.find((arm) => arm.value === annotation.dyneinArmsValue)
-        .count--;
+      const linked = this.getLinkedAnnotation(annotation);
+
+      const toDelete = linked ? [annotation, linked] : [annotation];
+      const idsToDelete = new Set(toDelete.map((a) => a.id));
+
+      this.annotations = this.annotations.filter((a) => !idsToDelete.has(a.id));
+
+      toDelete.forEach((a) => {
+        this.microtubularDefects.find(
+          (defect) => defect.value === a.microtubularDefectValue,
+        ).count--;
+        this.dyneinArms.find((arm) => arm.value === a.dyneinArmsValue).count--;
+      });
 
       useStatisticStore().computeStatistics(
         this.microtubularDefects,
