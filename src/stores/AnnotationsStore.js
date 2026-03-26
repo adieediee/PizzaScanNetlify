@@ -323,8 +323,15 @@ export const useAnnotationStore = defineStore("annotation", {
         (annotation) => annotation.imageId === imageId && annotation.active,
       );
 
+      // Collect linkedAnnotationIds from annotations being deleted, to also remove sub-image counterparts
+      const linkedIds = new Set(
+        this.annotations
+          .filter((a) => a.imageId === imageId && a.linkedAnnotationId)
+          .map((a) => a.linkedAnnotationId)
+      );
+
       this.annotations.forEach((annotation) => {
-        if (annotation.imageId === imageId) {
+        if (annotation.imageId === imageId || linkedIds.has(annotation.linkedAnnotationId)) {
           this.microtubularDefects.find(
             (defect) => defect.value === annotation.microtubularDefectValue,
           ).count--;
