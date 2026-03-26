@@ -147,8 +147,16 @@ export const useAnnotationStore = defineStore("annotation", {
       if (activeSubImage?.isSubImage && activeSubImage.crop) {
         const canvasStore = useCanvasStore();
         const scale = canvasStore.imageScale;
-        const mappedX = x + activeSubImage.crop.x * scale;
-        const mappedY = y + activeSubImage.crop.y * scale;
+        // Convert canvas CSS → sub-image pixel coords
+        const subPxX = (x - canvasStore.imageDrawStartWidth) / scale;
+        const subPxY = (y - canvasStore.imageDrawStartHeight) / scale;
+        // Sub-image annotation: store in sub-image pixel space
+        annotation.x = subPxX;
+        annotation.y = subPxY;
+        // Mapped annotation: main image pixel = sub-image pixel + crop offset
+        const crop = activeSubImage.crop;
+        const mappedX = subPxX * 2 + crop.x;
+        const mappedY = subPxY * 2 + crop.y;
 
         const linkedId = uuidv4();
         annotation.linkedAnnotationId = linkedId;
@@ -172,9 +180,13 @@ export const useAnnotationStore = defineStore("annotation", {
 
     getLinkedAnnotation(annotation) {
       if (!annotation.linkedAnnotationId) return null;
-      return this.annotations.find(
-        (a) => a.linkedAnnotationId === annotation.linkedAnnotationId && a.id !== annotation.id,
-      ) || null;
+      return (
+        this.annotations.find(
+          (a) =>
+            a.linkedAnnotationId === annotation.linkedAnnotationId &&
+            a.id !== annotation.id,
+        ) || null
+      );
     },
 
     addAIannotation(imageId, microtubularDefectValue, x1, y1, x2, y2) {
@@ -475,7 +487,8 @@ export const useAnnotationStore = defineStore("annotation", {
       const linked = this.getLinkedAnnotation(this.annotations[index]);
       if (linked) {
         linked.microtubularDefect = this.annotations[index].microtubularDefect;
-        linked.microtubularDefectValue = this.annotations[index].microtubularDefectValue;
+        linked.microtubularDefectValue =
+          this.annotations[index].microtubularDefectValue;
         linked.color = this.annotations[index].color;
       }
     },

@@ -318,7 +318,14 @@ const handleCanvasClick = (event) => {
     clickedPoint = annotationStore.annotations.find(point => {
       if (point.imageId !== canvasStore.selectedImage.imageId) return false;
       if (point.type === "manual") {
-        const distance = Math.sqrt((x - point.x) ** 2 + (y - point.y) ** 2);
+        const isPixelCoord = point.isMappedFromSubImage || point.isSubImageAnnotation;
+        const ax = isPixelCoord
+          ? point.x * canvasStore.imageScale + canvasStore.imageDrawStartWidth
+          : point.x;
+        const ay = isPixelCoord
+          ? point.y * canvasStore.imageScale + canvasStore.imageDrawStartHeight
+          : point.y;
+        const distance = Math.sqrt((x - ax) ** 2 + (y - ay) ** 2);
         return distance < 20 / canvasStore.zoomScale;
       } else if (point.type === "AI") {
         return (
@@ -375,11 +382,18 @@ const handleRightCanvasClick = (event) => {
     clickedAnnotation = annotationStore.annotations.find(annotation => {
       if (annotation.imageId !== canvasStore.selectedImage.imageId) return false;
       if (annotation.type === "manual") {
-        const distance = Math.sqrt((x - annotation.x) ** 2 + (y - annotation.y) ** 2);
+        const isPixelCoord = annotation.isMappedFromSubImage || annotation.isSubImageAnnotation;
+        const ax = isPixelCoord
+          ? annotation.x * canvasStore.imageScale + canvasStore.imageDrawStartWidth
+          : annotation.x;
+        const ay = isPixelCoord
+          ? annotation.y * canvasStore.imageScale + canvasStore.imageDrawStartHeight
+          : annotation.y;
+        const distance = Math.sqrt((x - ax) ** 2 + (y - ay) ** 2);
         return distance < 20 / canvasStore.zoomScale;
       } else if (annotation.type === "AI") {
         return (
-          x >= annotation.x1 && x <= annotation.x2 && 
+          x >= annotation.x1 && x <= annotation.x2 &&
           y >= annotation.y1 && y <= annotation.y2
         );
       }
@@ -455,7 +469,15 @@ const drawImageWithPoints = (minimap = true, zooming = true) => {
         point.confidence
       );
     } else {
-      drawPoint(ctx, point.x, point.y, point.dyneinArmsValue, point.color, point.opacity, zooming ? point.size : point.size * canvasStore.zoomScale);
+      // sub-image and mapped annotations store coords in pixel space — convert to canvas space
+      const isPixelCoord = point.isMappedFromSubImage || point.isSubImageAnnotation;
+      const px = isPixelCoord
+        ? point.x * canvasStore.imageScale + canvasStore.imageDrawStartWidth
+        : point.x;
+      const py = isPixelCoord
+        ? point.y * canvasStore.imageScale + canvasStore.imageDrawStartHeight
+        : point.y;
+      drawPoint(ctx, px, py, point.dyneinArmsValue, point.color, point.opacity, zooming ? point.size : point.size * canvasStore.zoomScale);
     }
   });
 
@@ -731,8 +753,14 @@ const startDragging = (event) => {
   let clickedPoint = null;
   if (annotationStore.annotations.length > 0) {
     clickedPoint = annotationStore.annotations.find(point => {
-      const distance = Math.sqrt((x - point.x) ** 2 + (y - point.y) ** 2);
-      return distance < 20 / canvasStore.zoomScale; 
+      const isPixelCoord = point.isMappedFromSubImage || point.isSubImageAnnotation;
+      const ax = isPixelCoord
+        ? point.x * canvasStore.imageScale + canvasStore.imageDrawStartWidth
+        : point.x;
+      const ay = isPixelCoord
+        ? point.y * canvasStore.imageScale + canvasStore.imageDrawStartHeight
+        : point.y;
+      return Math.sqrt((x - ax) ** 2 + (y - ay) ** 2) < 20 / canvasStore.zoomScale;
     });
   }
   if(clickedPoint) {
@@ -756,22 +784,31 @@ const handleDragging = (event) => {
   const {x,y} = getMousePosition(event)
 
   if(draggedPoint.value) {
-    draggedPoint.value.point.x = x
-    draggedPoint.value.point.y = y
+    const point = draggedPoint.value.point;
+    const scale = canvasStore.imageScale;
+    const isPixelCoord = point.isMappedFromSubImage || point.isSubImageAnnotation;
 
-    const linked = annotationStore.getLinkedAnnotation(draggedPoint.value.point);
+    if (isPixelCoord) {
+      // Store as pixel coords
+      point.x = (x - canvasStore.imageDrawStartWidth) / scale;
+      point.y = (y - canvasStore.imageDrawStartHeight) / scale;
+    } else {
+      point.x = x;
+      point.y = y;
+    }
+
+    const linked = annotationStore.getLinkedAnnotation(point);
     if (linked) {
-      const crop = draggedPoint.value.point.isSubImageAnnotation
-        ? draggedPoint.value.point.subImageCrop
-        : linked.subImageCrop;
-      const scale = canvasStore.imageScale;
+      const crop = point.isSubImageAnnotation ? point.subImageCrop : linked.subImageCrop;
       if (crop) {
-        if (draggedPoint.value.point.isSubImageAnnotation) {
-          linked.x = x + crop.x * scale;
-          linked.y = y + crop.y * scale;
+        if (point.isSubImageAnnotation) {
+          // sub-image dragged → sync mapped (main image pixel = sub pixel * scale + crop)
+          linked.x = point.x * 2 + crop.x;
+          linked.y = point.y * 2 + crop.y;
         } else {
-          linked.x = x - crop.x * scale;
-          linked.y = y - crop.y * scale;
+          // main image dragged → sync sub-image (sub pixel = (main pixel - crop) / scale)
+          linked.x = (point.x - crop.x) / 2;
+          linked.y = (point.y - crop.y) / 2;
         }
       }
     }

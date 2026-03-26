@@ -1,10 +1,58 @@
 [
-  { "name": "pizza-1", "x": 0, "y": 0, "width": 256, "height": 256 },
-  { "name": "pizza-2", "x": 256, "y": 0, "width": 256, "height": 256 },
-  { "name": "pizza-3", "x": 512, "y": 0, "width": 256, "height": 256 },
-  { "name": "pizza-4", "x": 768, "y": 0, "width": 256, "height": 256 },
-  { "name": "pizza-5", "x": 0, "y": 256, "width": 256, "height": 256 },
-  { "name": "pizza-6", "x": 256, "y": 256, "width": 256, "height": 256 },
-  { "name": "pizza-7", "x": 512, "y": 256, "width": 256, "height": 256 },
-  { "name": "pizza-8", "x": 768, "y": 256, "width": 256, "height": 256 }
+  {
+    "name": "pizza-1",
+    "x": 2131,
+    "y": 0,
+    "width": 1800,
+    "height": 1700
+  },
+  {
+    "name": "pizza-2",
+    "x": 2029,
+    "y": 0,
+    "width": 1466,
+    "height": 1466
+  },
+  {
+    "name": "pizza-3",
+    "x": 3632,
+    "y": 85,
+    "width": 1466,
+    "height": 1466
+  },
+  {
+    "name": "pizza-4",
+    "x": 1381,
+    "y": 1381,
+    "width": 1466,
+    "height": 1466
+  },
+  {
+    "name": "pizza-5",
+    "x": 3052,
+    "y": 1279,
+    "width": 1466,
+    "height": 1466
+  },
+  {
+    "name": "pizza-6",
+    "x": 426,
+    "y": 2677,
+    "width": 1466,
+    "height": 1466
+  },
+  {
+    "name": "pizza-7",
+    "x": 2200,
+    "y": 2524,
+    "width": 1466,
+    "height": 1466
+  },
+  {
+    "name": "pizza-8",
+    "x": 3922,
+    "y": 2404,
+    "width": 1466,
+    "height": 1466
+  }
 ]
