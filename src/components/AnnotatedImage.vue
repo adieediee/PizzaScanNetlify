@@ -235,11 +235,14 @@ const drawImageOnCanvas = (imgSrc) => {
 };
 
 const updateCanvasSize = () => {
+  const dpr = window.devicePixelRatio || 1;
   const canvasWidth = canvas.value.parentElement.clientWidth;
   const canvasHeight = canvas.value.parentElement.clientHeight;
 
-  canvas.value.width = canvasWidth;
-  canvas.value.height = canvasHeight;
+  canvas.value.style.width = canvasWidth + 'px';
+  canvas.value.style.height = canvasHeight + 'px';
+  canvas.value.width = Math.round(canvasWidth * dpr);
+  canvas.value.height = Math.round(canvasHeight * dpr);
 
   rect.value = canvas.value.getBoundingClientRect();
   canvasStore.updateCanvasSize(canvasWidth, canvasHeight);
@@ -261,14 +264,14 @@ const handleCanvasClick = (event) => {
   const imgWidth = cachedImage.width;
   const imgHeight = cachedImage.height;
   const imgAspectRatio = imgWidth / imgHeight;
-  const canvasAspectRatio = canvas.value.width / canvas.value.height;
+  const canvasAspectRatio = canvas.value.clientWidth / canvas.value.clientHeight;
 
   if (imgAspectRatio > canvasAspectRatio) {
-    drawWidth = canvas.value.width;
-    drawHeight = canvas.value.width / imgAspectRatio;
+    drawWidth = canvas.value.clientWidth;
+    drawHeight = canvas.value.clientWidth / imgAspectRatio;
   } else {
-    drawHeight = canvas.value.height;
-    drawWidth = canvas.value.height * imgAspectRatio;
+    drawHeight = canvas.value.clientHeight;
+    drawWidth = canvas.value.clientHeight * imgAspectRatio;
   }
 
   const startX = canvasStore.imageDrawStartWidth;
@@ -372,11 +375,15 @@ const handleRightCanvasClick = (event) => {
 
 const drawImageWithPoints = (minimap = true, zooming = true) => {
   const ctx = canvas.value.getContext("2d", { willReadFrequently: true });
+  const dpr = window.devicePixelRatio || 1;
+  const cssWidth = canvas.value.clientWidth;
+  const cssHeight = canvas.value.clientHeight;
 
   if (!canvasStore.selectedImage || !cachedImage) return;
 
   ctx.clearRect(0, 0, canvas.value.width, canvas.value.height);
   ctx.save();
+  ctx.scale(dpr, dpr);
 
   if (zooming) {
     ctx.translate(canvasStore.offsetX*canvasStore.zoomScale - canvasStore.offsetZoomX, canvasStore.offsetY*canvasStore.zoomScale - canvasStore.offsetZoomY);
@@ -386,20 +393,20 @@ const drawImageWithPoints = (minimap = true, zooming = true) => {
   const imgWidth = cachedImage.width;
   const imgHeight = cachedImage.height;
   const imgAspectRatio = imgWidth / imgHeight;
-  const canvasAspectRatio = canvas.value.width / canvas.value.height;
+  const canvasAspectRatio = cssWidth / cssHeight;
 
   let drawWidth, drawHeight;
 
   if (imgAspectRatio > canvasAspectRatio) {
-    drawWidth = canvas.value.width;
-    drawHeight = canvas.value.width / imgAspectRatio;
+    drawWidth = cssWidth;
+    drawHeight = cssWidth / imgAspectRatio;
   } else {
-    drawHeight = canvas.value.height;
-    drawWidth = canvas.value.height * imgAspectRatio;
+    drawHeight = cssHeight;
+    drawWidth = cssHeight * imgAspectRatio;
   }
 
-  const x = (canvas.value.width - drawWidth) / 2;
-  const y = (canvas.value.height - drawHeight) / 2;
+  const x = (cssWidth - drawWidth) / 2;
+  const y = (cssHeight - drawHeight) / 2;
 
   canvasStore.imageDrawStartWidth = x;
   canvasStore.imageDrawStartHeight = y;
@@ -429,8 +436,12 @@ const drawImageWithPoints = (minimap = true, zooming = true) => {
 
   ctx.restore();
 
-  if (minimap && canvasStore.zoomScale > 1)
+  if (minimap && canvasStore.zoomScale > 1) {
+    ctx.save();
+    ctx.scale(dpr, dpr);
     drawMinimap(ctx);
+    ctx.restore();
+  }
 };
 
 const drawPoint = (ctx, x, y, dynein_arms, color, opacity, size) => {
@@ -499,24 +510,28 @@ const drawAIPoint = (ctx, x1, y1, x2, y2, color, defectColor, dynein_arms, opaci
   const confidenceColor = confidencePct === null
     ? null
     : confidencePct >= 80
-      ? "#95F204"
+      ? "#4CAF50"
       : confidencePct >= 50
-        ? "#FACC15"
-        : "#EF4444";
+        ? "#D4920A"
+        : "#E05C3A";
 
-  const width = x2 - x1;
-  const height = y2 - y1;
-  
+  const rx1 = Math.round(x1);
+  const ry1 = Math.round(y1);
+  const rx2 = Math.round(x2);
+  const ry2 = Math.round(y2);
+  const width = rx2 - rx1;
+  const height = ry2 - ry1;
+
   ctx.fillStyle = applyOpacityToColor(confidenceColor || color, 20);
-  ctx.fillRect(x1, y1, width, height);
+  ctx.fillRect(rx1, ry1, width, height);
 
   ctx.strokeStyle = confidenceColor || color;
   ctx.lineWidth = lineWidth;
-  ctx.strokeRect(x1, y1, width, height);
+  ctx.strokeRect(rx1 + lineWidth / 2, ry1 + lineWidth / 2, width - lineWidth, height - lineWidth);
 
   const markerColor = defectColor || color;
-  const centerX = (x1 + x2) / 2;
-  const centerY = (y1 + y2) / 2;
+  const centerX = (rx1 + rx2) / 2;
+  const centerY = (ry1 + ry2) / 2;
   const circleRadius = Math.max(4, Math.min(width, height) * 0.08);
   ctx.beginPath();
   ctx.arc(centerX, centerY, circleRadius, 0, 2 * Math.PI);
@@ -524,23 +539,29 @@ const drawAIPoint = (ctx, x1, y1, x2, y2, color, defectColor, dynein_arms, opaci
   ctx.fill();
 
   if (confidencePct !== null) {
-    const confidenceLabel = `${confidencePct}% confidence`;
+    const confidenceLabel = confidencePct >= 80
+      ? "High Confidence"
+      : confidencePct >= 50
+        ? "Needs Review"
+        : "Needs Close Inspection";
     const labelFontSize = Math.max(10, Math.round((12 * size) / 7));
-    const horizontalPadding = Math.max(4, Math.round((6 * size) / 7));
-    const verticalPadding = Math.max(2, Math.round((4 * size) / 7));
+    const horizontalPadding = Math.max(6, Math.round((8 * size) / 7));
+    const verticalPadding = Math.max(3, Math.round((5 * size) / 7));
     const labelHeight = labelFontSize + verticalPadding * 2;
 
     ctx.save();
-    ctx.font = `${labelFontSize}px Arial`;
+    ctx.font = `600 ${labelFontSize}px -apple-system, "Segoe UI", Arial, sans-serif`;
+    ctx.imageSmoothingEnabled = false;
     const labelWidth = Math.ceil(ctx.measureText(confidenceLabel).width) + horizontalPadding * 2;
-    const labelX = x1;
-    const labelY = Math.max(0, y1 - labelHeight - 2);
+    const labelX = Math.round(x1);
+    const labelY = Math.round(Math.max(0, y1 - labelHeight));
 
     ctx.fillStyle = confidenceColor;
     ctx.fillRect(labelX, labelY, labelWidth, labelHeight);
-    ctx.fillStyle = confidencePct >= 50 ? "#101021" : "#FFFFFF";
+    ctx.fillStyle = "#FFFFFF";
     ctx.textBaseline = "middle";
-    ctx.fillText(confidenceLabel, labelX + horizontalPadding, labelY + labelHeight / 2);
+    ctx.textRendering = "optimizeLegibility";
+    ctx.fillText(confidenceLabel, Math.round(labelX + horizontalPadding), Math.round(labelY + labelHeight / 2));
     ctx.restore();
   }
 
@@ -549,34 +570,34 @@ const drawAIPoint = (ctx, x1, y1, x2, y2, color, defectColor, dynein_arms, opaci
   if (dynein_arms === 'unknown') {
   } else if (dynein_arms === 'both-arms-missing') {
     ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.moveTo(x2, y1);
-    ctx.lineTo(x1, y2);
+    ctx.moveTo(rx1, ry1);
+    ctx.lineTo(rx2, ry2);
+    ctx.moveTo(rx2, ry1);
+    ctx.lineTo(rx1, ry2);
     ctx.lineWidth = lineWidth;
     ctx.stroke();
   } else if (dynein_arms === 'outer-arms-missing') {
     ctx.beginPath();
-    ctx.moveTo(x1, (y1 + y2) / 2);
-    ctx.lineTo(x2, (y1 + y2) / 2);
+    ctx.moveTo(rx1, (ry1 + ry2) / 2);
+    ctx.lineTo(rx2, (ry1 + ry2) / 2);
     ctx.lineWidth = lineWidth;
     ctx.stroke();
   } else if (dynein_arms === 'no-arms-missing') {
     ctx.beginPath();
-    ctx.moveTo(x1 - 15 * size / 14, (y1 + y2) / 2);
-    ctx.lineTo(x2 + 15 * size / 14, (y1 + y2) / 2);
+    ctx.moveTo(rx1 - 15 * size / 14, (ry1 + ry2) / 2);
+    ctx.lineTo(rx2 + 15 * size / 14, (ry1 + ry2) / 2);
     ctx.lineWidth = lineWidth;
     ctx.stroke();
   } else if (dynein_arms === 'inner-arms-missing') {
     ctx.beginPath();
-    ctx.moveTo(x1 - width * 0.3, (y1 + y2) / 2);
-    ctx.lineTo(x1, (y1 + y2) / 2);
+    ctx.moveTo(rx1 - width * 0.3, (ry1 + ry2) / 2);
+    ctx.lineTo(rx1, (ry1 + ry2) / 2);
     ctx.lineWidth = lineWidth;
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.moveTo(x2, (y1 + y2) / 2);
-    ctx.lineTo(x2 + width * 0.3, (y1 + y2) / 2);
+    ctx.moveTo(rx2, (ry1 + ry2) / 2);
+    ctx.lineTo(rx2 + width * 0.3, (ry1 + ry2) / 2);
     ctx.lineWidth = lineWidth;
     ctx.stroke();
   }
@@ -588,19 +609,22 @@ const drawAIPoint = (ctx, x1, y1, x2, y2, color, defectColor, dynein_arms, opaci
 const drawMinimap = (ctx) => {
   const minimapWidth = 200;
   const minimapHeight = 150;
-  const minimapX = canvas.value.width - minimapWidth - 10;
-  const minimapY = canvas.value.height - minimapHeight - 10;
+  const cssWidth = canvas.value.clientWidth;
+  const cssHeight = canvas.value.clientHeight;
+  const minimapX = cssWidth - minimapWidth - 10;
+  const minimapY = cssHeight - minimapHeight - 10;
 
-  ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+  // Background
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
   ctx.fillRect(minimapX, minimapY, minimapWidth, minimapHeight);
 
-  const imgWidth = canvas.value.width;
-  const imgHeight = canvas.value.height;
-  const imgAspectRatio = imgWidth / imgHeight;
+  // Fit image into minimap preserving its actual aspect ratio
+  const imgNativeWidth = cachedImage.width;
+  const imgNativeHeight = cachedImage.height;
+  const imgAspectRatio = imgNativeWidth / imgNativeHeight;
   const minimapAspectRatio = minimapWidth / minimapHeight;
 
   let drawWidth, drawHeight;
-
   if (imgAspectRatio > minimapAspectRatio) {
     drawWidth = minimapWidth;
     drawHeight = minimapWidth / imgAspectRatio;
@@ -609,32 +633,53 @@ const drawMinimap = (ctx) => {
     drawWidth = minimapHeight * imgAspectRatio;
   }
 
+  // Center the image inside the minimap box
+  const imgOffsetX = minimapX + (minimapWidth - drawWidth) / 2;
+  const imgOffsetY = minimapY + (minimapHeight - drawHeight) / 2;
+
   ctx.save();
-
-  const x = 0;
-  let y = 0;
-  ctx.globalAlpha = 0.6;
-
-  ctx.translate(minimapX, minimapY);
-
-  ctx.drawImage(cachedImage, 0, 0, drawWidth, drawHeight);
-
-  ctx.restore();
-  ctx.save();
-
-
-  ctx.translate(-canvasStore.offsetX * minimapWidth / imgWidth, -canvasStore.offsetY * minimapHeight / imgHeight);
-  ctx.translate(minimapX, minimapY);
-  ctx.translate(drawWidth/2, drawHeight/2);
-  ctx.scale(1/canvasStore.zoomScale, 1/canvasStore.zoomScale);
-  ctx.translate(-drawWidth/2, -drawHeight/2);
-
-
-  ctx.strokeStyle = 'red';
-  ctx.lineWidth = 2;
-  ctx.strokeRect(x, y, drawWidth, drawHeight);
+  ctx.globalAlpha = 0.85;
+  ctx.drawImage(cachedImage, imgOffsetX, imgOffsetY, drawWidth, drawHeight);
   ctx.restore();
 
+  // --- Viewport indicator ---
+  // Convert canvas viewport edges → image pixel space → minimap space
+  const zoom = canvasStore.zoomScale;
+  const ox = canvasStore.offsetX;
+  const oy = canvasStore.offsetY;
+  const ozx = canvasStore.offsetZoomX;
+  const ozy = canvasStore.offsetZoomY;
+  const imageStartX = canvasStore.imageDrawStartWidth;
+  const imageStartY = canvasStore.imageDrawStartHeight;
+  const imageScale = canvasStore.imageScale;
+
+  // Canvas edge → zoomed-canvas space → image pixel space
+  const toPx = (canvasEdge, startPx, zoom, offset, offsetZoom) =>
+    ((canvasEdge - offset * zoom + offsetZoom) / zoom - startPx) / imageScale;
+
+  const leftPx   = toPx(0,       imageStartX, zoom, ox, ozx);
+  const rightPx  = toPx(cssWidth, imageStartX, zoom, ox, ozx);
+  const topPx    = toPx(0,       imageStartY, zoom, oy, ozy);
+  const bottomPx = toPx(cssHeight, imageStartY, zoom, oy, ozy);
+
+  // Image pixel → minimap pixel
+  const scaleX = drawWidth / imgNativeWidth;
+  const scaleY = drawHeight / imgNativeHeight;
+
+  const rectX = imgOffsetX + leftPx * scaleX;
+  const rectY = imgOffsetY + topPx * scaleY;
+  const rectW = (rightPx - leftPx) * scaleX;
+  const rectH = (bottomPx - topPx) * scaleY;
+
+  // Draw clipped to minimap bounds
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(minimapX, minimapY, minimapWidth, minimapHeight);
+  ctx.clip();
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(rectX, rectY, rectW, rectH);
+  ctx.restore();
 };
 
 const applyOpacityToColor = (color, opacity) => {
@@ -721,8 +766,8 @@ const handleZoom = (event) => {
 
   const newZoomScale = Math.max(canvasStore.minScale, Math.min(canvasStore.maxScale, zoomFactor));
 
-  canvasStore.offsetZoomX = (canvas.value.width * newZoomScale - canvas.value.width) / 2;
-  canvasStore.offsetZoomY = (canvas.value.height * newZoomScale - canvas.value.height) / 2;
+  canvasStore.offsetZoomX = (canvas.value.clientWidth * newZoomScale - canvas.value.clientWidth) / 2;
+  canvasStore.offsetZoomY = (canvas.value.clientHeight * newZoomScale - canvas.value.clientHeight) / 2;
   canvasStore.setZoomScale(newZoomScale);
 
   drawImageWithPoints();
@@ -788,10 +833,10 @@ const handleDragging = (event) => {
   const imgWidth = cachedImage.width * canvasStore.zoomScale - canvasStore.offsetZoomX;
   const imgHeight = cachedImage.height * canvasStore.zoomScale - canvasStore.offsetZoomY;
 
-  const minX = Math.min(0, canvas.value.width - imgWidth); 
-  const minY = Math.min(0, canvas.value.height - imgHeight); 
-  const maxX = Math.max(0, (imgWidth - canvas.value.width) / 2);
-  const maxY = Math.max(0, (imgHeight - canvas.value.height) / 2);
+  const minX = Math.min(0, canvas.value.clientWidth - imgWidth);
+  const minY = Math.min(0, canvas.value.clientHeight - imgHeight);
+  const maxX = Math.max(0, (imgWidth - canvas.value.clientWidth) / 2);
+  const maxY = Math.max(0, (imgHeight - canvas.value.clientHeight) / 2);
 
   canvasStore.offsetX = Math.min(maxX, Math.max(minX, newOffsetX));
   canvasStore.offsetY = Math.min(maxY, Math.max(minY, newOffsetY));
@@ -808,6 +853,7 @@ const stopDragging = () => {
 const clearCanvas = () => {
   const ctx = canvas.value.getContext('2d', { willReadFrequently: true });
   ctx.clearRect(0, 0, canvas.value.width, canvas.value.height);
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
   cachedImage = null;
 };
 
@@ -834,8 +880,8 @@ const cropAnnotationArea = (annotation) => {
 const zoomToAnnotation = (annotation) => {
   if (!annotation || !cachedImage) return;
 
-  const canvasWidth = canvas.value.width;
-  const canvasHeight = canvas.value.height;
+  const canvasWidth = canvas.value.clientWidth;
+  const canvasHeight = canvas.value.clientHeight;
   const zoomFactor = 2;
 
   annotationStore.updateAnnotationActive(annotation, canvasStore.currentOpacity, canvasStore.currentSize);
@@ -845,8 +891,8 @@ const zoomToAnnotation = (annotation) => {
     Math.max(canvasStore.minScale, zoomFactor)
   );
 
-  canvasStore.offsetZoomX = (canvas.value.width * newZoomScale - canvas.value.width) / 2;
-  canvasStore.offsetZoomY = (canvas.value.height * newZoomScale - canvas.value.height) / 2;
+  canvasStore.offsetZoomX = (canvas.value.clientWidth * newZoomScale - canvas.value.clientWidth) / 2;
+  canvasStore.offsetZoomY = (canvas.value.clientHeight * newZoomScale - canvas.value.clientHeight) / 2;
 
   const offsetX = canvasWidth / 2 - (annotation.x || annotation.x2);
   const offsetY = canvasHeight / 2 - (annotation.y || annotation.y2);
