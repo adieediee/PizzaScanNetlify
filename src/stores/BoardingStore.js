@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useBoardingStore = defineStore('boarding', {
   state: () => ({
+    welcomeSeen: false,
     wholeTutorialSeen: false,
     explainNav: true,
     explainLeftBar: false,
@@ -17,9 +18,21 @@ export const useBoardingStore = defineStore('boarding', {
     automaticAnnotationTutorialSeen: false,
   }),
 
+  getters: {
+    showWelcomeModal: (state) => !state.welcomeSeen && !state.wholeTutorialSeen,
+    showLayoutTutorial: (state) => state.welcomeSeen && !state.wholeTutorialSeen,
+  },
+
   actions: {
     load() {
       this.wholeTutorialSeen = localStorage.getItem('wholeTutorialSeen') === 'true';
+      const storedWelcome = localStorage.getItem('welcomeSeen');
+      if (storedWelcome === null && this.wholeTutorialSeen) {
+        this.welcomeSeen = true;
+        localStorage.setItem('welcomeSeen', 'true');
+      } else {
+        this.welcomeSeen = storedWelcome === 'true';
+      }
       this.manualAnnotationTutorialSeen = localStorage.getItem('manualAnnotationTutorialSeen') === 'true';
       this.currentStep = parseInt(localStorage.getItem('currentStep')) || 1;
       this.manualCurrentStep = parseInt(localStorage.getItem('manualCurrentStep')) || 0;
@@ -28,6 +41,7 @@ export const useBoardingStore = defineStore('boarding', {
     },
 
     save() {
+      localStorage.setItem('welcomeSeen', this.welcomeSeen);
       localStorage.setItem('wholeTutorialSeen', this.wholeTutorialSeen);
       localStorage.setItem('manualAnnotationTutorialSeen', this.manualAnnotationTutorialSeen);
       localStorage.setItem('explainNav', this.explainNav);
@@ -98,6 +112,11 @@ export const useBoardingStore = defineStore('boarding', {
     setAutomaticAnnotationTutorialOff() {
       this.automaticAnnotationTutorialOn = false;
       this.automaticAnnotationTutorialSeen = true;
+      this.save();
+    },
+
+    setWelcome() {
+      this.welcomeSeen = true;
       this.save();
     },
   },

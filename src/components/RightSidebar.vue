@@ -55,7 +55,7 @@
     </div>  
 
     <ExplanationComponent
-      v-if="boardingStore.explainRightBar"
+      v-if="boardingStore.showLayoutTutorial && boardingStore.explainRightBar"
       :text="explanationText"
     />
   </aside>

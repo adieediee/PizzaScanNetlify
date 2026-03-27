@@ -329,22 +329,22 @@
     },
     "welcome":{
         "welcome": {
-          "title": "Welcome to CiliaScan",
-          "description": "CiliaScan is an innovative annotation tool designed specifically for histopathologists.",
-          "goal": "Its main goal is to speed up the diagnosis of Primary ciliary dyskinesia (PCD) by facilitating cilia annotation."
+          "title": "Welcome to PizzaScan",
+          "description": "Inspect pizzas one by one, work faster, stay organized, and cut down on repetitive work.",
+          "goal": ""
         },
         "aiModel": {
-          "title": "Meet our AI model",
-          "usage": "CiliaScan uses artificial intelligence to help you accurately annotate cilia.",
-          "training": "Our AI model was trained on a diverse dataset of PCD images.",
-          "evolving": "It is important to note that AI model is constantly evolving. It may not initially annotate all the cilia in the image. However, it will improve over time thanks to your help and feedback."
+          "title": "AI assistance",
+          "usage": "PizzaScan can suggest initial annotations and highlight regions to inspect, so you spend less time on repetitive pointing and clicking, and more time on review decisions.",
+          "training": "The model was trained on a diverse set of pizza inspection images.",
+          "evolving": "Suggestions are not guaranteed to be perfect: edge cases, unusual toppings, lighting, or occlusion can still be challenging. Treat AI output as a starting point: verify, correct when needed, and share feedback so the system can improve."
         },
         "experience": {
-          "title": "Understanding Your experience",
-          "dataCollection": "We strive to provide the best diagnostic experience possible. To do this, we collect anonymized data about how you interact with our application.",
+          "title": "Usage data & privacy",
+          "dataCollection": "To improve AI localization and annotation, we'd like your permission to collect anonymized usage data about how you interact with AI features, including how often you use them, whether you accept or modify suggestions, and how you work with generated results.",
           "whyData": "Why data collection?",
-          "insights": "By analyzing the interactions you make, we gain valuable insights into areas where our AI model may need to be improved. This allows us to continuously improve its accuracy and efficiency.",
-          "agreement": "I understand and agree to the data collection policy."
+          "insights": "This data is used only to understand usage patterns and improve our AI features. You can change this preference later in Settings.",
+          "agreement": "I understand and agree to the collection of anonymized usage data as described above."
         }
     },      
     "layoutTutorial": {

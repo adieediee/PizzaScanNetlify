@@ -29,6 +29,8 @@
     
     <div v-if="!boardingStore.wholeTutorialSeen" class="overlay"></div>
 
+    <Welcome v-if="boardingStore.showWelcomeModal" />
+
     <ImageChoices
       :isVisible="imageContextMenuVisible"
       :position="contextMenuPosition"
@@ -80,6 +82,7 @@ import StatusModal from './components/Modals/StatusInfo/GeneralStatusInfo.vue';
 import ImageChoices from './components/ContextMenu/ImageChoices.vue';
 import UploadStatus from './components/Modals/StatusInfo/UploadStatus.vue';
 import AITutorial from './components/Modals/AITutorial.vue';
+import Welcome from './components/Modals/Welcome.vue';
 
 const boardingStore = useBoardingStore();
 const modalStore = useModalStore();

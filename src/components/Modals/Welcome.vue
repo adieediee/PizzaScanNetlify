@@ -1,58 +1,61 @@
 <template>
     <div class="modal">
-        <div class="modal-content">
-            <div class="left-side">
-                <div class="modal-title">
-                    <h1 v-if="step===0" class="blue">{{ $t('welcome.welcome.title') }}</h1>
-                    <h1 v-if="step===1" class="blue">{{ $t('welcome.aiModel.title') }}</h1>
-                    <h1 v-if="step===2" class="blue">{{ $t('welcome.experience.title') }}</h1>
+        <div class="modal-content welcome-popup">
+            <div class="welcome-heading">
+                <h1 v-if="step === 0" class="blue">{{ $t('welcome.welcome.title') }}</h1>
+                <h1 v-if="step === 1" class="blue">{{ $t('welcome.aiModel.title') }}</h1>
+                <h1 v-if="step === 2" class="blue">{{ $t('welcome.experience.title') }}</h1>
+            </div>
+            <div class="welcome-body">
+                <div v-if="step === 0">
+                    <p class="welcome-lead">{{ $t('welcome.welcome.description') }}</p>
+                    <p v-if="showWelcomeGoal" class="welcome-sub">{{ $t('welcome.welcome.goal') }}</p>
                 </div>
-                <div>
-                    <div v-if="step===0">
-                        <p>{{ $t('welcome.welcome.description') }}</p>
-                        <p>{{ $t('welcome.welcome.goal') }}</p>
-                    </div>
-                    <div v-if="step===1">
-                        <p>{{ $t('welcome.aiModel.usage') }}</p>
-                        <p>{{ $t('welcome.aiModel.training') }}</p>
-                        <p>{{ $t('welcome.aiModel.evolving') }}</p>
-                    </div>
-                    <div v-if="step===2">
-                        <p>{{ $t('welcome.experience.dataCollection') }}</p>
-                        <p>{{ $t('welcome.experience.insights') }}</p>
-                        <div class="agree">
-                            <input type="checkbox" class="checkbox"> 
-                            <span>{{ $t('welcome.experience.agreement') }}</span>
-                        </div>
-                    </div>
-                    <div class="div-button">
-                        <button id="WelcomeBackButton" class="btn btn-outlined" :style="{ visibility: step === 0 ? 'hidden' : 'visible' }" @click="previousStep">{{ $t('general.backButton') }}</button>
-                        <button id="WelcomeNextButton" class="btn btn-filled" @click="nextStep">{{ nextButtonText }}</button>
+                <div v-if="step === 1">
+                    <p>{{ $t('welcome.aiModel.usage') }}</p>
+                    <p>{{ $t('welcome.aiModel.training') }}</p>
+                    <p>{{ $t('welcome.aiModel.evolving') }}</p>
+                </div>
+                <div v-if="step === 2">
+                    <p>{{ $t('welcome.experience.dataCollection') }}</p>
+                    <p>{{ $t('welcome.experience.insights') }}</p>
+                    <div class="agree">
+                        <input v-model="agreeChecked" type="checkbox" class="checkbox">
+                        <span>{{ $t('welcome.experience.agreement') }}</span>
                     </div>
                 </div>
             </div>
-            <div class="right-side">
-                <img v-show="step === 0" :key="0" src="/src/assets/welcome/Tv2.png">
-                <img v-show="step === 1" :key="1" src="/src/assets/welcome/ai_priklad.gif">
-                <img v-show="step === 2" :key="2" src="/src/assets/welcome/Tv16.png"> 
+            <div class="welcome-actions">
+                <button
+                    id="WelcomeBackButton"
+                    class="btn btn-outlined"
+                    :style="{ visibility: step === 0 ? 'hidden' : 'visible' }"
+                    @click="previousStep"
+                >{{ $t('general.backButton') }}</button>
+                <button
+                    id="WelcomeNextButton"
+                    class="btn btn-filled"
+                    :disabled="step === 2 && !agreeChecked"
+                    @click="nextStep"
+                >{{ nextButtonText }}</button>
             </div>
         </div>
     </div>
 </template>
 
-  
 <script setup>
 import { ref, computed } from 'vue';
-import { useBoardingStore} from '@/stores/BoardingStore';
+import { useBoardingStore } from '@/stores/BoardingStore';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 const step = ref(0);
+const agreeChecked = ref(false);
 const boardingStore = useBoardingStore();
 
 const nextStep = () => {
     step.value++;
-    if(step.value === 3) {
+    if (step.value === 3) {
         boardingStore.setWelcome();
     }
 };
@@ -65,69 +68,92 @@ const nextButtonText = computed(() => {
     return step.value === 2 ? t('general.finishButton') : t('general.nextButton');
 });
 
+const showWelcomeGoal = computed(() => String(t('welcome.welcome.goal') || '').trim().length > 0);
+
 </script>
 
 <style scoped>
-.modal-content {
-    flex-direction: row;
-    padding: 0;
+.welcome-popup.modal-content {
+    width: calc(100% - 2rem);
+    max-width: 32rem;
+    height: auto;
+    min-height: unset;
+    max-height: min(85vh, 40rem);
+    padding: 2rem 2rem 1.75rem;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
-.right-side {
-    width: 60%;
+.welcome-heading {
+    margin-bottom: 1.25rem;
 }
 
-.left-side {
-    width: 40%;
-    padding: 30px;
+.welcome-heading h1 {
+    margin: 0;
+    font-size: 1.35rem;
+    line-height: 1.35;
 }
 
-.left-side p {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
+.welcome-body {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.welcome-body p {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin: 0 0 1rem;
+}
+
+.welcome-body .welcome-lead {
+    font-size: 1.08rem;
+    line-height: 1.55;
+    margin-bottom: 0;
+}
+
+.welcome-body .welcome-sub {
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+    opacity: 0.92;
+}
+
+.welcome-body p:last-child {
+    margin-bottom: 0;
 }
 
 .blue {
     font-weight: bolder;
-    color: #3E63DD;
+    color: #3e63dd;
 }
 
-.h2-blue {
-    text-align: center;
-    color: #3E63DD;
-    font-weight: bolder;
-    margin-bottom: 0px;
-}
-
-.div-button {
-    position: absolute;
-    bottom: 15%; 
+.welcome-actions {
     display: flex;
-    width: 27%;
+    flex-wrap: wrap;
     justify-content: space-between;
-}
-
-.bold {
-    font-weight: 800;
-}
-
-.right-side img {
-    width: 100%;
-    height: 100%;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .agree {
     display: flex;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    align-items: flex-start;
+    margin-top: 1.25rem;
+    margin-bottom: 0;
 }
 
 .checkbox {
-    width: 30px;
-    margin: 0;
-    margin-right: 20px;
+    width: 1.125rem;
+    height: 1.125rem;
+    margin: 0.2rem 0.75rem 0 0;
+    flex-shrink: 0;
 }
 
+.agree span {
+    font-size: 1rem;
+    line-height: 1.45;
+}
 </style>

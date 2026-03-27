@@ -328,22 +328,22 @@
     },
     "welcome": {
         "welcome": {
-            "title": "Vítejte v CiliaScan",
-            "description": "CiliaScan je inovativní nástroj pro anotaci navržený speciálně pro histopatology.",
-            "goal": "Hlavním cílem je urychlit diagnostiku Primární ciliární dyskineze (PCD) prostřednictvím rychlejší anotace řasinek."
+            "title": "Vítejte v PizzaScan",
+            "description": "Kontrolujte pizzy jednu po druhé, pracujte rychleji, mějte přehled a omezte opakující se práci.",
+            "goal": ""
         },
         "aiModel": {
-            "title": "Seznamte se s naším AI modelem",
-            "usage": "CiliaScan využívá umělou inteligenci pro přesnou anotaci řasinek.",
-            "training": "Náš AI model byl vyškolen na různorodém souboru dat z obrázků PCD.",
-            "evolving": "Je důležité si uvědomit, že AI model se neustále vyvíjí. Možná nezachytí všechny řasinky hned, ale díky vaší pomoci a zpětné vazbě se bude neustále zlepšovat."
+            "title": "AI asistence",
+            "usage": "PizzaScan může navrhovat počáteční anotace a zvýrazňovat oblasti ke kontrole, takže strávíte méně času opakovaným klikáním a více času rozhodováním při kontrole.",
+            "training": "Model byl trénován na různorodé sadě obrázků kontroly pizzy.",
+            "evolving": "Návrhy nemusí být vždy dokonalé: náročné mohou být hraniční případy, neobvyklé ingredience, osvětlení nebo překrytí. Považujte výstup AI za výchozí bod: ověřte ho, v případě potřeby ho opravte a poskytněte zpětnou vazbu, aby se systém zlepšoval."
         },
         "experience": {
-            "title": "Pochopení vaší zkušenosti",
-            "dataCollection": "Naším cílem je poskytnout co nejlepší diagnostickou zkušenost. Proto sbíráme anonymizované údaje o tom, jak interagujete s aplikací.",
+            "title": "Údaje o používání a soukromí",
+            "dataCollection": "Kvůli zlepšení AI lokalizace a anotace potřebujeme váš souhlas se sběrem anonymizovaných údajů o tom, jak používáte AI funkce, včetně toho, jak často je používáte, zda akceptujete nebo upravujete navrhované výsledky a jak pracujete s generovanými výstupy.",
             "whyData": "Proč sbíráme údaje?",
-            "insights": "Analýzou vašich interakcí získáváme cenné informace o oblastech, kde náš AI model potřebuje zlepšení. To nám umožňuje neustále zlepšovat jeho přesnost a efektivitu.",
-            "agreement": "Rozumím a souhlasím se sběrem údajů."
+            "insights": "Tato data slouží pouze k pochopení vzorců používání a ke zlepšování našich AI funkcí. Tuto preferenci můžete později změnit v Nastavení.",
+            "agreement": "Rozumím a souhlasím se sběrem anonymizovaných údajů o používání tak, jak je popsáno výše."
         }
     },
     "layoutTutorial": {

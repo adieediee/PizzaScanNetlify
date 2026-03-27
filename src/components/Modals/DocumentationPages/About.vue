@@ -2,7 +2,7 @@
     <div class="paragraph">
         <h2>{{$t('modals.documentation.about.title')}}</h2>
         <p>{{$t('welcome.welcome.description')}}</p>
-        <p>{{$t('welcome.welcome.goal')}}</p>
+        <p v-if="showWelcomeGoal">{{$t('welcome.welcome.goal')}}</p>
     </div>
     <div class="paragraph">
         <h2>{{$t('welcome.aiModel.title')}}</h2>
@@ -16,3 +16,11 @@
         <p>{{$t('welcome.experience.insights')}}</p>
     </div>
 </template>
+
+<script setup>
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+const showWelcomeGoal = computed(() => String(t('welcome.welcome.goal') || '').trim().length > 0);
+</script>

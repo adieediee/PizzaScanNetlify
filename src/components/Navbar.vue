@@ -16,11 +16,11 @@
             <span v-if="!boardingStore.explainNav" class="tooltip">{{$t('navigation.tooltips.ai')}}</span>
         </button>
         <ExplanationComponent
-          v-if="boardingStore.currentStep === 1"
+          v-if="boardingStore.showLayoutTutorial && boardingStore.currentStep === 1"
           :text="$t('layoutTutorial.step1')"
         />
         <ExplanationComponent
-          v-if="boardingStore.currentStep === 2"
+          v-if="boardingStore.showLayoutTutorial && boardingStore.currentStep === 2"
           :text="$t('layoutTutorial.step2')"
         />
       </div>
@@ -65,7 +65,7 @@
               </span>
           </button>
           <ExplanationComponent
-            v-if="boardingStore.currentStep === 3"
+            v-if="boardingStore.showLayoutTutorial && boardingStore.currentStep === 3"
             :text="$t('layoutTutorial.step3')"
           />
         </div>
@@ -179,7 +179,7 @@
             </div>
         </button>
         <ExplanationComponent
-          v-if="boardingStore.currentStep === 4"
+          v-if="boardingStore.showLayoutTutorial && boardingStore.currentStep === 4"
           :text="$t('layoutTutorial.step4')"
         />
       </div>

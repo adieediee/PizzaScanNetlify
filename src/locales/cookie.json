@@ -387,22 +387,22 @@
     },
     "welcome": {
         "welcome": {
-            "title": "Vitajte v CookieScan",
-            "description": "CookieScan je inovatívny nástroj na anotáciu navrhnutý špeciálne pre sušienkológov.",
-            "goal": "Hlavným cieľom je urýchliť diagnostiku Primárnej sušienkovej dyskinézy (PSD) prostredníctvom rýchlejšej anotácie sušienok."
+            "title": "Vitajte v PizzaScan",
+            "description": "Kontrolujte pizze jednu po druhej, pracujte rýchlejšie, zostaňte v prehľade a znížte opakovanú prácu.",
+            "goal": ""
         },
         "aiModel": {
-            "title": "Zoznámte sa s naším AI modelom",
-            "usage": "CookieScan využíva umelú inteligenciu na presnú anotáciu sušienok.",
-            "training": "Náš AI model bol vyškolený na rôznorodom súbore dát z obrázkov sušienok.",
-            "evolving": "Je dôležité si uvedomiť, že AI model sa neustále vyvíja. Možno nezachytí všetky sušienky hneď, ale vďaka vašej pomoci a spätnej väzbe sa bude neustále zlepšovať."
+            "title": "AI asistencia",
+            "usage": "PizzaScan môže navrhovať počiatočné anotácie a zvýrazňovať oblasti na kontrolu, takže strávite menej času opakovaným klikaním a viac rozhodovaním pri kontrole.",
+            "training": "Model bol trénovaný na rôznorodom súbore obrázkov kontroly pizze.",
+            "evolving": "Návrhy nemusia byť vždy dokonalé: náročné môžu byť hraničné prípady, neobvyklé prísady, osvetlenie alebo prekrytie. Považujte výstup AI za východiskový bod: overujte ho, v prípade potreby ho opravte a poskytnite spätnú väzbu, aby sa systém zlepšoval."
         },
         "experience": {
-            "title": "Pochopenie vašej skúsenosti",
-            "dataCollection": "Naším cieľom je poskytnúť čo najlepšiu diagnostickú skúsenosť. Preto zbierame anonymizované údaje o tom, ako interagujete s aplikáciou.",
+            "title": "Údaje o používaní a súkromie",
+            "dataCollection": "Na zlepšenie AI lokalizácie a anotácie potrebujeme váš súhlas so zberom anonymizovaných údajov o tom, ako používate AI funkcie, vrátane toho, ako často ich používate, či akceptujete alebo upravujete navrhované výsledky a ako pracujete s generovanými výstupmi.",
             "whyData": "Prečo zbierame údaje?",
-            "insights": "Analýzou vašich interakcií získavame cenné informácie o oblastiach, kde náš AI model potrebuje vylepšenie. To nám umožňuje neustále zlepšovať jeho presnosť a efektívnosť.",
-            "agreement": "Rozumiem a súhlasím so zberom údajov."
+            "insights": "Tieto údaje slúžia len na pochopenie vzorcov používania a zlepšovanie našich AI funkcií. Túto preferenciu môžete neskôr zmeniť v Nastaveniach.",
+            "agreement": "Rozumiem a súhlasím so zberom anonymizovaných údajov o používaní tak, ako je to vyššie uvedené."
         }
     },
     "layoutTutorial": {
