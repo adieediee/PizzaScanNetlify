@@ -26,8 +26,15 @@ export const useAnnotationStore = defineStore("annotation", {
       },
       {
         name: "Missing center salami",
-        value: "missing-center",
+        value: "missing-center-salami",
         color: "#D9001B",
+        count: 0,
+        description: "",
+      },
+      {
+        name: "Only one center salami",
+        value: "one-center-salami",
+        color: "#FF6B35",
         count: 0,
         description: "",
       },

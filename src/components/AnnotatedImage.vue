@@ -328,8 +328,15 @@ const handleCanvasClick = (event) => {
         const distance = Math.sqrt((x - ax) ** 2 + (y - ay) ** 2);
         return distance < 20 / canvasStore.zoomScale;
       } else if (point.type === "AI") {
+        const pct = Number.isFinite(point.confidence)
+          ? Math.max(0, Math.min(100, Math.round((point.confidence <= 1 ? point.confidence * 100 : point.confidence))))
+          : null;
+        const f = canvasStore.aiVisibilityFilter;
+        if (pct !== null && pct >= 80 && !f.showConfident) return false;
+        if (pct !== null && pct >= 50 && pct < 80 && !f.showReview) return false;
+        if (pct !== null && pct < 50 && !f.showInspection) return false;
         return (
-          x >= point.x1 && x <= point.x2 && 
+          x >= point.x1 && x <= point.x2 &&
           y >= point.y1 && y <= point.y2
         );
       }
@@ -455,6 +462,13 @@ const drawImageWithPoints = (minimap = true, zooming = true) => {
   annotationStore.annotations.forEach(point => {
     if (point.imageId !== canvasStore.selectedImage.imageId) return;
     if(point.type === 'AI') {
+      const pct = Number.isFinite(point.confidence)
+        ? Math.max(0, Math.min(100, Math.round((point.confidence <= 1 ? point.confidence * 100 : point.confidence))))
+        : null;
+      const f = canvasStore.aiVisibilityFilter;
+      if (pct !== null && pct >= 80 && !f.showConfident) return;
+      if (pct !== null && pct >= 50 && pct < 80 && !f.showReview) return;
+      if (pct !== null && pct < 50 && !f.showInspection) return;
       drawAIPoint(
         ctx,
         point.x1,
@@ -687,6 +701,10 @@ watch(() => annotationStore.annotations, (newAnnotations) => {
 }, { deep: true });
 
 watch(() => annotationStore.AIannotations, (newAnnotations) => {
+  drawImageWithPoints();
+}, { deep: true });
+
+watch(() => canvasStore.aiVisibilityFilter, () => {
   drawImageWithPoints();
 }, { deep: true });
 

@@ -26,6 +26,11 @@ export const useCanvasStore = defineStore('canvas', {
     imageDrawStartWidth: 0,
     imageDrawStartHeight: 0,
     imageScale: 1,
+    aiVisibilityFilter: {
+      showConfident: false,
+      showReview: true,
+      showInspection: true,
+    },
   }),
 
   actions: {

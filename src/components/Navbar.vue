@@ -4,17 +4,45 @@
        <img :src="Logo" alt="logo" class="logo" />
     </div>
     <div class="navbar-middle">
-      <div>
+      <div style="position: relative;">
         <button
           id="automatic-annotation-button"
-          class="btn btn-icon btn-ai"
-          data-button="AI-button" 
-          @click="automaticAnnotation"
+          class="btn ai-filter-btn"
+          data-button="AI-button"
+          @click.stop="handleAiButtonClick"
           :disabled="!boardingStore.wholeTutorialSeen"
           :class="{ 'highlighted': boardingStore.currentStep === 2 }">
-            AI
-            <span v-if="!boardingStore.explainNav" class="tooltip">{{$t('navigation.tooltips.ai')}}</span>
+          AI
+          <template v-if="hasAIAnnotations">
+            <span
+              v-for="dot in aiFilterDots"
+              :key="dot.color"
+              class="ai-filter-dot"
+              :style="{ backgroundColor: dot.color }"
+            ></span>
+            <span class="ai-filter-chevron">&#8964;</span>
+          </template>
         </button>
+        <div v-show="aiFilterOpen" class="ai-filter-dropdown" ref="aiFilterModal" @click.stop>
+          <div
+            class="ai-filter-item"
+            :style="aiFilterItemStyle('#E05C3A', canvasStore.aiVisibilityFilter.showInspection)"
+            @click="canvasStore.aiVisibilityFilter.showInspection = !canvasStore.aiVisibilityFilter.showInspection">
+            Needs Inspection
+          </div>
+          <div
+            class="ai-filter-item"
+            :style="aiFilterItemStyle('#D4920A', canvasStore.aiVisibilityFilter.showReview)"
+            @click="canvasStore.aiVisibilityFilter.showReview = !canvasStore.aiVisibilityFilter.showReview">
+            Needs Review
+          </div>
+          <div
+            class="ai-filter-item"
+            :style="aiFilterItemStyle('#4CAF50', canvasStore.aiVisibilityFilter.showConfident)"
+            @click="canvasStore.aiVisibilityFilter.showConfident = !canvasStore.aiVisibilityFilter.showConfident">
+            AI is confident
+          </div>
+        </div>
         <ExplanationComponent
           v-if="boardingStore.currentStep === 1"
           :text="$t('layoutTutorial.step1')"
@@ -34,6 +62,7 @@
             <span v-if="!boardingStore.explainNav" class="tooltip">Run AI pizza detection</span>
         </button>
       </div>
+
       <div class="tools-for-image">
         <div>
           <button 
@@ -278,12 +307,42 @@ const statisticStore = useStatisticStore();
 const settingsOpen = ref(false);
 const opacityOpen = ref(false);
 const pointSizeOpen = ref(false);
+const aiFilterOpen = ref(false);
 const sliderValue = ref(canvasStore.currentOpacity);
 const pointValue = ref(canvasStore.currentSize);
 const opacityModal = ref(null);
 const pointSizeModal = ref(null);
+const aiFilterModal = ref(null);
 const microtubularDefectsOpen = ref(false);
 const selectedTool = ref('normal');
+
+const hasAIAnnotations = computed(() =>
+  annotationStore.annotations.some((a) => a.type === 'AI')
+);
+
+const handleAiButtonClick = () => {
+  if (hasAIAnnotations.value) {
+    aiFilterOpen.value = !aiFilterOpen.value;
+    opacityOpen.value = false;
+    pointSizeOpen.value = false;
+  } else {
+    automaticAnnotation();
+  }
+};
+
+const aiFilterDots = computed(() => {
+  const dots = [];
+  if (canvasStore.aiVisibilityFilter.showInspection) dots.push({ color: '#E05C3A' });
+  if (canvasStore.aiVisibilityFilter.showReview) dots.push({ color: '#D4920A' });
+  if (canvasStore.aiVisibilityFilter.showConfident) dots.push({ color: '#4CAF50' });
+  return dots;
+});
+
+const aiFilterItemStyle = (color, active) => ({
+  color: active ? color : '#888',
+  backgroundColor: active ? color + '33' : 'transparent',
+  borderColor: active ? color : 'transparent',
+});
 
 const emit = defineEmits(['systemStatus']);
 
@@ -375,6 +434,9 @@ onMounted(() => {
     }
     if (pointSizeOpen.value && pointSizeModal.value && !pointSizeModal.value.contains(event.target)) {
       pointSizeOpen.value = false;
+    }
+    if (aiFilterOpen.value && aiFilterModal.value && !aiFilterModal.value.contains(event.target)) {
+      aiFilterOpen.value = false;
     }
   });
 });
@@ -764,6 +826,66 @@ defineExpose({
   .shortcut-tooltip {
     margin-left: 5px;
     font-size: smaller;
+  }
+
+  .ai-filter-wrapper {
+    position: relative;
+  }
+
+  .ai-filter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 1.5px solid #3E63DD;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-weight: 600;
+    white-space: nowrap;
+    width: 110px;
+  }
+
+  .ai-filter-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .ai-filter-chevron {
+    font-size: 14px;
+    line-height: 1;
+    color: #888;
+  }
+
+  .ai-filter-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    background: var(--dark-dark1, #101021);
+    border: 1px solid #2D2D42;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 100;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 170px;
+  }
+
+  .ai-filter-item {
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 1.5px solid transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .ai-filter-item:hover {
+    filter: brightness(1.2);
   }
 
 </style>

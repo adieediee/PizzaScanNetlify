@@ -1,10 +1,66 @@
 [
   {
-    "x1": 212,
-    "y1": 185,
-    "x2": 562,
-    "y2": 535,
-    "confidence": 0.55,
+    "x1": 404,
+    "y1": 232,
+    "x2": 1794,
+    "y2": 1622,
+    "confidence": 0.81,
     "defectType": "normal"
+  },
+  {
+    "x1": 2363,
+    "y1": 232,
+    "x2": 3753,
+    "y2": 1622,
+    "confidence": 0.81,
+    "defectType": "extra-salami"
+  },
+  {
+    "x1": 5223,
+    "y1": 1010,
+    "x2": 6613,
+    "y2": 2400,
+    "confidence": 0.49,
+    "defectType": "wrong-slices"
+  },
+  {
+    "x1": 1464,
+    "y1": 1721,
+    "x2": 2854,
+    "y2": 3111,
+    "confidence": 0.81,
+    "defectType": "one-center-salami"
+  },
+  {
+    "x1": 3428,
+    "y1": 1635,
+    "x2": 4818,
+    "y2": 3025,
+    "confidence": 0.81,
+    "defectType": "normal"
+  },
+  {
+    "x1": 232,
+    "y1": 3210,
+    "x2": 1622,
+    "y2": 4600,
+    "confidence": 0.81,
+    "defectType": "normal"
+  },
+  {
+    "x1": 2546,
+    "y1": 3119,
+    "x2": 3936,
+    "y2": 4509,
+    "confidence": 0.81,
+    "defectType": "missing-center-salami"
+  },
+  {
+    "x1": 4928,
+    "y1": 2648,
+    "x2": 6318,
+    "y2": 4038,
+    "confidence": 0.55,
+    "defectType": "missing-center-salami"
   }
 ]
