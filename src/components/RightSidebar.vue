@@ -104,14 +104,7 @@ const forwardZoomToAnnotation = (annotation) => {
 };
 
 const explanationText = computed(() => {
-  switch (boardingStore.currentStep) {
-    case 7:
-      return t('layoutTutorial.step7');
-    case 8:
-      return t('layoutTutorial.step8');
-    default:
-      return null;
-  }
+  return boardingStore.currentStep === 7 ? t('layoutTutorial.step7') : null;
 });
 
 watch(() => imageStore.selectedAnnotation, (newAnnotation) => {

@@ -359,27 +359,25 @@
     },      
     "layoutTutorial": {
         "title": "App layout",
-        "steps": "of 8 steps",
+        "steps": "of 7 steps",
         "step1": "Welcome to the tutorial! This tour highlights the main areas of PizzaScan: top bar, sidebars, and workspace.",
         "step2": "Use the AI button to automatically annotate the image, and the AI Detection button to detect pizzas on the image and crop them into individual images.",
         "step3": "Use the Center image button to fit the pizza in view, and the Undo button to reverse your last change.",
         "step4": "Use these controls to choose the defect or category for annotations, and to adjust point size and opacity so marks are easy to see on the pizza.",
         "step5": "The left sidebar lists your images; expand an image to see its annotations underneath.",
         "step6": "The center is your workspace: inspect the pizza, add or adjust annotations, and zoom or pan to see details.",
-        "step7": "The right sidebar has Project, Image, and Annotation tabs for summaries and details. Click a tab to switch.",
-        "step8": "For more detail on tools and layout, open Documentation from the menu."
+        "step7": "The right sidebar has Project, Image, and Annotation tabs for summaries and details. Click a tab to switch."
     },
     "manualAnnotationTutorial": {
         "title": "Manual annotation",
-        "steps": "of 8 steps",
+        "steps": "of 7 steps",
         "step1": "This short guide walks you through manual annotation on pizza images.",
         "step2": "Select an image in the left sidebar to open it.",
         "step3": "Pick a defect or category in the top bar (colored selector). Use number keys to switch.",
         "step4": "Click on the pizza image to add an annotation.",
         "step5": "You can add more than one annotation on the same pizza image.",
         "step6": "To edit an annotation, select it and use the Annotation tab on the right to change the defect category and related fields.",
-        "step7": "To delete an annotation, right-click it, or remove it in the Annotation tab on the right.",
-        "step8": "If you need a reminder, open Documentation from the menu."
+        "step7": "To delete an annotation, right-click it, or remove it in the Annotation tab on the right."
     },
     "AItutorial": {
         "title": "Automatic anotation",

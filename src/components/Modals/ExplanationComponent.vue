@@ -41,11 +41,15 @@ const { t } = useI18n();
 const isMinimized = ref(false);
 
 const nextButtonText = computed(() => {
-  return boardingStore.currentStep === 8 ? t('general.finishButton') : t('general.nextButton');
+  return boardingStore.currentStep === 7 ? t('general.finishButton') : t('general.nextButton');
 });
 
 function nextStep() {
-  boardingStore.setCurrentStep(boardingStore.currentStep + 1);
+  if (boardingStore.currentStep === 7) {
+    boardingStore.setCurrentStep(9);
+  } else {
+    boardingStore.setCurrentStep(boardingStore.currentStep + 1);
+  }
 }
 
 function prevStep() {

@@ -417,27 +417,25 @@
     },
     "layoutTutorial": {
         "title": "Rozloženie aplikácie",
-        "steps": "z 8 krokov",
+        "steps": "z 7 krokov",
         "step1": "Vitajte v tutoriáli! Tento sprievodca predstaví hlavné časti PizzaScan: horný panel, bočné panely a pracovnú plochu.",
         "step2": "Použite tlačidlo AI na automatickú anotáciu obrázka a tlačidlo AI Detection na detekciu pizze na obrázku a rozdelenie do jednotlivých obrázkov.",
         "step3": "Použite tlačidlo na vycentrovanie obrázka, aby bola pizza v zábere, a tlačidlo Späť na vrátenie poslednej zmeny.",
         "step4": "Použite tieto ovládacie prvky na výber defektu alebo kategórie pre anotácie a na úpravu veľkosti a priehľadnosti bodov, aby boli značky na pizze dobre viditeľné.",
         "step5": "V ľavom paneli je zoznam obrázkov; obrázok môžete rozšíriť a pod ním uvidíte jeho anotácie.",
         "step6": "Stred obrazovky je pracovná plocha: kontrolujte pizzu, pridávajte alebo upravujte anotácie a približujte alebo posúvajte pohľad podľa potreby.",
-        "step7": "V pravom paneli sú záložky Projekt, Obrázok a Anotácia s prehľadmi a detailmi. Prepínajte medzi nimi kliknutím na záložku.",
-        "step8": "Ďalšie informácie o nástrojoch a rozložení nájdete v Dokumentácii v menu."
+        "step7": "V pravom paneli sú záložky Projekt, Obrázok a Anotácia s prehľadmi a detailmi. Prepínajte medzi nimi kliknutím na záložku."
     },    
     "manualAnnotationTutorial": {
         "title": "Manuálna anotácia",
-        "steps": "z 8 krokov",
+        "steps": "z 7 krokov",
         "step1": "Tento krátky sprievodca vás prevedie manuálnou anotáciou na obrázkoch pizze.",
         "step2": "Vyberte obrázok v ľavom paneli, aby sa otvoril.",
         "step3": "Vyberte defekt alebo kategóriu v hornom paneli (farebný výber). Kategórie prepínajte číselnými klávesmi.",
         "step4": "Kliknutím na obrázok pizze pridáte anotáciu.",
         "step5": "Na ten istý obrázok pizze môžete pridať viac ako jednu anotáciu.",
         "step6": "Na úpravu anotácie ju vyberte a v záložke Anotácia v pravom paneli zmeňte kategóriu defektu a súvisiace polia.",
-        "step7": "Na zmazanie anotácie použite pravý klik, alebo ju odstráňte v záložke Anotácia v pravom paneli.",
-        "step8": "Ak potrebujete pripomenúť postup, otvorte Dokumentáciu v menu."
+        "step7": "Na zmazanie anotácie použite pravý klik, alebo ju odstráňte v záložke Anotácia v pravom paneli."
     },
     "manualAnnotationTutorialDocumentation": {
         "title": "Návod na manuálnu anotáciu",

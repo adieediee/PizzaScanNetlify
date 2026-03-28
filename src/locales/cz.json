@@ -358,27 +358,25 @@
     },
     "layoutTutorial": {
         "title": "Rozložení aplikace",
-        "steps": "z 8 kroků",
+        "steps": "z 7 kroků",
         "step1": "Vítejte v tutoriálu! Tento průvodce představí hlavní části PizzaScan: horní lištu, boční panely a pracovní plochu.",
         "step2": "Použijte tlačítko AI pro automatickou anotaci obrázku a tlačítko AI Detection pro detekci pizzy na obrázku a rozdělení do samostatných obrázků.",
         "step3": "Použijte tlačítko pro vycentrování obrázku, aby byla pizza v záběru, a tlačítko Zpět pro vrácení poslední změny.",
         "step4": "Použijte tyto ovládací prvky k výběru defektu nebo kategorie pro anotace a k úpravě velikosti a průhlednosti bodů, aby byly značky na pizzě dobře vidět.",
         "step5": "V levém panelu je seznam obrázků; obrázek můžete rozbalit a pod ním uvidíte jeho anotace.",
         "step6": "Střed obrazovky je pracovní plocha: kontrolujte pizzu, přidávejte nebo upravujte anotace a přibližujte nebo posouvejte pohled podle potřeby.",
-        "step7": "V pravém panelu jsou záložky Projekt, Obrázek a Anotace s přehledy a detaily. Přepínejte mezi nimi kliknutím na záložku.",
-        "step8": "Další informace o nástrojích a rozložení najdete v Dokumentaci v menu."
+        "step7": "V pravém panelu jsou záložky Projekt, Obrázek a Anotace s přehledy a detaily. Přepínejte mezi nimi kliknutím na záložku."
     },
     "manualAnnotationTutorial": {
         "title": "Manuální anotace",
-        "steps": "z 8 kroků",
+        "steps": "z 7 kroků",
         "step1": "Tento krátký průvodce vás provede manuální anotací na obrázcích pizzy.",
         "step2": "Vyberte obrázek v levém panelu, aby se otevřel.",
         "step3": "Zvolte defekt nebo kategorii v horní liště (barevný výběr). Kategorie přepínejte číselnými klávesami.",
         "step4": "Kliknutím na obrázek pizzy přidejte anotaci.",
         "step5": "Na stejný obrázek pizzy můžete přidat více než jednu anotaci.",
         "step6": "Chcete anotaci upravit? Vyberte ji a v záložce Anotace v pravém panelu změňte kategorii defektu a související pole.",
-        "step7": "Chcete anotaci smazat? Použijte pravé tlačítko myši, nebo ji odeberte v záložce Anotace v pravém panelu.",
-        "step8": "Potřebujete si něco připomenout? Otevřete Dokumentaci v menu."
+        "step7": "Chcete anotaci smazat? Použijte pravé tlačítko myši, nebo ji odeberte v záložce Anotace v pravém panelu."
     },
     "AItutorial": {
         "title": "Automatická anotace",

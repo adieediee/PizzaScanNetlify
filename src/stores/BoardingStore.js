@@ -35,6 +35,10 @@ export const useBoardingStore = defineStore('boarding', {
       }
       this.manualAnnotationTutorialSeen = localStorage.getItem('manualAnnotationTutorialSeen') === 'true';
       this.currentStep = parseInt(localStorage.getItem('currentStep')) || 1;
+      if (this.currentStep === 8) {
+        this.currentStep = 7;
+        this.save();
+      }
       this.manualCurrentStep = parseInt(localStorage.getItem('manualCurrentStep')) || 0;
       this.automaticAnnotationTutorialSeen = localStorage.getItem('automaticAnnotationTutorialSeen') === 'true';
       this.explainNav = localStorage.getItem('explainNav') === 'false' ? false : true;
@@ -102,7 +106,7 @@ export const useBoardingStore = defineStore('boarding', {
 
     setManualCurrentStep(step) {
       this.manualCurrentStep = step;
-      if (this.manualCurrentStep >= 9) this.setManualAnnotationTutorialOff();
+      if (this.manualCurrentStep >= 8) this.setManualAnnotationTutorialOff();
     },
 
     setAutomaticAnnotationTutorialOn() {
