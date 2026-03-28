@@ -281,7 +281,7 @@ const handleCanvasClick = (event) => {
   }
 
   if (aiReviewPopup.value.visible) {
-    acceptAiAnnotation();
+    closeAiReviewPopup();
     return;
   }
 
@@ -723,8 +723,8 @@ const handleDocumentClick = (e) => {
   if (!aiReviewPopup.value.visible) return;
   const popup = document.querySelector('.annotation-review-popup');
   if (popup && popup.contains(e.target)) return;
-  if (canvas.value && canvas.value.contains(e.target)) return; // handled by handleCanvasClick
-  acceptAiAnnotation();
+  if (canvas.value && canvas.value.contains(e.target)) return;
+  closeAiReviewPopup();
 };
 
 onMounted(() => {
