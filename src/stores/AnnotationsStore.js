@@ -423,6 +423,9 @@ export const useAnnotationStore = defineStore("annotation", {
         annotation.type = "manual";
       });
 
+      const image = useImageStore().uploadedImages.find((img) => img.imageId === imageId);
+      if (image) image.aiAnnotated = true;
+
       useStatisticStore().computeStatistics(this.microtubularDefects, this.dyneinArms);
       useLoggingStore().logEvent({ Action: "All AI annotations accepted", Count: aiAnnotations.length });
     },

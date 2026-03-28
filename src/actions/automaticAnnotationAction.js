@@ -50,6 +50,10 @@ const addSquaresFromJson = (annotationStore, canvasStore) => {
 
   const imageId = canvasStore.selectedImage.imageId;
 
+  if (canvasStore.selectedImage.aiAnnotated) return;
+
+  canvasStore.selectedImage.aiAnnotated = true;
+
   squareAnnotations.forEach((square) => {
     const parsedSquare = normalizeSquare(square);
     if (!parsedSquare) return;

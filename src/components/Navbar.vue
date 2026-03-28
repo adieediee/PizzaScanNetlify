@@ -299,9 +299,13 @@ const aiFilterModal = ref(null);
 const microtubularDefectsOpen = ref(false);
 const selectedTool = ref('normal');
 
-const hasAIAnnotations = computed(() =>
-  annotationStore.annotations.some((a) => a.type === 'AI')
-);
+const hasAIAnnotations = computed(() => {
+  if (!canvasStore.selectedImage) return false;
+  return !!canvasStore.selectedImage.aiAnnotated ||
+    annotationStore.annotations.some(
+      (a) => a.imageId === canvasStore.selectedImage.imageId && a.type === 'AI'
+    );
+});
 
 const handleAiButtonClick = () => {
   if (hasAIAnnotations.value) {
