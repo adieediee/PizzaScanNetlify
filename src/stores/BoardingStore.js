@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia';
+import { useAnnotationStore } from './AnnotationsStore';
 
 export const useBoardingStore = defineStore('boarding', {
   state: () => ({
+    welcomeSeen: false,
     wholeTutorialSeen: false,
     explainNav: true,
     explainLeftBar: false,
@@ -15,25 +17,49 @@ export const useBoardingStore = defineStore('boarding', {
 
     automaticAnnotationTutorialOn: false,
     automaticAnnotationTutorialSeen: false,
+    aiCurrentStep: 1,
+
+    aiDetectionTutorialOn: false,
+    aiDetectionTutorialSeen: false,
+    aiDetectionCurrentStep: 1,
   }),
+
+  getters: {
+    showWelcomeModal: (state) => !state.welcomeSeen && !state.wholeTutorialSeen,
+    showLayoutTutorial: (state) => state.welcomeSeen && !state.wholeTutorialSeen,
+  },
 
   actions: {
     load() {
       this.wholeTutorialSeen = localStorage.getItem('wholeTutorialSeen') === 'true';
+      const storedWelcome = localStorage.getItem('welcomeSeen');
+      if (storedWelcome === null && this.wholeTutorialSeen) {
+        this.welcomeSeen = true;
+        localStorage.setItem('welcomeSeen', 'true');
+      } else {
+        this.welcomeSeen = storedWelcome === 'true';
+      }
       this.manualAnnotationTutorialSeen = localStorage.getItem('manualAnnotationTutorialSeen') === 'true';
       this.currentStep = parseInt(localStorage.getItem('currentStep')) || 1;
+      if (this.currentStep === 8) {
+        this.currentStep = 7;
+        this.save();
+      }
       this.manualCurrentStep = parseInt(localStorage.getItem('manualCurrentStep')) || 0;
       this.automaticAnnotationTutorialSeen = localStorage.getItem('automaticAnnotationTutorialSeen') === 'true';
+      this.aiDetectionTutorialSeen = localStorage.getItem('aiDetectionTutorialSeen') === 'true';
       this.explainNav = localStorage.getItem('explainNav') === 'false' ? false : true;
     },
 
     save() {
+      localStorage.setItem('welcomeSeen', this.welcomeSeen);
       localStorage.setItem('wholeTutorialSeen', this.wholeTutorialSeen);
       localStorage.setItem('manualAnnotationTutorialSeen', this.manualAnnotationTutorialSeen);
       localStorage.setItem('explainNav', this.explainNav);
       localStorage.setItem('currentStep', this.currentStep);
       localStorage.setItem('manualCurrentStep', this.manualCurrentStep);
       localStorage.setItem('automaticAnnotationTutorialSeen', this.automaticAnnotationTutorialSeen);
+      localStorage.setItem('aiDetectionTutorialSeen', this.aiDetectionTutorialSeen);
     },
 
     setCurrentStep(step) {
@@ -88,16 +114,46 @@ export const useBoardingStore = defineStore('boarding', {
 
     setManualCurrentStep(step) {
       this.manualCurrentStep = step;
-      if (this.manualCurrentStep >= 9) this.setManualAnnotationTutorialOff();
+      if (this.manualCurrentStep >= 8) this.setManualAnnotationTutorialOff();
     },
 
     setAutomaticAnnotationTutorialOn() {
       this.automaticAnnotationTutorialOn = true;
+      this.aiCurrentStep = 1;
     },
 
     setAutomaticAnnotationTutorialOff() {
       this.automaticAnnotationTutorialOn = false;
       this.automaticAnnotationTutorialSeen = true;
+      this.save();
+    },
+
+    setAiCurrentStep(step) {
+      this.aiCurrentStep = step;
+      if (this.aiCurrentStep >= 6) {
+        this.setAutomaticAnnotationTutorialOff();
+        useAnnotationStore().automaticAnnotation();
+      }
+    },
+
+    setAiDetectionTutorialOn() {
+      this.aiDetectionTutorialOn = true;
+      this.aiDetectionCurrentStep = 1;
+    },
+
+    setAiDetectionTutorialOff() {
+      this.aiDetectionTutorialOn = false;
+      this.aiDetectionTutorialSeen = true;
+      this.save();
+    },
+
+    setAiDetectionCurrentStep(step) {
+      this.aiDetectionCurrentStep = step;
+      if (this.aiDetectionCurrentStep >= 7) this.setAiDetectionTutorialOff();
+    },
+
+    setWelcome() {
+      this.welcomeSeen = true;
       this.save();
     },
   },

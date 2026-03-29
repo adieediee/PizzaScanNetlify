@@ -93,8 +93,11 @@ export const createAutomaticAnnotationHandler = (boardingStore, annotationStore,
   };
 };
 
-export const createAIDetectionHandler = (imageStore, canvasStore) => {
+export const createAIDetectionHandler = (imageStore, canvasStore, boardingStore) => {
   return () => {
     loadPizzaSubImages(imageStore, canvasStore);
+    if (!boardingStore.aiDetectionTutorialSeen) {
+      boardingStore.setAiDetectionTutorialOn();
+    }
   };
 };

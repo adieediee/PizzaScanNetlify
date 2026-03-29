@@ -16,7 +16,7 @@
     </canvas>
 
     <ExplanationComponent
-      v-if="boardingStore.explainImage"
+      v-if="boardingStore.showLayoutTutorial && boardingStore.explainImage"
       :text="$t('layoutTutorial.step6')"
     />
 

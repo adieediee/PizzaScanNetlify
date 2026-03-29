@@ -29,6 +29,8 @@
     
     <div v-if="!boardingStore.wholeTutorialSeen" class="overlay"></div>
 
+    <Welcome v-if="boardingStore.showWelcomeModal" />
+
     <ImageChoices
       :isVisible="imageContextMenuVisible"
       :position="contextMenuPosition"
@@ -37,10 +39,12 @@
     />
     
     <AITutorial />
+    <AIDetectionTutorial />
     <DetailedStatistics />
     <Documentation />
     <Settings />
     <UserFeedback @systemStatus="handleStatusMessage" />
+    <ReportProblemModal />
     <ExportModal @systemStatus="handleStatusMessage" />
     <ImageDeletion @systemStatus="handleStatusMessage" />
     <ImageAnnotationDeletion @systemStatus="handleStatusMessage" />
@@ -71,6 +75,7 @@ import DetailedStatistics from './components/Modals/DetailedStatistics.vue';
 import Documentation from './components/Modals/Documentation.vue';
 import Settings from './components/Modals/Settings.vue';
 import UserFeedback from './components/Modals/UserFeedback.vue';
+import ReportProblemModal from './components/Modals/ReportProblemModal.vue';
 import ExportModal from './components/Modals/ConfirmModals/ExportModal.vue';
 import ImageDeletion from './components/Modals/ConfirmModals/ImageDeletion.vue';
 import ImageAnnotationDeletion from './components/Modals/ConfirmModals/ImageAnnotationDeletion.vue';
@@ -80,6 +85,8 @@ import StatusModal from './components/Modals/StatusInfo/GeneralStatusInfo.vue';
 import ImageChoices from './components/ContextMenu/ImageChoices.vue';
 import UploadStatus from './components/Modals/StatusInfo/UploadStatus.vue';
 import AITutorial from './components/Modals/AITutorial.vue';
+import AIDetectionTutorial from './components/Modals/AIDetectionTutorial.vue';
+import Welcome from './components/Modals/Welcome.vue';
 
 const boardingStore = useBoardingStore();
 const modalStore = useModalStore();

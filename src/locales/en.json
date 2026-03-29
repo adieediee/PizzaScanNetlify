@@ -15,7 +15,7 @@
         "tooltips": {
             "ai": "Automatic annotation",
             "centerImage": "Center image",
-            "chooseMicrotubularDefect": "Choose microtubular defect",
+            "chooseMicrotubularDefect": "Choose defect or category",
             "changeOpacity": "Change point opacity",
             "changePointSize": "Change point size",
             "settings": "Settings",
@@ -25,7 +25,8 @@
             "settings": "Settings",
             "documentation": "Documentation",
             "userFeedback": "Feedback"
-        }
+        },
+        "reportProblem": "Report problem"
     },
     "leftSidebar": {
         "search": "Search image",
@@ -182,6 +183,15 @@
                 "answer10": "Strongly agree"
             }
         },
+        "reportProblem": {
+            "title": "Report problem",
+            "intro": "Encountered an issue? Report it here and describe the problem in as much detail as possible.",
+            "placeholder": "Describe what happened...",
+            "send": "Send",
+            "thanksTitle": "Thank you for your feedback",
+            "thanksBody": "We will review it and use it to improve the application in the future.",
+            "goBack": "Go back"
+        },
         "documentation": {
             "title": "Documentation",
             "about": {
@@ -329,57 +339,64 @@
     },
     "welcome":{
         "welcome": {
-          "title": "Welcome to CiliaScan",
-          "description": "CiliaScan is an innovative annotation tool designed specifically for histopathologists.",
-          "goal": "Its main goal is to speed up the diagnosis of Primary ciliary dyskinesia (PCD) by facilitating cilia annotation."
+          "title": "Welcome to PizzaScan",
+          "description": "Inspect pizzas one by one, work faster, stay organized, and cut down on repetitive work.",
+          "goal": ""
         },
         "aiModel": {
-          "title": "Meet our AI model",
-          "usage": "CiliaScan uses artificial intelligence to help you accurately annotate cilia.",
-          "training": "Our AI model was trained on a diverse dataset of PCD images.",
-          "evolving": "It is important to note that AI model is constantly evolving. It may not initially annotate all the cilia in the image. However, it will improve over time thanks to your help and feedback."
+          "title": "AI assistance",
+          "usage": "PizzaScan can suggest initial annotations and highlight regions to inspect, so you spend less time on repetitive pointing and clicking, and more time on review decisions.",
+          "training": "The model was trained on a diverse set of pizza inspection images.",
+          "evolving": "Suggestions are not guaranteed to be perfect: edge cases, unusual toppings, lighting, or occlusion can still be challenging. Treat AI output as a starting point: verify, correct when needed, and share feedback so the system can improve."
         },
         "experience": {
-          "title": "Understanding Your experience",
-          "dataCollection": "We strive to provide the best diagnostic experience possible. To do this, we collect anonymized data about how you interact with our application.",
+          "title": "Usage data & privacy",
+          "dataCollection": "To improve AI localization and annotation, we'd like your permission to collect anonymized usage data about how you interact with AI features, including how often you use them, whether you accept or modify suggestions, and how you work with generated results.",
           "whyData": "Why data collection?",
-          "insights": "By analyzing the interactions you make, we gain valuable insights into areas where our AI model may need to be improved. This allows us to continuously improve its accuracy and efficiency.",
-          "agreement": "I understand and agree to the data collection policy."
+          "insights": "This data is used only to understand usage patterns and improve our AI features. You can change this preference later in Settings.",
+          "agreement": "I understand and agree to the collection of anonymized usage data as described above."
         }
     },      
     "layoutTutorial": {
-        "title": "Application Layout",
-        "steps": "of 8 steps",
-        "step1": "Welcome to the tutorial! This guide will walk you through the application's layout.",
-        "step2": "Use this button to automatically annotate the image.",
-        "step3": "These buttons let you interact with the image: center image, or undo the last action.",
-        "step4": "Use these controls to select a microtubular defect and adjust the size and opacity of the points.",
-        "step5": "The left sidebar displays your images and their annotations.",
-        "step6": "This is the workspace where you can add, edit, or delete annotations on the image. You can zoom or move the image.",
-        "step7": "The right sidebar includes tabs for project, image, and annotation overviews. Switch between them by clicking the tabs.",
-        "step8": "For more detailed information about the layout, check the Documentation."
+        "title": "App layout",
+        "steps": "of 7 steps",
+        "step1": "Welcome to the tutorial! This tour highlights the main areas of PizzaScan: top bar, sidebars, and workspace.",
+        "step2": "Use the AI button to automatically annotate the image, and the AI Detection button to detect pizzas on the image and crop them into individual images.",
+        "step3": "Use the Center image button to fit the pizza in view, and the Undo button to reverse your last change.",
+        "step4": "Use these controls to choose the defect or category for annotations, and to adjust point size and opacity so marks are easy to see on the pizza.",
+        "step5": "The left sidebar lists your images; expand an image to see its annotations underneath.",
+        "step6": "The center is your workspace: inspect the pizza, add or adjust annotations, and zoom or pan to see details.",
+        "step7": "The right sidebar has Project, Image, and Annotation tabs for summaries and details. Click a tab to switch."
     },
     "manualAnnotationTutorial": {
-        "title": "Manual Annotation",
-        "steps": "of 8 steps",
-        "step1": "This guide will walk you through the manual annotation process.",
-        "step2": "Select image from the left sidebar.",
-        "step3": "In the navigation, select a category of defect by clicking the \"Choose Microtubular Defect\" button. You can also switch categories using the numeric keys.",
-        "step4": "Click on the image to add an annotation.",
-        "step5": "Change the dynein arm type by multiple clicking on the annotation.",
-        "step6": "Need to edit an annotation? Click on \"Microtubular defect\" or \"Dynein arms\" in \"Annotation\" tab in Right Sidebar.",
-        "step7": "Need to delete an annotation? Right click on it! Or delete it in \"Annotation\" tab in Right Sidebar.",
-        "step8": "If you forget anything, check the Documentation."
+        "title": "Manual annotation",
+        "steps": "of 7 steps",
+        "step1": "This short guide walks you through manual annotation on pizza images.",
+        "step2": "Select an image in the left sidebar to open it.",
+        "step3": "Pick a defect or category in the top bar (colored selector). Use number keys to switch.",
+        "step4": "Click on the pizza image to add an annotation.",
+        "step5": "You can add more than one annotation on the same pizza image.",
+        "step6": "To edit an annotation, select it and use the Annotation tab on the right to change the defect category and related fields.",
+        "step7": "To delete an annotation, right-click it, or remove it in the Annotation tab on the right."
+    },
+    "aiDetectionTutorial": {
+        "title": "AI Detection",
+        "steps": "of 6 steps",
+        "step1": "This short guide walks you through AI Detection. AI finds individual pizzas on the image and crops each one into a separate sub-image.",
+        "step2": "Sub-images appear in the left sidebar, listed under the original image. Click one to open it in the workspace.",
+        "step3": "Use the arrows at the bottom of the workspace to navigate between sub-images without going back to the sidebar.",
+        "step4": "Annotate each sub-image just like a regular image. Your annotations are linked to that sub-image.",
+        "step5": "Any annotation you add to a sub-image also appears on the main image. You always have the full picture.",
+        "step6": "You can annotate sub-images manually by drawing rectangles, or let AI do it automatically using the AI button."
     },
     "AItutorial": {
-        "title": "Automatic anotation",
-        "ai_helping": "AI helps with faster annotation, but it is still learning!",
-        "normal_cilia_only": "The model currently can only recognize normal cilia.",
-        "dynein_not_evaluated": "It does not yet evaluate dynein arms – these annotations need to be adjusted manually.",
-        "how_to_work": "How to work with AI annotations?",
-        "ai_marks_cilia": "AI automatically marks cilia in boxes, which you can adjust just like with manual annotation.",
-        "remember_expert_check": "Remember: AI is just a helper; your expert review is still important.",
-        "agree_button": "I understand"
+        "title": "AI annotation",
+        "steps": "of 5 steps",
+        "step1": "This short guide walks you through reviewing AI-suggested annotations on pizza images. You stay in control. Only change what needs changing.",
+        "step2": "When you run AI annotation, AI suggests a defect category for each pizza on the image.",
+        "step3": "Each annotation square is color-coded by confidence: green is high, orange is medium, and red means the suggestion most likely needs a change.",
+        "step4": "Click an annotation square to open a review panel. Change the defect category if needed, then press Accept to keep it or Decline to remove it. Everything else stays as AI suggested.",
+        "step5": "To edit more details, select the annotation and use the Annotation tab on the right sidebar."
     },
     "manualAnnotationTutorialDocumentation": {
         "title": "Manual Annotation Tutorial",

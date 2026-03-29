@@ -31,6 +31,24 @@ export const useLoggingStore = defineStore('logging', {
           'Content-Type': 'application/json',
         },
       });
-    }
+    },
+
+    submitProblemReport(text) {
+      const action = {
+        Action: 'ReportProblem',
+        Time: new Date().toISOString(),
+        Message: text,
+      };
+      this.actions.push(action);
+
+      fetch(`http://localhost:${9090}/log`, {
+        method: 'POST',
+        body: JSON.stringify(action),
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    },
   },
 });

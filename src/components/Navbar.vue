@@ -62,6 +62,34 @@
             :disabled="!boardingStore.wholeTutorialSeen || !canvasStore.selectedImage">
             <fa :icon="['fas', 'wand-magic-sparkles']" />
             <span class="tb-label">Detect</span>
+      <div>
+        <button
+          id="automatic-annotation-button"
+          class="btn btn-icon btn-ai"
+          data-button="AI-button" 
+          @click="automaticAnnotation"
+          :disabled="!boardingStore.wholeTutorialSeen"
+          :class="{ 'highlighted': boardingStore.currentStep === 2 }">
+            AI
+            <span v-if="!boardingStore.explainNav" class="tooltip">{{$t('navigation.tooltips.ai')}}</span>
+        </button>
+        <ExplanationComponent
+          v-if="boardingStore.showLayoutTutorial && boardingStore.currentStep === 1"
+          :text="$t('layoutTutorial.step1')"
+        />
+        <ExplanationComponent
+          v-if="boardingStore.showLayoutTutorial && boardingStore.currentStep === 2"
+          :text="$t('layoutTutorial.step2')"
+        />
+      </div>
+      <div>
+        <button
+          id="ai-detection-button"
+          class="btn btn-icon btn-ai-detection"
+          @click="aiDetection"
+          :disabled="!boardingStore.wholeTutorialSeen || !canvasStore.selectedImage"
+          :class="{ 'highlighted': boardingStore.currentStep === 2 }">
+            AI Detection
             <span v-if="!boardingStore.explainNav" class="tooltip">Run AI pizza detection</span>
           </button>
         </div>
@@ -100,7 +128,10 @@
               <span class="shortcut shortcut-tooltip">CTRL + Z</span>
             </span>
           </button>
-          <ExplanationComponent v-if="boardingStore.currentStep === 3" :text="$t('layoutTutorial.step3')" />
+          <ExplanationComponent
+            v-if="boardingStore.showLayoutTutorial && boardingStore.currentStep === 3"
+            :text="$t('layoutTutorial.step3')"
+          />
         </div>
 
         <div class="toolbar-sep"></div>
@@ -190,10 +221,11 @@
               <input class="slider" type="range" min="5" max="25" v-model="pointValue"
                 @input="updatePointSize(pointValue)" />
             </div>
-          </button>
-          <ExplanationComponent v-if="boardingStore.currentStep === 4" :text="$t('layoutTutorial.step4')" />
-        </div>
-
+        </button>
+        <ExplanationComponent
+          v-if="boardingStore.showLayoutTutorial && boardingStore.currentStep === 4"
+          :text="$t('layoutTutorial.step4')"
+        />
       </div>
     </div>
     <div class="navbar-right">
@@ -253,6 +285,19 @@
               <li id="settings-documentation" @click="openDocumentationModal"> {{$t('navigation.settings.documentation')}} </li>
               <li id="settings-feedback" @click="openFeedbackModal">  {{$t('navigation.settings.userFeedback')}} </li>
             </ul>
+        </button>
+      </div>
+      <div>
+        <button
+          id="report-problem-button"
+          type="button"
+          class="btn btn-report-problem"
+          data-button="reportProblemButton"
+          @click="openReportProblemModal"
+          :disabled="!boardingStore.wholeTutorialSeen"
+        >
+          <fa :icon="['fas', 'exclamation-triangle']" class="report-problem-icon" />
+          {{ $t('navigation.reportProblem') }}
         </button>
       </div>
     </div>
@@ -333,7 +378,7 @@ const aiFilterItemStyle = (color, active) => ({
 const emit = defineEmits(['systemStatus']);
 
 const automaticAnnotation = createAutomaticAnnotationHandler(boardingStore, annotationStore, canvasStore);
-const aiDetection = createAIDetectionHandler(imageStore, canvasStore);
+const aiDetection = createAIDetectionHandler(imageStore, canvasStore, boardingStore);
 
 const centerImage = () => {
   canvasStore.centerImage();
@@ -362,6 +407,10 @@ const openDocumentationModal = () => {
 
 const openFeedbackModal = () => {
   modalStore.openModal('feedback')
+};
+
+const openReportProblemModal = () => {
+  modalStore.openModal('reportProblem');
 };
 
 const addNewClass = () => {
@@ -889,6 +938,13 @@ defineExpose({
     margin: 0;
   }
 
+  /* Tutorial step 2: match AI button prominence (disabled otherwise fades AI Detection to 40%) */
+  .btn-ai-detection.highlighted {
+    opacity: 1 !important;
+    border-color: #3e63dd !important;
+    color: #fff !important;
+  }
+
   .activeTool {
     background: #1e2d5a;
   }
@@ -1023,6 +1079,24 @@ defineExpose({
   .navbar-right .btn-icon:hover:not(:disabled) {
     background: #222238;
     color: #e0e0ff;
+  .btn-report-problem {
+    border: 1px solid var(--blue-blue3, #3e63dd);
+    border-radius: 999px;
+    padding: 6px 14px;
+    gap: 8px;
+    color: var(--blue-blue3, #3e63dd) !important;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  .btn-report-problem:hover:not(:disabled) {
+    background: rgba(62, 99, 221, 0.12);
+    color: var(--blue-blue3, #3e63dd) !important;
+  }
+
+  .btn-report-problem .report-problem-icon {
+    font-size: 0.9rem;
   }
 
 </style>

@@ -15,7 +15,7 @@
         "tooltips": {
             "ai": "Automatická anotácia",
             "centerImage": "Vycentrovať snímku",
-            "chooseMicrotubularDefect": "Vybrať mikrotubulárny defekt",
+            "chooseMicrotubularDefect": "Vybrať defekt alebo kategóriu",
             "changeOpacity": "Zmeniť priehľadnosť bodu",
             "changePointSize": "Zmeniť veľkosť bodu",
             "settings": "Nastavenia",
@@ -25,7 +25,8 @@
             "settings": "Nastavenia",
             "documentation": "Dokumentácia",
             "userFeedback": "Spätná väzba"
-        }
+        },
+        "reportProblem": "Nahlásiť problém"
     },
     "leftSidebar": {
         "search": "Vyhľadať snímku",
@@ -181,6 +182,15 @@
                 "answer10": "Úple súhlasím"
             }
         },
+        "reportProblem": {
+            "title": "Nahlásiť problém",
+            "intro": "Narazili ste na problém? Nahláste ho tu a popíšte ho čo najpodrobnejšie.",
+            "placeholder": "Opíšte, čo sa stalo...",
+            "send": "Odoslať",
+            "thanksTitle": "Ďakujeme za vašu spätnú väzbu",
+            "thanksBody": "Prezrieme ju a využijeme ju na zlepšenie aplikácie v budúcnosti.",
+            "goBack": "Späť"
+        },
         "documentation": {
             "title": "Dokumentácia",
             "about": {
@@ -328,57 +338,64 @@
     },
     "welcome": {
         "welcome": {
-            "title": "Vitajte v CiliaScan",
-            "description": "CiliaScan je inovatívny nástroj na anotáciu navrhnutý špeciálne pre histopatológov.",
-            "goal": "Hlavným cieľom je urýchliť diagnostiku Primárnej ciliárnej dyskinézy (PCD) prostredníctvom rýchlejšej anotácie cilií."
+            "title": "Vitajte v PizzaScan",
+            "description": "Kontrolujte pizze jednu po druhej, pracujte rýchlejšie, zostaňte v prehľade a znížte opakovanú prácu.",
+            "goal": ""
         },
         "aiModel": {
-            "title": "Zoznámte sa s naším AI modelom",
-            "usage": "CiliaScan využíva umelú inteligenciu na presnú anotáciu cilií.",
-            "training": "Náš AI model bol vyškolený na rôznorodom súbore dát z obrázkov PCD.",
-            "evolving": "Je dôležité si uvedomiť, že AI model sa neustále vyvíja. Možno nezachytí všetky cílie hneď, ale vďaka vašej pomoci a spätnej väzbe sa bude neustále zlepšovať."
+            "title": "AI asistencia",
+            "usage": "PizzaScan môže navrhovať počiatočné anotácie a zvýrazňovať oblasti na kontrolu, takže strávite menej času opakovaným klikaním a viac rozhodovaním pri kontrole.",
+            "training": "Model bol trénovaný na rôznorodom súbore obrázkov kontroly pizze.",
+            "evolving": "Návrhy nemusia byť vždy dokonalé: náročné môžu byť hraničné prípady, neobvyklé prísady, osvetlenie alebo prekrytie. Považujte výstup AI za východiskový bod: overujte ho, v prípade potreby ho opravte a poskytnite spätnú väzbu, aby sa systém zlepšoval."
         },
         "experience": {
-            "title": "Pochopenie vašej skúsenosti",
-            "dataCollection": "Naším cieľom je poskytnúť čo najlepšiu diagnostickú skúsenosť. Preto zbierame anonymizované údaje o tom, ako interagujete s aplikáciou.",
+            "title": "Údaje o používaní a súkromie",
+            "dataCollection": "Na zlepšenie AI lokalizácie a anotácie potrebujeme váš súhlas so zberom anonymizovaných údajov o tom, ako používate AI funkcie, vrátane toho, ako často ich používate, či akceptujete alebo upravujete navrhované výsledky a ako pracujete s generovanými výstupmi.",
             "whyData": "Prečo zbierame údaje?",
-            "insights": "Analýzou vašich interakcií získavame cenné informácie o oblastiach, kde náš AI model potrebuje vylepšenie. To nám umožňuje neustále zlepšovať jeho presnosť a efektívnosť.",
-            "agreement": "Rozumiem a súhlasím so zberom údajov."
+            "insights": "Tieto údaje slúžia len na pochopenie vzorcov používania a zlepšovanie našich AI funkcií. Túto preferenciu môžete neskôr zmeniť v Nastaveniach.",
+            "agreement": "Rozumiem a súhlasím so zberom anonymizovaných údajov o používaní tak, ako je to vyššie uvedené."
         }
     },
     "layoutTutorial": {
         "title": "Rozloženie aplikácie",
-        "steps": "z 8 krokov",
-        "step1": "Vitajte v tutoriáli! Tento sprievodca vás prevedie rozložením aplikácie.",
-        "step2": "Tlačidlo slúži na automatické anotovanie obrázku.",
-        "step3": "Tieto tlačidlá vám umožnia pracovať s obrázkom: vycentrovať alebo vrátiť poslednú akciu.",
-        "step4": "Použite tieto tlačidlá na výber mikrotrubulárneho defektu a úpravu veľkosti a transparentnosti bodov.",
-        "step5": "Ľavý panel zobrazuje vaše obrázky a ich anotácie.",
-        "step6": "Toto je pracovný priestor, kde môžete pridávať, upravovať alebo zmazať anotácie na obrázku.",
-        "step7": "Pravý panel obsahuje záložky s prehľadmi projektu, obrázka a anotácií. Prepínať medzi nimi môžete kliknutím na záložku.",
-        "step8": "Podrobnejšie informácie o aplikácii nájdete v Dokumentácii."
+        "steps": "z 7 krokov",
+        "step1": "Vitajte v tutoriáli! Tento sprievodca predstaví hlavné časti PizzaScan: horný panel, bočné panely a pracovnú plochu.",
+        "step2": "Použite tlačidlo AI na automatickú anotáciu obrázka a tlačidlo AI Detection na detekciu pizze na obrázku a rozdelenie do jednotlivých obrázkov.",
+        "step3": "Použite tlačidlo na vycentrovanie obrázka, aby bola pizza v zábere, a tlačidlo Späť na vrátenie poslednej zmeny.",
+        "step4": "Použite tieto ovládacie prvky na výber defektu alebo kategórie pre anotácie a na úpravu veľkosti a priehľadnosti bodov, aby boli značky na pizze dobre viditeľné.",
+        "step5": "V ľavom paneli je zoznam obrázkov; obrázok môžete rozšíriť a pod ním uvidíte jeho anotácie.",
+        "step6": "Stred obrazovky je pracovná plocha: kontrolujte pizzu, pridávajte alebo upravujte anotácie a približujte alebo posúvajte pohľad podľa potreby.",
+        "step7": "V pravom paneli sú záložky Projekt, Obrázok a Anotácia s prehľadmi a detailmi. Prepínajte medzi nimi kliknutím na záložku."
     }, 
     "manualAnnotationTutorial": {
         "title": "Manuálna anotácia",
-        "steps": "z 8 krokov",
-        "step1": "Tento sprievodca vás prevedie procesom manuálnej anotácie.",
-        "step2": "Vyberte obrázok z ľavého panela.",
-        "step3": "V navigácii vyberte kategóriu defektu kliknutím na tlačidlo \"Vybrať mikrotubulárny defekt\". Typy môžete tiež meniť pomocou číselných kláves.",
-        "step4": "Kliknutím na obrázok pridajte anotáciu.",
-        "step5": "Opakovaným klikaním na anotáciu zmeňte typ dyneinových ramienok.",
-        "step6": "Potrebujete upraviť anotáciu? Kliknite na \"Mikrotubulárny defekt\" alebo \"Dyneinové ramienka\" v záložke \"Anotácia\" v pravom paneli.",
-        "step7": "Potrebujete vymazať anotáciu? Pravým kliknutím na ňu! Alebo ju vymažte v záložke \"Anotácia\" v pravom paneli.",
-        "step8": "Ak ste niečo zabudli, pozrite sa do Dokumentácie."
+        "steps": "z 7 krokov",
+        "step1": "Tento krátky sprievodca vás prevedie manuálnou anotáciou na obrázkoch pizze.",
+        "step2": "Vyberte obrázok v ľavom paneli, aby sa otvoril.",
+        "step3": "Vyberte defekt alebo kategóriu v hornom paneli (farebný výber). Kategórie prepínajte číselnými klávesmi.",
+        "step4": "Kliknutím na obrázok pizze pridáte anotáciu.",
+        "step5": "Na ten istý obrázok pizze môžete pridať viac ako jednu anotáciu.",
+        "step6": "Na úpravu anotácie ju vyberte a v záložke Anotácia v pravom paneli zmeňte kategóriu defektu a súvisiace polia.",
+        "step7": "Na zmazanie anotácie použite pravý klik, alebo ju odstráňte v záložke Anotácia v pravom paneli."
+    },
+    "aiDetectionTutorial": {
+        "title": "AI detekcia",
+        "steps": "zo 6 krokov",
+        "step1": "Tento krátky sprievodca vás prevedie AI detekciou. AI nájde jednotlivé pizze na snímke a každú oreže do samostatného pod-obrázka.",
+        "step2": "Pod-obrázky sa zobrazia v ľavom paneli, zozname pod pôvodným obrázkom. Kliknite na jeden, aby sa otvoril v pracovnej ploche.",
+        "step3": "Na pohyb medzi pod-obrázkami použite šípky v spodnej časti pracovnej plochy bez návratu do panela.",
+        "step4": "Každý pod-obrázok môžete anotovať rovnako ako bežný obrázok. Anotácie sú viazané na daný pod-obrázok.",
+        "step5": "Každá anotácia, ktorú pridáte k pod-obrázku, sa zobrazí aj na hlavnom obrázku. Máte vždy prehľad o celkovom výsledku.",
+        "step6": "Pod-obrázky môžete anotovať manuálne kreslením obdĺžnikov, alebo to nechajte na AI pomocou tlačidla AI."
     },
     "AItutorial": {
-        "title": "Automatická anotácia",
-        "ai_helping": "AI pomáha pri rýchlejšom anotovaní, ale zatiaľ sa učí!",
-        "normal_cilia_only": "Model aktuálne dokáže rozpoznať iba normálne riasinky.",
-        "dynein_not_evaluated": "Dyneínové ramienka zatiaľ nevyhodnocuje – tieto anotácie je potrebné upraviť ručne.",
-        "how_to_work": "Ako pracovať s AI anotáciami?",
-        "ai_marks_cilia": "AI automaticky označí riasinky do boxov, ktoré môžeš upraviť presne tak, ako pri manuálnom označovaní.",
-        "remember_expert_check": "Nezabudni: AI je len pomocník, tvoja odborná kontrola je stále dôležitá.",
-        "agree_button": "Rozumiem"
+        "title": "AI anotácia",
+        "steps": "z 5 krokov",
+        "step1": "Tento krátky sprievodca vás prevedie kontrolou návrhov AI anotácií na obrázkoch pizze. Rozhodujete vy. Zmeňte len to, čo treba.",
+        "step2": "Po spustení AI anotácie navrhne AI kategóriu závady pri každej pizze na snímke.",
+        "step3": "Farba každého anotačného štvorca znamená istotu AI: zelená je vysoká, oranžová stredná a červená zvyčajne vyžaduje úpravu.",
+        "step4": "Kliknite na anotačný štvorec a otvorí sa panel na kontrolu. Zmeňte kategóriu závady ak treba, potom stlačte Prijať alebo Odmietnuť. Zvyšok zostane tak, ako navrhlo AI.",
+        "step5": "Pre úpravu ďalších detailov vyberte anotáciu a použite záložku Anotácia v pravom paneli."
     },
     "manualAnnotationTutorialDocumentation": {
         "title": "Návod na manuálnu anotáciu",

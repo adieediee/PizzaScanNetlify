@@ -41,7 +41,7 @@ const { t } = useI18n();
 const isMinimized = ref(false);
 
 const nextButtonText = computed(() => {
-  return boardingStore.manualCurrentStep === 8 ? t('general.finishButton') : t('general.nextButton');
+  return boardingStore.manualCurrentStep === 7 ? t('general.finishButton') : t('general.nextButton');
 });
 
 function nextStep() {
