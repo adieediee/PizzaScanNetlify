@@ -1,0 +1,38 @@
+{
+  "normal": {
+    "reasoning": "No irregularities detected. Salami count and placement appear to match the expected pattern.",
+    "alternative": "one-center-salami",
+    "alternativeName": "Only one center salami",
+    "alternativeConfidence": 12
+  },
+  "missing-center-salami": {
+    "reasoning": "Center area appears empty. Expected 2 salamis in the center position, none were detected.",
+    "alternative": "one-center-salami",
+    "alternativeName": "Only one center salami",
+    "alternativeConfidence": 28
+  },
+  "one-center-salami": {
+    "reasoning": "Only 1 salami detected in the center area. Expected 2 in the correct positions.",
+    "alternative": "missing-center-salami",
+    "alternativeName": "Missing center salami",
+    "alternativeConfidence": 31
+  },
+  "extra-salami": {
+    "reasoning": "More salamis detected than expected on one or more slices.",
+    "alternative": "wrong-slices",
+    "alternativeName": "Wrong slice count",
+    "alternativeConfidence": 22
+  },
+  "wrong-slices": {
+    "reasoning": "Slice count does not match the expected 8 slices.",
+    "alternative": "extra-salami",
+    "alternativeName": "Extra salami",
+    "alternativeConfidence": 19
+  },
+  "other-defect": {
+    "reasoning": "Unusual pattern detected that does not clearly match any known defect type.",
+    "alternative": "extra-salami",
+    "alternativeName": "Extra salami",
+    "alternativeConfidence": 15
+  }
+}
