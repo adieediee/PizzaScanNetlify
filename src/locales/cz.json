@@ -372,7 +372,7 @@
         "steps": "z 7 kroků",
         "step1": "Tento krátký průvodce vás provede manuální anotací na obrázcích pizzy.",
         "step2": "Vyberte obrázek v levém panelu, aby se otevřel.",
-        "step3": "Zvolte defekt nebo kategorii v horní liště (barevný výběr). Kategorie přepínejte číselnými klávesami.",
+        "step3": "Zvolte defekt nebo kategorii v horní liště (barevný výběr).",
         "step4": "Kliknutím na obrázek pizzy přidejte anotaci.",
         "step5": "Na stejný obrázek pizzy můžete přidat více než jednu anotaci.",
         "step6": "Chcete anotaci upravit? Vyberte ji a v záložce Anotace v pravém panelu změňte kategorii defektu a související pole.",
@@ -380,13 +380,12 @@
     },
     "aiDetectionTutorial": {
         "title": "AI detekce",
-        "steps": "ze 6 kroků",
+        "steps": "z 5 kroků",
         "step1": "Tento krátký průvodce vás provede AI detekcí. AI najde jednotlivé pizzy na snímku a každou ořízne do samostatného pod-obrázku.",
         "step2": "Pod-obrázky se zobrazí v levém panelu, v seznamu pod původním obrázkem. Klikněte na jeden, aby se otevřel v pracovní ploše.",
-        "step3": "Pro pohyb mezi pod-obrázky použijte šípky v dolní části pracovní plochy bez návratu do panelu.",
-        "step4": "Každý pod-obrázek můžete anotovat stejně jako běžný obrázek. Anotace jsou vázány na daný pod-obrázek.",
-        "step5": "Každá anotace, kterou přidáte k pod-obrázku, se zobrazí i na hlavním obrázku. Máte vždy přehled o celkovém výsledku.",
-        "step6": "Pod-obrázky můžete anotovat ručně kreslením obdélníků, nebo to nechte na AI pomocí tlačítka AI."
+        "step3": "Každý pod-obrázek můžete anotovat stejně jako běžný obrázek. Anotace jsou vázány na daný pod-obrázek.",
+        "step4": "Každá anotace, kterou přidáte k pod-obrázku, se zobrazí i na hlavním obrázku. Máte vždy přehled o celkovém výsledku.",
+        "step5": "Pod-obrázky můžete anotovat ručně, nebo to nechte na AI pomocí tlačítka AI."
     },
     "AItutorial": {
         "title": "AI anotace",

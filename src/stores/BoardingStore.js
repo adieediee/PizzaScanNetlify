@@ -149,7 +149,7 @@ export const useBoardingStore = defineStore('boarding', {
 
     setAiDetectionCurrentStep(step) {
       this.aiDetectionCurrentStep = step;
-      if (this.aiDetectionCurrentStep >= 7) this.setAiDetectionTutorialOff();
+      if (this.aiDetectionCurrentStep >= 6) this.setAiDetectionTutorialOff();
     },
 
     setWelcome() {

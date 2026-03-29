@@ -431,7 +431,7 @@
         "steps": "z 7 krokov",
         "step1": "Tento krátky sprievodca vás prevedie manuálnou anotáciou na obrázkoch pizze.",
         "step2": "Vyberte obrázok v ľavom paneli, aby sa otvoril.",
-        "step3": "Vyberte defekt alebo kategóriu v hornom paneli (farebný výber). Kategórie prepínajte číselnými klávesmi.",
+        "step3": "Vyberte defekt alebo kategóriu v hornom paneli (farebný výber).",
         "step4": "Kliknutím na obrázok pizze pridáte anotáciu.",
         "step5": "Na ten istý obrázok pizze môžete pridať viac ako jednu anotáciu.",
         "step6": "Na úpravu anotácie ju vyberte a v záložke Anotácia v pravom paneli zmeňte kategóriu defektu a súvisiace polia.",
@@ -439,13 +439,12 @@
     },
     "aiDetectionTutorial": {
         "title": "AI detekcia",
-        "steps": "zo 6 krokov",
+        "steps": "z 5 krokov",
         "step1": "Tento krátky sprievodca vás prevedie AI detekciou. AI nájde jednotlivé pizze na snímke a každú oreže do samostatného pod-obrázka.",
         "step2": "Pod-obrázky sa zobrazia v ľavom paneli, zozname pod pôvodným obrázkom. Kliknite na jeden, aby sa otvoril v pracovnej ploche.",
-        "step3": "Na pohyb medzi pod-obrázkami použite šípky v spodnej časti pracovnej plochy bez návratu do panela.",
-        "step4": "Každý pod-obrázok môžete anotovať rovnako ako bežný obrázok. Anotácie sú viazané na daný pod-obrázok.",
-        "step5": "Každá anotácia, ktorú pridáte k pod-obrázku, sa zobrazí aj na hlavnom obrázku. Máte vždy prehľad o celkovom výsledku.",
-        "step6": "Pod-obrázky môžete anotovať manuálne kreslením obdĺžnikov, alebo to nechajte na AI pomocou tlačidla AI."
+        "step3": "Každý pod-obrázok môžete anotovať rovnako ako bežný obrázok. Anotácie sú viazané na daný pod-obrázok.",
+        "step4": "Každá anotácia, ktorú pridáte k pod-obrázku, sa zobrazí aj na hlavnom obrázku. Máte vždy prehľad o celkovom výsledku.",
+        "step5": "Pod-obrázky môžete anotovať manuálne, alebo to nechajte na AI pomocou tlačidla AI."
     },
     "AItutorial": {
         "title": "AI anotácia",

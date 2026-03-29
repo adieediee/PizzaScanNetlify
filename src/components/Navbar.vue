@@ -59,38 +59,10 @@
             id="ai-detection-button"
             class="btn tb-btn tb-btn-detect"
             @click="aiDetection"
-            :disabled="!boardingStore.wholeTutorialSeen || !canvasStore.selectedImage">
+            :disabled="!boardingStore.wholeTutorialSeen || !canvasStore.selectedImage"
+            :class="{ 'highlighted': boardingStore.currentStep === 2 }">
             <fa :icon="['fas', 'wand-magic-sparkles']" />
             <span class="tb-label">Detect</span>
-      <div>
-        <button
-          id="automatic-annotation-button"
-          class="btn btn-icon btn-ai"
-          data-button="AI-button" 
-          @click="automaticAnnotation"
-          :disabled="!boardingStore.wholeTutorialSeen"
-          :class="{ 'highlighted': boardingStore.currentStep === 2 }">
-            AI
-            <span v-if="!boardingStore.explainNav" class="tooltip">{{$t('navigation.tooltips.ai')}}</span>
-        </button>
-        <ExplanationComponent
-          v-if="boardingStore.showLayoutTutorial && boardingStore.currentStep === 1"
-          :text="$t('layoutTutorial.step1')"
-        />
-        <ExplanationComponent
-          v-if="boardingStore.showLayoutTutorial && boardingStore.currentStep === 2"
-          :text="$t('layoutTutorial.step2')"
-        />
-      </div>
-      <div>
-        <button
-          id="ai-detection-button"
-          class="btn btn-icon btn-ai-detection"
-          @click="aiDetection"
-          :disabled="!boardingStore.wholeTutorialSeen || !canvasStore.selectedImage"
-          :class="{ 'highlighted': boardingStore.currentStep === 2 }">
-            AI Detection
-            <span v-if="!boardingStore.explainNav" class="tooltip">Run AI pizza detection</span>
           </button>
         </div>
 
@@ -221,11 +193,12 @@
               <input class="slider" type="range" min="5" max="25" v-model="pointValue"
                 @input="updatePointSize(pointValue)" />
             </div>
-        </button>
-        <ExplanationComponent
-          v-if="boardingStore.showLayoutTutorial && boardingStore.currentStep === 4"
-          :text="$t('layoutTutorial.step4')"
-        />
+          </button>
+          <ExplanationComponent
+            v-if="boardingStore.showLayoutTutorial && boardingStore.currentStep === 4"
+            :text="$t('layoutTutorial.step4')"
+          />
+        </div>
       </div>
     </div>
     <div class="navbar-right">
@@ -736,6 +709,22 @@ defineExpose({
     position: relative;
   }
 
+  .navbar .toolbar-item .explanation {
+    width: 320px !important;
+    min-width: 320px !important;
+    max-width: 320px !important;
+    left: 0 !important;
+    top: calc(100% + 20px) !important;
+    margin-top: 0 !important;
+    z-index: 300;
+  }
+
+  .navbar,
+  .toolbar-pill,
+  .toolbar-item {
+    overflow: visible !important;
+  }
+
   .toolbar-sep {
     width: 1px;
     height: 22px;
@@ -1079,6 +1068,8 @@ defineExpose({
   .navbar-right .btn-icon:hover:not(:disabled) {
     background: #222238;
     color: #e0e0ff;
+  }
+
   .btn-report-problem {
     border: 1px solid var(--blue-blue3, #3e63dd);
     border-radius: 999px;

@@ -332,4 +332,10 @@ onUnmounted(() => {
     left: 15%;
   }
 
+  #AITutorialModal,
+  #AIDetectionTutorialModal {
+    top: 7%;
+    margin-top: 0;
+  }
+
 </style>
