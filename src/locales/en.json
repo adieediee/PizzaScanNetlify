@@ -1,443 +1,443 @@
 {
-    "general": {
-        "nextButton": "Next",
-        "finishButton": "Finish",
-        "backButton": "Back",
-        "close": "Close"
+  "general": {
+    "nextButton": "Next",
+    "finishButton": "Finish",
+    "backButton": "Back",
+    "close": "Close"
+  },
+  "navigation": {
+    "buttons": {
+      "openProject": "Open project",
+      "save": "Save project",
+      "share": "Share",
+      "export": "Export report"
     },
-    "navigation": {
-        "buttons": {
-            "openProject": "Open project",
-            "save": "Save project",
-            "share": "Share",
-            "export": "Export report"
-        },
-        "tooltips": {
-            "ai": "Automatic annotation",
-            "centerImage": "Center image",
-            "chooseMicrotubularDefect": "Choose microtubular defect",
-            "changeOpacity": "Change point opacity",
-            "changePointSize": "Change point size",
-            "settings": "Settings",
-            "undo": "Undo step"
-        },
-        "settings": {
-            "settings": "Settings",
-            "documentation": "Documentation",
-            "userFeedback": "Feedback"
-        }
+    "tooltips": {
+      "ai": "Automatic annotation",
+      "centerImage": "Center image",
+      "chooseMicrotubularDefect": "Choose microtubular defect",
+      "changeOpacity": "Change point opacity",
+      "changePointSize": "Change point size",
+      "settings": "Settings",
+      "undo": "Undo step"
     },
-    "leftSidebar": {
-        "search": "Search image",
-        "upload": "Upload images",
-        "dragAndDrop": "Choose files or drag them here"
+    "settings": {
+      "settings": "Settings",
+      "documentation": "Documentation",
+      "userFeedback": "Feedback"
+    }
+  },
+  "leftSidebar": {
+    "search": "Search image",
+    "upload": "Upload images",
+    "dragAndDrop": "Choose files or drag them here"
+  },
+  "rightSidebar": {
+    "ProjectOverview": {
+      "title": "Project",
+      "statistics": "Statistics",
+      "detailedStatistics": "Show detailed statistics",
+      "statisticsTotal": "Total",
+      "statisticsDefects": "Defect type",
+      "statisticsDyneins": "Dynein arms",
+      "statisticsCount": "Count",
+      "notes": "Notes",
+      "notesPlaceholder": "Add any observations about this inspection...",
+      "outcomes": "Inspector's verdict",
+      "outcomesPlaceholder": "Write your overall assessment of this restaurant..."
     },
-    "rightSidebar": {
-        "ProjectOverview": {
-            "title": "Project",
-            "statistics": "Statistics",
-            "detailedStatistics": "Show detailed statistics",
-            "statisticsTotal": "Total",
-            "statisticsDefects": "Microtubular defect",
-            "statisticsDyneins": "Dynein arms",
-            "statisticsCount": "Count",
-            "notes": "Notes",
-            "notesPlaceholder": "Write notes here...",
-            "outcomes": "Outcome",
-            "outcomesPlaceholder": "Write outcome here..."
-        },
-        "ImageOverview": {
-            "title": "Image",
-            "text": "Select an image in the left sidebar to see its details."
-        },
-        "AnnotationOverview": {
-            "title": "Annotation",
-            "text": "Select an annotation on the image to see its details.",
-            "microtubularDefect": "Microtubular defect",
-            "searchDefect": "Search microtubular defect",
-            "dyneinType": "Dynein arms",
-            "searchDynein": "Search dynein arms",
-            "parameters": "Parameters",
-            "parametersAngle": "Angle",
-            "parametersDistance": "Distance",
-            "parametersDescription": "Description",
-            "parametersDescriptionPlaceholder": "Write description here...",
-            "parametersDistancePlaceholder": "Write angle here...",
-            "parametersAnglePlaceholder": "Write distance here..."
-        }
+    "ImageOverview": {
+      "title": "Image",
+      "text": "Select an image in the left sidebar to see its details."
     },
-    "annotation": {
-        "addNewClass": "Add new class",
-        "addNewClassName": "Name",
-        "addNewClassColor": "Color",
-        "addNewClassButton": "Create class",
-        "addNewClassDescription": "Description",
-        "addNewClassShortcut": "Key shortcut",
-        "shortcutInfo": "Key shortcut has to be number 0-9.",
-        "delete": "Delete annotation",
-        "zoomTo": "Zoom to annotation",
-        "copy": "Copy annotation",
-        "warningEmptyName": "Class name cannot be empty.",
-        "warningWrongName": "Class with this name already exists.",
-        "warningWrongColor": "Class with this color already exists.",
-        "warningWrongShortcut": "Class with this shortcut already exists."
+    "AnnotationOverview": {
+      "title": "Annotation",
+      "text": "Select an annotation on the image to see its details.",
+      "microtubularDefect": "Microtubular defect",
+      "searchDefect": "Search microtubular defect",
+      "dyneinType": "Dynein arms",
+      "searchDynein": "Search dynein arms",
+      "parameters": "Parameters",
+      "parametersAngle": "Angle",
+      "parametersDistance": "Distance",
+      "parametersDescription": "Description",
+      "parametersDescriptionPlaceholder": "Write description here...",
+      "parametersDistancePlaceholder": "Write angle here...",
+      "parametersAnglePlaceholder": "Write distance here..."
+    }
+  },
+  "annotation": {
+    "addNewClass": "Add new class",
+    "addNewClassName": "Name",
+    "addNewClassColor": "Color",
+    "addNewClassButton": "Create class",
+    "addNewClassDescription": "Description",
+    "addNewClassShortcut": "Key shortcut",
+    "shortcutInfo": "Key shortcut has to be number 0-9.",
+    "delete": "Delete annotation",
+    "zoomTo": "Zoom to annotation",
+    "copy": "Copy annotation",
+    "warningEmptyName": "Class name cannot be empty.",
+    "warningWrongName": "Class with this name already exists.",
+    "warningWrongColor": "Class with this color already exists.",
+    "warningWrongShortcut": "Class with this shortcut already exists."
+  },
+  "image": {
+    "ReviewedImage": "Set reviewed image",
+    "Unseen": "Set as unseen",
+    "DeleteImage": "Delete image",
+    "DeleteAnnotations": "Delete all annotations",
+    "DeleteAIAnnotations": "Delete AI annotations",
+    "ResetAutomaticAnnotation": "Reset automatic annotation"
+  },
+  "modals": {
+    "export": {
+      "title": "Export Diagnosis Report",
+      "title2": "PCD Diagnosis Report will be exported as a XLSX file.",
+      "exportButton": "Export report"
     },
-    "image": {
-        "ReviewedImage": "Set reviewed image",
-        "Unseen": "Set as unseen",
-        "DeleteImage": "Delete image",
-        "DeleteAnnotations": "Delete all annotations",
-        "DeleteAIAnnotations": "Delete AI annotations",
-        "ResetAutomaticAnnotation": "Reset automatic annotation"
+    "imageDeletion": {
+      "title": "Delete image",
+      "message": "Are you sure you want to delete this image?",
+      "confirmButton": "Delete",
+      "cancelButton": "Cancel"
     },
-    "modals": {
-        "export": {
-            "title": "Export Diagnosis Report",
-            "title2": "PCD Diagnosis Report will be exported as a XLSX file.",
-            "exportButton": "Export report"
-        },
-        "imageDeletion": {
-          "title": "Delete image",
-          "message": "Are you sure you want to delete this image?",
-          "confirmButton": "Delete",
-          "cancelButton": "Cancel"
-        },
-        "imageReviewed": {
-          "title": "Set image as reviewed",
-          "message": "Are you sure you want to set this image as reviewed?",
-          "confirmButton": "Set as reviewed",
-          "confirmButton2": "Set as unreviewed",
-          "cancelButton": "Cancel"
-        },
-        "imageAnnotations": {
-          "title": "Delete all annotations",
-          "message": "Are you sure you want to delete all annotations for this image?",
-          "confirmButton": "Delete",
-          "cancelButton": "Cancel"
-        },
-        "imageAIannotations": {
-          "title": "Delete AI annotations",
-          "message": "Are you sure you want to delete all AI annotations for this image?",
-          "confirmButton": "Delete",
-          "cancelButton": "Cancel"
-        },
-        "imageReset": {
-          "title": "Reset automatic annotation",
-          "message": "Are you sure you want to reset automatic annotation for this image?",
-          "confirmButton": "Reset",
-          "cancelButton": "Cancel"
-        },
-        "loading": {
-            "title": "Loading",
-            "message": "AI modal is annotating image, please wait..."
-        },
-        "settings": {
-            "title": "Settings",
-            "settings": {
-                "title": "Application settings",
-                "description": "Choose language:",
-                "languageSK": "SK",
-                "languageEN": "EN",
-                "languageCZ": "CZ"
-            },
-            "defects": {
-                "title": "Microtubular defects",
-                "description": "Here you can manage microtubular defects.",
-                "formDescription": "Use the form below to add a new microtubular defect.",
-                "editButton": "Edit class",
-                "deleteButton": "Delete class",
-                "createButton": "Create class",
-                "cancelButton": "Cancel",
-                "title2":"Managment of microtubular defects ",
-                "description2": "Below you can see the existing microtubular defect categories. You can edit or delete them as needed.",
-                "page": "Page",
-                "of": "of"
-            }
-        },
-        "feedback": {
-            "title": "Feedback",
-            "data": {
-                "title": "Data collection",
-                "header": "Understanding Your Experience",
-                "paragraph1": "We strive to provide the best diagnostic experience possible. To do this, <span class='strong'>we collect anonymized data about how you interact with our application.</span>",
-                "paragraph2": "By analyzing the interactions you make, we gain valuable insights into areas where our AI model may need to be improved. This allows us to continuously improve its accuracy and efficiency.",
-                "toggleLabel": "I understand and agree to the data collection policy."
-            },
-            "feedback": {
-                "title": "Feedback",
-                "paragraph1": "Your feedback is essential to help us improve this application. By answering these questions, you help us understand what works well and what could be enhanced.",
-                "paragraph2": "We appreciate your time and insights!",
-                "question1": "1. I would use the app again for this task.", 
-                "question2": "2. The app was easy to use.",
-                "question3": "3. It was clear how to perform actions within the app.",
-                "question4": "4. I encountered issues or errors that slowed me down.",
-                "question5": "5. The app’s design was visually appealing and intuitive.",
-                "question6": "6. If I made a mistake, it was easy to fix.",
-                "question7": "7. I found the app unnecessarily complicated.",
-                "question8": "8. I think most people would learn to use this app very quickly.",
-                "question9": "9. I am confident that I knew how to use the app.",
-                "question10": "10. It took me a long time to learn how to start using the app.",
-                "submit": "Submit",
-                "answer1": "Strongly disagree",
-                "answer10": "Strongly agree"
-            }
-        },
-        "documentation": {
-            "title": "Documentation",
-            "about": {
-                "title": "About CiliaScan"
-            },
-            "layout": {
-                "title": "Application Layout",
-                "layoutDescription": {
-                    "header": "Layout Description",
-                    "description": "Here is a brief description of the layout of the application.",
-                    "altText": "Application Layout"
-                },
-                "navigation": {
-                  "header": "Navigation",
-                  "description": "Navigation is located on top of the application. It provides the following functionalities:",
-                  "features": {
-                    "ai": "AI - Run automatic annotation for selected image.",
-                    "centerImage": "Center the image when it's zoomed or moved.",
-                    "undo": "Undo the last action.",
-                    "selectDefect": "Select microtubular defect for annotating. It can also be changed using the number keys on the keyboard.",
-                    "changeOpacity": "Change opacity of annotations.",
-                    "changeSize": "Change size of annotations.",
-                    "openProject": "Open project - Open existing project.",
-                    "saveProject": "Save project - Save current state of the project.",
-                    "exportProject": "Export report - Export diagnosis report into CSV file.",
-                    "openSettings": "Open settings. Here you can allow data collection,  change language of application, and change of microtubular defects.", 
-                    "openDocumentation": "Open documentation or user feedback questionnaire."
-                  }
-                },
-                "leftSidebar": {
-                  "header": "Left Sidebar",
-                  "description": "Left sidebar is located on the left side of the application.",
-                  "imageUpload": "Images can be uploaded by clicking on the Upload button or drag-and-dropped to the left sidebar.",
-                  "imageInteractions": {
-                    "click": "By clicking on an image, it will be displayed in the main image area.",
-                    "rightClick": "By right-clicking on an image, you can delete it, mark it as reviewed, unseen, or delete all annotations for that image."
-                  },
-                  "annotationList": {
-                    "header": "Each image has a list of annotations with its counts below it."
-                  }
-                },
-                "mainImageArea": {
-                  "header": "Canvas",
-                  "description": "Canvas is located in the center of the application. It displays the selected image and all the annotations for that image.",
-                  "annotation": {
-                    "add": "By clicking on the image, you can add an annotation with the selected microtubular defect.",
-                    "changeDynein": "Dynein arms of an annotation can be changed by clicking on the annotation and selecting new dynein arms.",
-                    "delete": "Annotations can be deleted by right-clicking on them.",
-                    "details": "Clicking on an annotation will show its details on the right sidebar.",
-                    "move": "Annotation can be moved by dragging it.",
-                    "copyPaste": "Annotation can be copied by pressing CTRL+C and pasted by pressing CTRL+V."
-                  },
-                  "zoom": {
-                    "drag": "You can drag the image by holding the left mouse button and moving it. You can zoom in and out by scrolling the mouse wheel."
-                  }
-                },
-                "rightSidebar": {
-                  "header": "Right Sidebar",
-                  "description": "Right sidebar is located on the right side of the application. It is separated into three tabs - Project, Image, Annotation.",
-                  "projectOverview": {
-                    "header": "Tab Project",
-                    "description": "Tab Project displays general information about the project. Statistics about the project are displayed here. You can write the outcome of the diagnosis and add notes about the project."
-                  },
-                  "imageOverview": {
-                    "header": "Tab Image",
-                    "description": "Tab Image displays general information about the selected image. The image can be set as reviewed, unseen, or deleted. Annotations for the image can be deleted. You can also add notes about the image."
-                  },
-                  "annotationOverview": {
-                    "header": "Tab Annotation",
-                    "description": "Tab Annotation displays general information about the selected annotation. You can change the microtubular defect and dynein arms of the annotation, or update its parametres."
-                    }
-                }               
-            },
-            "manualTutorial": {
-                "title": "Manual annotation",
-                "step3": "Click on an annotation to change the dynein arm type. Simply click on the point until you’re satisfied with the selection.",
-                "repeat": "Repeat these steps until each cilium in every image is annotated.",
-                "newClass": "Need a different category? Create your own in the Settings.",
-                "title2": "Manual Annotation Process",
-                "description2": "This section explains the steps for manual annotation.",
-                "manualAnnotation": "Manual annotation is the process of manually annotating cilia in an image. This is done by marking each cilium with a point.",
-                "attributes": "Annotation (point) consists of two attributes: microtubular defect and dynein arms.",
-                "microtubularDefects": "Microtubular defects are characterized by the absence or misalignment of microtubules in the cilia. These defects can be indicative of PCD and are important to identify during the diagnostic process. The defect category is represented by the color of the annotation.",
-                "dyneinArms": "Dynein arms are protein complexes that help cilia move. Dynein arms are important for the proper function of cilia. The dynein arm type is represented by the mark of the annotation."
-            },
-            "shortcuts": {
-              "title": "Key Shortcuts",
-              "description": "Here are the key shortcuts you can use:",
-              "table-col1": "Key",
-              "table-col2": "Action",
-              "shortcuts": {
-                "general": {
-                  "title": "General shortcuts",
-                  "CTRL+O": {
-                    "key": "CTRL+O",
-                    "description": "Open project"
-                  },
-                  "CTRL+S": {
-                    "key": "CTRL+S",
-                    "description": "Save project"
-                  },
-                  "CTRL+E": {
-                    "key": "CTRL+E",
-                    "description": "Export project report"
-                  }
-                },
-                "annotation": {
-                  "title": "Annotation shortcuts",
-                  "description": "Shortcuts to select microtubular defect can be changed in the Settings.",
-                  "CTRL+A": {
-                    "key": "CTRL+A",
-                    "description": "Crate new defect class"
-                  },
-                  "CTRL+C": {
-                    "key": "CTRL+C",
-                    "description": "Copy annotation"
-                  },
-                  "CTRL+V": {
-                    "key": "CTRL+V",
-                    "description": "Paste annotation"
-                  }
-                },
-                "navigation": {
-                  "title": "Toolbar shortcuts",
-                  "CTRL+Z": {
-                    "key": "CTRL+Z",
-                    "description": "Undo last action"
-                  },
-                  "CTRL+I": {
-                    "key": "CTRL+I",
-                    "description": "Center image"
-                  }
-                }
-              }
-          }
-        },
-        "statistics": {
-            "title": "Statistics",
-            "total": "Total number of annotated cilia",
-            "totalMTDs": "Total number of annotated cilia with microtubular defect",
-            "totalDA": "Total number of annotated cilia with dynein arms",
-            "totalIDA": "Total number of annotated cilia without inner dynein arms",
-            "totalODA": "Total number of annotated cilia without outer dynein arms"
-        }
+    "imageReviewed": {
+      "title": "Set image as reviewed",
+      "message": "Are you sure you want to set this image as reviewed?",
+      "confirmButton": "Set as reviewed",
+      "confirmButton2": "Set as unreviewed",
+      "cancelButton": "Cancel"
     },
-    "welcome":{
-        "welcome": {
-          "title": "Welcome to CiliaScan",
-          "description": "CiliaScan is an innovative annotation tool designed specifically for histopathologists.",
-          "goal": "Its main goal is to speed up the diagnosis of Primary ciliary dyskinesia (PCD) by facilitating cilia annotation."
-        },
-        "aiModel": {
-          "title": "Meet our AI model",
-          "usage": "CiliaScan uses artificial intelligence to help you accurately annotate cilia.",
-          "training": "Our AI model was trained on a diverse dataset of PCD images.",
-          "evolving": "It is important to note that AI model is constantly evolving. It may not initially annotate all the cilia in the image. However, it will improve over time thanks to your help and feedback."
-        },
-        "experience": {
-          "title": "Understanding Your experience",
-          "dataCollection": "We strive to provide the best diagnostic experience possible. To do this, we collect anonymized data about how you interact with our application.",
-          "whyData": "Why data collection?",
-          "insights": "By analyzing the interactions you make, we gain valuable insights into areas where our AI model may need to be improved. This allows us to continuously improve its accuracy and efficiency.",
-          "agreement": "I understand and agree to the data collection policy."
-        }
-    },      
-    "layoutTutorial": {
+    "imageAnnotations": {
+      "title": "Delete all annotations",
+      "message": "Are you sure you want to delete all annotations for this image?",
+      "confirmButton": "Delete",
+      "cancelButton": "Cancel"
+    },
+    "imageAIannotations": {
+      "title": "Delete AI annotations",
+      "message": "Are you sure you want to delete all AI annotations for this image?",
+      "confirmButton": "Delete",
+      "cancelButton": "Cancel"
+    },
+    "imageReset": {
+      "title": "Reset automatic annotation",
+      "message": "Are you sure you want to reset automatic annotation for this image?",
+      "confirmButton": "Reset",
+      "cancelButton": "Cancel"
+    },
+    "loading": {
+      "title": "Loading",
+      "message": "AI modal is annotating image, please wait..."
+    },
+    "settings": {
+      "title": "Settings",
+      "settings": {
+        "title": "Application settings",
+        "description": "Choose language:",
+        "languageSK": "SK",
+        "languageEN": "EN",
+        "languageCZ": "CZ"
+      },
+      "defects": {
+        "title": "Microtubular defects",
+        "description": "Here you can manage microtubular defects.",
+        "formDescription": "Use the form below to add a new microtubular defect.",
+        "editButton": "Edit class",
+        "deleteButton": "Delete class",
+        "createButton": "Create class",
+        "cancelButton": "Cancel",
+        "title2": "Managment of microtubular defects ",
+        "description2": "Below you can see the existing microtubular defect categories. You can edit or delete them as needed.",
+        "page": "Page",
+        "of": "of"
+      }
+    },
+    "feedback": {
+      "title": "Feedback",
+      "data": {
+        "title": "Data collection",
+        "header": "Understanding Your Experience",
+        "paragraph1": "We strive to provide the best diagnostic experience possible. To do this, <span class='strong'>we collect anonymized data about how you interact with our application.</span>",
+        "paragraph2": "By analyzing the interactions you make, we gain valuable insights into areas where our AI model may need to be improved. This allows us to continuously improve its accuracy and efficiency.",
+        "toggleLabel": "I understand and agree to the data collection policy."
+      },
+      "feedback": {
+        "title": "Feedback",
+        "paragraph1": "Your feedback is essential to help us improve this application. By answering these questions, you help us understand what works well and what could be enhanced.",
+        "paragraph2": "We appreciate your time and insights!",
+        "question1": "1. I would use the app again for this task.",
+        "question2": "2. The app was easy to use.",
+        "question3": "3. It was clear how to perform actions within the app.",
+        "question4": "4. I encountered issues or errors that slowed me down.",
+        "question5": "5. The app’s design was visually appealing and intuitive.",
+        "question6": "6. If I made a mistake, it was easy to fix.",
+        "question7": "7. I found the app unnecessarily complicated.",
+        "question8": "8. I think most people would learn to use this app very quickly.",
+        "question9": "9. I am confident that I knew how to use the app.",
+        "question10": "10. It took me a long time to learn how to start using the app.",
+        "submit": "Submit",
+        "answer1": "Strongly disagree",
+        "answer10": "Strongly agree"
+      }
+    },
+    "documentation": {
+      "title": "Documentation",
+      "about": {
+        "title": "About CiliaScan"
+      },
+      "layout": {
         "title": "Application Layout",
-        "steps": "of 8 steps",
-        "step1": "Welcome to the tutorial! This guide will walk you through the application's layout.",
-        "step2": "Use this button to automatically annotate the image.",
-        "step3": "These buttons let you interact with the image: center image, or undo the last action.",
-        "step4": "Use these controls to select a microtubular defect and adjust the size and opacity of the points.",
-        "step5": "The left sidebar displays your images and their annotations.",
-        "step6": "This is the workspace where you can add, edit, or delete annotations on the image. You can zoom or move the image.",
-        "step7": "The right sidebar includes tabs for project, image, and annotation overviews. Switch between them by clicking the tabs.",
-        "step8": "For more detailed information about the layout, check the Documentation."
-    },
-    "manualAnnotationTutorial": {
-        "title": "Manual Annotation",
-        "steps": "of 8 steps",
-        "step1": "This guide will walk you through the manual annotation process.",
-        "step2": "Select image from the left sidebar.",
-        "step3": "In the navigation, select a category of defect by clicking the \"Choose Microtubular Defect\" button. You can also switch categories using the numeric keys.",
-        "step4": "Click on the image to add an annotation.",
-        "step5": "Change the dynein arm type by multiple clicking on the annotation.",
-        "step6": "Need to edit an annotation? Click on \"Microtubular defect\" or \"Dynein arms\" in \"Annotation\" tab in Right Sidebar.",
-        "step7": "Need to delete an annotation? Right click on it! Or delete it in \"Annotation\" tab in Right Sidebar.",
-        "step8": "If you forget anything, check the Documentation."
-    },
-    "AItutorial": {
-        "title": "Automatic anotation",
-        "ai_helping": "AI helps with faster annotation, but it is still learning!",
-        "normal_cilia_only": "The model currently can only recognize normal cilia.",
-        "dynein_not_evaluated": "It does not yet evaluate dynein arms – these annotations need to be adjusted manually.",
-        "how_to_work": "How to work with AI annotations?",
-        "ai_marks_cilia": "AI automatically marks cilia in boxes, which you can adjust just like with manual annotation.",
-        "remember_expert_check": "Remember: AI is just a helper; your expert review is still important.",
-        "agree_button": "I understand"
-    },
-    "manualAnnotationTutorialDocumentation": {
-        "title": "Manual Annotation Tutorial",
-        "steps": {
-          "0": {
-            "title": "Step 1: Open the Image",
-            "description": "Select the image you want to annotate by clicking on it in the list of images in the Left Sidebar."
-          },
-          "1": {
-            "title": "Step 2: Choose a Microtubular Defect Type",
-            "description": "In the navigation, select a category of defect by clicking the \"Choose Microtubular Defect\" button. You can also switch categories using the numeric keys."
-          },
-          "2": {
-            "title": "Step 3: Create Annotations",
-            "description": "Click on the image to add an annotation. You can place multiple annotations on the same image."
-          },
-          "3": {
-            "title": "Step 4: Select Dynein Arm Type",
-            "description": "Click on an annotation to change the dynein arm type. Simply click on the point until you’re satisfied with the selection. Repeat these steps until each cilium in every image is annotated."
-          },
-          "4": {
-            "title": "Need to Edit an Annotation?",
-            "description": "Click on the annotation, then select tab \"Annotation\" in the Right Sidebar to edit the microtubular defect category or dynein arms type."
-          },
-          "5": {
-            "title": "Need to Delete an Annotation?",
-            "description": "Click on the annotation, then select tab \"Annotation\" in the Right Sidebar to delete it. You can also delete an annotation by right-clicking on it."
+        "layoutDescription": {
+          "header": "Layout Description",
+          "description": "Here is a brief description of the layout of the application.",
+          "altText": "Application Layout"
+        },
+        "navigation": {
+          "header": "Navigation",
+          "description": "Navigation is located on top of the application. It provides the following functionalities:",
+          "features": {
+            "ai": "AI - Run automatic annotation for selected image.",
+            "centerImage": "Center the image when it's zoomed or moved.",
+            "undo": "Undo the last action.",
+            "selectDefect": "Select microtubular defect for annotating. It can also be changed using the number keys on the keyboard.",
+            "changeOpacity": "Change opacity of annotations.",
+            "changeSize": "Change size of annotations.",
+            "openProject": "Open project - Open existing project.",
+            "saveProject": "Save project - Save current state of the project.",
+            "exportProject": "Export report - Export diagnosis report into CSV file.",
+            "openSettings": "Open settings. Here you can allow data collection,  change language of application, and change of microtubular defects.",
+            "openDocumentation": "Open documentation or user feedback questionnaire."
           }
+        },
+        "leftSidebar": {
+          "header": "Left Sidebar",
+          "description": "Left sidebar is located on the left side of the application.",
+          "imageUpload": "Images can be uploaded by clicking on the Upload button or drag-and-dropped to the left sidebar.",
+          "imageInteractions": {
+            "click": "By clicking on an image, it will be displayed in the main image area.",
+            "rightClick": "By right-clicking on an image, you can delete it, mark it as reviewed, unseen, or delete all annotations for that image."
+          },
+          "annotationList": {
+            "header": "Each image has a list of annotations with its counts below it."
+          }
+        },
+        "mainImageArea": {
+          "header": "Canvas",
+          "description": "Canvas is located in the center of the application. It displays the selected image and all the annotations for that image.",
+          "annotation": {
+            "add": "By clicking on the image, you can add an annotation with the selected microtubular defect.",
+            "changeDynein": "Dynein arms of an annotation can be changed by clicking on the annotation and selecting new dynein arms.",
+            "delete": "Annotations can be deleted by right-clicking on them.",
+            "details": "Clicking on an annotation will show its details on the right sidebar.",
+            "move": "Annotation can be moved by dragging it.",
+            "copyPaste": "Annotation can be copied by pressing CTRL+C and pasted by pressing CTRL+V."
+          },
+          "zoom": {
+            "drag": "You can drag the image by holding the left mouse button and moving it. You can zoom in and out by scrolling the mouse wheel."
+          }
+        },
+        "rightSidebar": {
+          "header": "Right Sidebar",
+          "description": "Right sidebar is located on the right side of the application. It is separated into three tabs - Project, Image, Annotation.",
+          "projectOverview": {
+            "header": "Tab Project",
+            "description": "Tab Project displays general information about the project. Statistics about the project are displayed here. You can write the outcome of the diagnosis and add notes about the project."
+          },
+          "imageOverview": {
+            "header": "Tab Image",
+            "description": "Tab Image displays general information about the selected image. The image can be set as reviewed, unseen, or deleted. Annotations for the image can be deleted. You can also add notes about the image."
+          },
+          "annotationOverview": {
+            "header": "Tab Annotation",
+            "description": "Tab Annotation displays general information about the selected annotation. You can change the microtubular defect and dynein arms of the annotation, or update its parametres."
+          }
+        }
+      },
+      "manualTutorial": {
+        "title": "Manual annotation",
+        "step3": "Click on an annotation to change the dynein arm type. Simply click on the point until you’re satisfied with the selection.",
+        "repeat": "Repeat these steps until each cilium in every image is annotated.",
+        "newClass": "Need a different category? Create your own in the Settings.",
+        "title2": "Manual Annotation Process",
+        "description2": "This section explains the steps for manual annotation.",
+        "manualAnnotation": "Manual annotation is the process of manually annotating cilia in an image. This is done by marking each cilium with a point.",
+        "attributes": "Annotation (point) consists of two attributes: microtubular defect and dynein arms.",
+        "microtubularDefects": "Microtubular defects are characterized by the absence or misalignment of microtubules in the cilia. These defects can be indicative of PCD and are important to identify during the diagnostic process. The defect category is represented by the color of the annotation.",
+        "dyneinArms": "Dynein arms are protein complexes that help cilia move. Dynein arms are important for the proper function of cilia. The dynein arm type is represented by the mark of the annotation."
+      },
+      "shortcuts": {
+        "title": "Key Shortcuts",
+        "description": "Here are the key shortcuts you can use:",
+        "table-col1": "Key",
+        "table-col2": "Action",
+        "shortcuts": {
+          "general": {
+            "title": "General shortcuts",
+            "CTRL+O": {
+              "key": "CTRL+O",
+              "description": "Open project"
+            },
+            "CTRL+S": {
+              "key": "CTRL+S",
+              "description": "Save project"
+            },
+            "CTRL+E": {
+              "key": "CTRL+E",
+              "description": "Export project report"
+            }
+          },
+          "annotation": {
+            "title": "Annotation shortcuts",
+            "description": "Shortcuts to select microtubular defect can be changed in the Settings.",
+            "CTRL+A": {
+              "key": "CTRL+A",
+              "description": "Crate new defect class"
+            },
+            "CTRL+C": {
+              "key": "CTRL+C",
+              "description": "Copy annotation"
+            },
+            "CTRL+V": {
+              "key": "CTRL+V",
+              "description": "Paste annotation"
+            }
+          },
+          "navigation": {
+            "title": "Toolbar shortcuts",
+            "CTRL+Z": {
+              "key": "CTRL+Z",
+              "description": "Undo last action"
+            },
+            "CTRL+I": {
+              "key": "CTRL+I",
+              "description": "Center image"
+            }
+          }
+        }
+      }
+    },
+    "statistics": {
+      "title": "Statistics",
+      "total": "Total number of annotated cilia",
+      "totalMTDs": "Total number of annotated cilia with microtubular defect",
+      "totalDA": "Total number of annotated cilia with dynein arms",
+      "totalIDA": "Total number of annotated cilia without inner dynein arms",
+      "totalODA": "Total number of annotated cilia without outer dynein arms"
+    }
+  },
+  "welcome": {
+    "welcome": {
+      "title": "Welcome to CiliaScan",
+      "description": "CiliaScan is an innovative annotation tool designed specifically for histopathologists.",
+      "goal": "Its main goal is to speed up the diagnosis of Primary ciliary dyskinesia (PCD) by facilitating cilia annotation."
+    },
+    "aiModel": {
+      "title": "Meet our AI model",
+      "usage": "CiliaScan uses artificial intelligence to help you accurately annotate cilia.",
+      "training": "Our AI model was trained on a diverse dataset of PCD images.",
+      "evolving": "It is important to note that AI model is constantly evolving. It may not initially annotate all the cilia in the image. However, it will improve over time thanks to your help and feedback."
+    },
+    "experience": {
+      "title": "Understanding Your experience",
+      "dataCollection": "We strive to provide the best diagnostic experience possible. To do this, we collect anonymized data about how you interact with our application.",
+      "whyData": "Why data collection?",
+      "insights": "By analyzing the interactions you make, we gain valuable insights into areas where our AI model may need to be improved. This allows us to continuously improve its accuracy and efficiency.",
+      "agreement": "I understand and agree to the data collection policy."
+    }
+  },
+  "layoutTutorial": {
+    "title": "Application Layout",
+    "steps": "of 8 steps",
+    "step1": "Welcome to the tutorial! This guide will walk you through the application's layout.",
+    "step2": "Use this button to automatically annotate the image.",
+    "step3": "These buttons let you interact with the image: center image, or undo the last action.",
+    "step4": "Use these controls to select a microtubular defect and adjust the size and opacity of the points.",
+    "step5": "The left sidebar displays your images and their annotations.",
+    "step6": "This is the workspace where you can add, edit, or delete annotations on the image. You can zoom or move the image.",
+    "step7": "The right sidebar includes tabs for project, image, and annotation overviews. Switch between them by clicking the tabs.",
+    "step8": "For more detailed information about the layout, check the Documentation."
+  },
+  "manualAnnotationTutorial": {
+    "title": "Manual Annotation",
+    "steps": "of 8 steps",
+    "step1": "This guide will walk you through the manual annotation process.",
+    "step2": "Select image from the left sidebar.",
+    "step3": "In the navigation, select a category of defect by clicking the \"Choose Microtubular Defect\" button. You can also switch categories using the numeric keys.",
+    "step4": "Click on the image to add an annotation.",
+    "step5": "Change the dynein arm type by multiple clicking on the annotation.",
+    "step6": "Need to edit an annotation? Click on \"Microtubular defect\" or \"Dynein arms\" in \"Annotation\" tab in Right Sidebar.",
+    "step7": "Need to delete an annotation? Right click on it! Or delete it in \"Annotation\" tab in Right Sidebar.",
+    "step8": "If you forget anything, check the Documentation."
+  },
+  "AItutorial": {
+    "title": "Automatic anotation",
+    "ai_helping": "AI helps with faster annotation, but it is still learning!",
+    "normal_cilia_only": "The model currently can only recognize normal cilia.",
+    "dynein_not_evaluated": "It does not yet evaluate dynein arms – these annotations need to be adjusted manually.",
+    "how_to_work": "How to work with AI annotations?",
+    "ai_marks_cilia": "AI automatically marks cilia in boxes, which you can adjust just like with manual annotation.",
+    "remember_expert_check": "Remember: AI is just a helper; your expert review is still important.",
+    "agree_button": "I understand"
+  },
+  "manualAnnotationTutorialDocumentation": {
+    "title": "Manual Annotation Tutorial",
+    "steps": {
+      "0": {
+        "title": "Step 1: Open the Image",
+        "description": "Select the image you want to annotate by clicking on it in the list of images in the Left Sidebar."
+      },
+      "1": {
+        "title": "Step 2: Choose a Microtubular Defect Type",
+        "description": "In the navigation, select a category of defect by clicking the \"Choose Microtubular Defect\" button. You can also switch categories using the numeric keys."
+      },
+      "2": {
+        "title": "Step 3: Create Annotations",
+        "description": "Click on the image to add an annotation. You can place multiple annotations on the same image."
+      },
+      "3": {
+        "title": "Step 4: Select Dynein Arm Type",
+        "description": "Click on an annotation to change the dynein arm type. Simply click on the point until you’re satisfied with the selection. Repeat these steps until each cilium in every image is annotated."
+      },
+      "4": {
+        "title": "Need to Edit an Annotation?",
+        "description": "Click on the annotation, then select tab \"Annotation\" in the Right Sidebar to edit the microtubular defect category or dynein arms type."
+      },
+      "5": {
+        "title": "Need to Delete an Annotation?",
+        "description": "Click on the annotation, then select tab \"Annotation\" in the Right Sidebar to delete it. You can also delete an annotation by right-clicking on it."
+      }
     }
   },
   "status": {
-        "aiDone": "AI annotation done",
-        "aiError": "AI annotation failed",
-        "images": "Images were successfully uploaded",
-        "imagesError": "Images were not uploaded",
-        "imageDeletion": "Image was successfully deleted",
-        "imageDeletionError": "Image was not deleted",
-        "imageAnnotations": "Annotations were successfully deleted",
-        "imageAnnotationsError": "Annotations were not deleted",
-        "imageAIannotations": "AI annotations were successfully deleted",
-        "imageAIannotationsError": "AI annotations were not deleted",
-        "imageReset": "Automatic annotation was successfully reset",
-        "imageResetError": "Automatic annotation was not reset",
-        "class": "Microtubular defect class was successfully created",
-        "classError": "Microtubular defect class was not created",
-        "export": "Report was successfully exported and project was saved",
-        "exportError": "Report was not exported",
-        "save": "Project was successfully saved",
-        "saveError": "Project was not saved",
-        "open": "Project was successfully opened",
-        "openError": "Project was not opened",
-        "zoom": "Zoom in and out of image with mouse wheel",
-        "drag": "Move image by dragging it",
-        "undo": "Last action was undone",
-        "upload": "Loading images, please wait...",
-        "copy": "Annotation copied, press CTRL+V to paste",
-        "paste": "Annotation pasted",
-        "undoDelete": "Undo deletion of defect category",
-        "undoDeleteConfirm": "Undo"
-    }
+    "aiDone": "AI annotation done",
+    "aiError": "AI annotation failed",
+    "images": "Images were successfully uploaded",
+    "imagesError": "Images were not uploaded",
+    "imageDeletion": "Image was successfully deleted",
+    "imageDeletionError": "Image was not deleted",
+    "imageAnnotations": "Annotations were successfully deleted",
+    "imageAnnotationsError": "Annotations were not deleted",
+    "imageAIannotations": "AI annotations were successfully deleted",
+    "imageAIannotationsError": "AI annotations were not deleted",
+    "imageReset": "Automatic annotation was successfully reset",
+    "imageResetError": "Automatic annotation was not reset",
+    "class": "Microtubular defect class was successfully created",
+    "classError": "Microtubular defect class was not created",
+    "export": "Report was successfully exported and project was saved",
+    "exportError": "Report was not exported",
+    "save": "Project was successfully saved",
+    "saveError": "Project was not saved",
+    "open": "Project was successfully opened",
+    "openError": "Project was not opened",
+    "zoom": "Zoom in and out of image with mouse wheel",
+    "drag": "Move image by dragging it",
+    "undo": "Last action was undone",
+    "upload": "Loading images, please wait...",
+    "copy": "Annotation copied, press CTRL+V to paste",
+    "paste": "Annotation pasted",
+    "undoDelete": "Undo deletion of defect category",
+    "undoDeleteConfirm": "Undo"
+  }
 }

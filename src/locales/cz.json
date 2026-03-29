@@ -1,442 +1,442 @@
 {
-    "general": {
-        "nextButton": "Další",
-        "finishButton": "Dokončit",
-        "backButton": "Zpět",
-        "close": "Zavřít"
+  "general": {
+    "nextButton": "Další",
+    "finishButton": "Dokončit",
+    "backButton": "Zpět",
+    "close": "Zavřít"
+  },
+  "navigation": {
+    "buttons": {
+      "openProject": "Otevřít projekt",
+      "save": "Uložit projekt",
+      "share": "Sdílet",
+      "export": "Exportovat report"
     },
-    "navigation": {
-        "buttons": {
-            "openProject": "Otevřít projekt",
-            "save": "Uložit projekt",
-            "share": "Sdílet",
-            "export": "Exportovat report"
-        },
-        "tooltips": {
-            "ai": "Automatická anotace",
-            "centerImage": "Vycentrovat snímek",
-            "chooseMicrotubularDefect": "Vybrat mikrotubulární defekt",
-            "changeOpacity": "Změnit průhlednost bodu",
-            "changePointSize": "Změnit velikost bodu",
-            "settings": "Nastavení",
-            "undo": "Vrátit zpět"
-        },
-        "settings": {
-            "settings": "Nastavení",
-            "documentation": "Dokumentace",
-            "userFeedback": "Zpětná vazba"
-        }
+    "tooltips": {
+      "ai": "Automatická anotace",
+      "centerImage": "Vycentrovat snímek",
+      "chooseMicrotubularDefect": "Vybrat mikrotubulární defekt",
+      "changeOpacity": "Změnit průhlednost bodu",
+      "changePointSize": "Změnit velikost bodu",
+      "settings": "Nastavení",
+      "undo": "Vrátit zpět"
     },
-    "leftSidebar": {
-        "search": "Vyhledat snímek",
-        "upload": "Nahrát snímky",
-        "dragAndDrop": "Vyberte snímky nebo je sem přetáhněte"
-    },
-    "rightSidebar": {
-        "ProjectOverview": {
-            "title": "Projekt",
-            "notes": "Poznámky",
-            "notesPlaceholder": "Napište sem poznámky...",
-            "outcomes": "Výsledky",
-            "outcomesPlaceholder": "Napište sem výsledky...",
-            "statistics": "Statistiky",
-            "detailedStatistics": "Zobrazit detailní statistiky",
-            "statisticsTotal": "Celkem",
-            "statisticsDefects": "Mikrotubulární defekt",
-            "statisticsDyneins": "Dyneinová raménka",
-            "statisticsCount": "Počet"
-        },
-        "ImageOverview": {
-            "title": "Snímek",
-            "text": "Výběrte snímek z levého panela pre zobrazenie jeho podrobností."
-        },
-        "AnnotationOverview": {
-            "title": "Anotace",
-            "text": "Vyberte anotaci na obrázku pro zobrazení jejích podrobností.",
-            "microtubularDefect": "Mikrotubulární defekt",
-            "searchDefect": "Vyhledat mikrotubulární defekt",
-            "dyneinType": "Dyneinová raménka",
-            "searchDynein": "Vyhledat dyneinová raménka",
-            "parameters": "Parametry",
-            "parametersAngle": "Úhel",
-            "parametersDistance": "Vzdálenost",
-            "parametersDescription": "Popis",
-            "parametersDescriptionPlaceholder": "Napište sem popis cílie...",
-            "parametersDistancePlaceholder": "Napište sem vzdálenost...",
-            "parametersAnglePlaceholder": "Napište sem úhel..."
-        }
-    },
-    "annotation": {
-        "addNewClass": "Přidat novou třídu",
-        "addNewClassName": "Název",
-        "addNewClassColor": "Barva",
-        "addNewClassButton": "Vytvořit třídu",
-        "addNewClassDescription": "Popis",
-        "addNewClassShortcut": "Klávesová zkratka",
-        "shortcutInfo": "Klávesová zkratka musí být číslo 0-9.",
-        "delete": "Smazat anotaci",
-        "zoomTo": "Přiblížit anotaci",
-        "copy": "Kopírovat anotaci",
-        "warningEmptyName": "Název třídy nemůže být prázdný.",
-        "warningWrongName": "Třída s tímto názvem již existuje.",
-        "warningWrongColor": "Třída s touto barvou již existuje.",
-        "warningWrongShortcut": "Třída s touto klávesovou zkratkou již existuje."
-    },
-    "image": {
-        "ReviewedImage": "Nastavit snímek na zkontrolovaný",
-        "Unseen": "Nastavit jako neviděný",
-        "DeleteImage": "Smazat snímek",
-        "DeleteAnnotations": "Smazat všechny anotace",
-        "DeleteAIAnnotations": "Smazat AI anotace",
-        "ResetAutomaticAnnotation": "Obnovit automatickou anotaci"
-    },
-    "modals": {
-        "export": {
-            "title": "Exportovat Report diagnózy",
-            "title2": "PCD Report diagnózy bude exportovaný jako XLSX soubor.",
-            "exportButton": "Exportovat report"
-        },
-        "imageDeletion": {
-            "title": "Odstranění obrázku",
-            "message": "Opravdu chcete odstranit tento obrázek?",
-            "confirmButton": "Odstranit",
-            "cancelButton": "Zrušit"
-        },
-        "imageReviewed": {
-            "title": "Nastavit obrázek jako zkontrolovaný",
-            "message": "Opravdu chcete nastavit tento obrázek jako zkontrolovaný?",
-            "confirmButton": "Nastavit jako zkontrolovaný",
-            "cancelButton": "Zrušit"
-        },
-        "imageAnnotations": {
-            "title": "Smazat všechny anotace",
-            "message": "Opravdu chcete smazat všechny anotace pro tento obrázek?",
-            "confirmButton": "Smazat",
-            "cancelButton": "Zrušit"
-        },
-        "imageAIannotations": {
-            "title": "Smazat AI anotace",
-            "message": "Opravdu chcete smazat všechny anotace vytvořené AI pro tento obrázek?",
-            "confirmButton": "Smazat",
-            "cancelButton": "Zrušit"
-        },
-        "imageReset": {
-            "title": "Obnovit automatickou anotaci",
-            "message": "Opravdu chcete obnovit automatickou anotaci pro tento obrázek?",
-            "confirmButton": "Obnovit",
-            "cancelButton": "Zrušit"
-        },
-        "loading": {
-            "title": "Načítá se...",
-            "message": "AI model anotuje snímek, prosím, čekejte..."
-        },
-        "settings": {
-            "title": "Nastavení",
-            "settings": {
-                "title": "Nastavení aplikace",
-                "description": "Výběr jazyka:",
-                "languageSK": "SK",
-                "languageEN": "EN",
-                "languageCZ": "CZ"
-            },
-            "defects": {
-                "title": "Mikrotubulární defekty",
-                "description": "Zde můžete spravovat mikrotubulární defekty.",
-                "formDescription": "Použijte formulář níže k přidání nové kategorie mikrotubulárního defektu.",
-                "editButton": "Upravit třídu",
-                "deleteButton": "Smazat třídu",
-                "createButton": "Vytvořit třídu",
-                "cancelButton": "Zrušit",
-                "title2": "Správa mikrotubulárních defektů",
-                "description2": "Níže můžete vidět existující kategorie mikrotubulárních defektů. Můžete je upravit nebo smazat podle potřeby.",
-                "page": "Strana",
-                "of": "z"
-            }
-        },
-        "feedback": {
-            "title": "Zpětná vazba",
-            "data": {
-                "title": "Sběr údajů",
-                "header": "Porozumění vaší zkušenosti",
-                "paragraph1": "Snažíme se poskytnout co nejlepší diagnostickou zkušenost. Za tímto účelem sbíráme anonymizovaná data o tom, jak interagujete s naší aplikací.",
-                "paragraph2": "Analyzujeme vaše interakce, abychom získali cenné informace o oblastech, kde náš AI model může potřebovat vylepšení. To nám umožňuje neustále zlepšovat jeho přesnost a efektivitu.",
-                "toggleLabel": "Rozumím a souhlasím se sběrem údajů."
-            },
-            "feedback": {
-                "title": "Zpětná vazba",
-                "paragraph1": "Vaše zpětná vazba je pro nás velmi důležitá. Pomůže nám zlepšit naši aplikaci a poskytnout lepší diagnostickou zkušenost.",
-                "paragraph2": "Vážíme si vašeho času a úsilí. Prosím, odpovězte na následující otázky.",
-                "question1": "1. Používal/a bych tuto aplikaci znovu pro tento úkol.",
-                "question2": "2. Aplikace se snadno používala.",
-                "question3": "3. Plnění úkolů v aplikaci bylo jasné.",
-                "question4": "4. Při používání aplikace jsem narazil/a na problémy.",
-                "question5": "5. Aplikace byla vizuálně přitažlivá.",
-                "question6": "6. Pokud jsem udělal/a chybu, bylo snadné ji opravit.",
-                "question7": "7. Aplikace byla pro mě zbytečně složitá.",
-                "question8": "8. Myslím si, že lidé by se rychle naučili používat tuto aplikaci.",
-                "question9": "9. Cítil/a jsem se sebejistě při používání aplikace.",
-                "question10": "10. Trvalo mi dlouho naučit se používat aplikaci.",
-                "submit": "Odeslat",
-                "answer1": "Vůbec nesouhlasím",
-                "answer10": "Zcela souhlasím"
-            }
-        },
-        "documentation": {
-            "title": "Dokumentace",
-            "about": {
-                "title": "O CiliaScan"
-            },
-            "layout": {
-                "title": "Rozložení aplikace",
-                "layoutDescription": {
-                    "header": "Popis rozložení",
-                    "description": "Zde je stručný popis rozložení aplikace.",
-                    "altText": "Rozložení aplikace"
-                },
-                "navigation": {
-                    "header": "Navigace",
-                    "description": "Navigace je umístěna v horní části aplikace. Poskytuje následující funkce:",
-                    "features": {
-                        "ai": "AI - Spustit automatickou anotaci pro vybraný obrázek.",
-                        "centerImage": "Centrovat obrázek, když je přiblížený nebo posunutý.",
-                        "undo": "Vrátit poslední akci spat.",
-                        "selectDefect": "Vyberte mikrotubulární defekt. Může být také změněn pomocí číselných kláves na klávesnici.",
-                        "changeOpacity": "Změnit průhlednost anotací.",
-                        "changeSize": "Změnit velikost anotací.",
-                        "openProject": "Otevřít projekt - Otevřít existující projekt.",
-                        "saveProject": "Uložit projekt - Uložit aktuální stav projektu.",
-                        "exportProject": "Exportovat report - Exportovat report diagnostiky do CSV souboru.",
-                        "openSettings": "Otevřít nastavení. Zde můžete povolit sběr dat, zmenit jazyk aplikace, a změnit mikrotubulární defekty.",
-                        "openDocumentation": "Otevřít dokumentáci nebo zpětnou vazbu."
-                    }
-                },
-                "leftSidebar": {
-                    "header": "Levý boční panel",
-                    "description": "Levý boční panel se nachází na levé straně aplikace.",
-                    "imageUpload": "Obrázky mohou být nahrány kliknutím na tlačítko Načíst.",
-                    "imageInteractions": {
-                        "click": "Kliknutím na obrázek se zobrazí v hlavní oblasti obrázku.",
-                        "rightClick": "Pravým kliknutím na obrázek můžete obrázek smazat, označit jako zkontrolovaný, neviděný nebo odstranit všechny anotace pro tento obrázek."
-                    },
-                    "annotationList": {
-                        "header": "Každý obrázek má pod ním seznam anotácií s ich jednotlivými počty."
-                    }
-                },
-                "mainImageArea": {
-                    "header": "Canvas",
-                    "description": "Canvas se nachází ve středu aplikace. Zobrazuje vybraný obrázek a všechny jeho anotace.",
-                    "annotation": {
-                        "add": "Kliknutím na obrázek můžete přidat anotaci s vybraným mikrotubulárním defektem.",
-                        "changeDynein": "Dyneinové raméneka anotace mohou být změněny kliknutím na anotaci.",
-                        "delete": "Anotace mohou být smazány pravým kliknutím.",
-                        "details": "Kliknutím na anotaci se zobrazí její podrobnosti na pravém bočním panelu.",
-                        "move": "Anotaci můžete přesouvat tažením.",
-                        "copyPaste": "Anotaci můžete zkopírovat pomocí CTRL + C a vložit pomocí CTRL + V."
-                    },
-                    "zoom": {
-                        "drag": "Obrázek můžete přiblížit a oddálit pomocí kolečka myši. Obrázek můžete přesouvat tažením."
-                    }
-                },
-                "rightSidebar": {
-                    "header": "Pravý boční panel",
-                    "description": "Pravý boční panel se nachází na pravé straně aplikace. Je rozdělen do tří záložek - Projekt, Obrázek, Anotace.",
-                    "projectOverview": {
-                        "header": "Položka Projekt",
-                        "description": "Položka Projekt zobrazuje obecné informace o projektu. Statistiky o projektu jsou zobrazeny zde. Můžete napsat výsledek diagnostiky a přidat poznámky o projektu."
-                    },
-                    "imageOverview": {
-                        "header": "Položka Obrázek",
-                        "description": "Položka Obrázek zobrazuje obecné informace o vybraném obrázku. Obrázek může být nastaven jako zkontrolovaný, neviděný nebo smazaný. Anotace pro obrázek mohou být smazány. Můžete také přidat poznámky o obrázku."
-                    },
-                    "annotationOverview": {
-                        "header": "Položka Anotace",
-                        "description": "Položka Anotace zobrazuje obecné informace o vybrané anotaci. Můžete změnit mikrotubulární defekt a dyneinové raménka anotace, nebo zmenit parametre."
-                    }
-                }
-            },
-            "manualTutorial": {
-                "title": "Manuální anotace",
-                "manualAnnotation": "Manuální anotace je proces ručního označování řasinek na obrázku. To se provádí označením každé řasinky bodem.",
-                "attributes": "Anotace (bod) obsahuje dva atributy: mikrotubulární defekt a dyneinové raménka.",
-                "microtubularDefects": "Mikrotubulární defekty jsou charakterizovány absencí nebo nesprávným zarovnáním mikrotubulů v řasinkách. Tyto defekty mohou být indikátorem PCD a jsou důležité pro identifikaci během diagnostického procesu. Typ defektu je reprezentován barvou anotace.",
-                "dyneinArms": "Dyneinová raménka pomáhají řasinkám se pohybovat. Dyneinová raménka jsou důležitá pro správnou funkci řasinek. Typ dyneinových ramének je reprezentován označením anotace.",
-                "step3": "Kliknutím na anotaci změníte typ dyneinových ramének. Jednoduše klikněte na bod, dokud nebudete s výběrem spokojeni.",
-                "repeat": "Opakujte tyto kroky, dokud nebudou anotovány všechny cílie na každém obrázku.",
-                "newClass": "Potřebujete přidat novou třídu? Vytvořte ji v Nastavení.",
-                "title2": "Proces manuální anotace",
-                "description2": "Tato sekce vám poskytne podrobný návod na manuální anotaci cílí v CiliaScan."
-            },
-            "shortcuts": {
-              "title": "Klávesové zkratky",
-                "description": "Zde jsou klíčové klávesové zkratky, které můžete použít:",
-                "table-col1": "Klávesová zkratka",
-                "table-col2": "Akce",
-                "shortcuts": {
-                    "general": {
-                        "title": "Všeobecné klávesové zkratky",
-                        "CTRL+O": {
-                            "key": "CTRL+O",
-                            "description": "Otvoriť projekt"
-                        },
-                        "CTRL+S": {
-                            "key": "CTRL+S",
-                            "description": "Uložiť projekt"
-                        },
-                        "CTRL+E": {
-                            "key": "CTRL+E",
-                            "description": "Exportovať report"
-                        }
-                    },
-                    "annotation": {
-                        "title": "Klávesové zkratky pre anotáciu",
-                        "description": "Klávesové zkratky pre výber mikrotubulárneho defektu môžu byť zmenené v Nastaveniach.",
-                        "CTRL+A": {
-                            "key": "CTRL+A",
-                            "description": "Vytvoriť novú třídu mikrotubulárneho defektu"
-                        },
-                        "CTRL+C": {
-                            "key": "CTRL+C",
-                            "description": "Kopírovať anotácii"
-                        },
-                        "CTRL+V": {
-                            "key": "CTRL+V",
-                            "description": "Prilepiť anotácii"
-                        }
-                    },
-                    "navigation": {
-                        "title": "Navigačné klávesové skratky",
-                        "CTRL+Z": {
-                            "key": "CTRL+Z",
-                            "description": "Vrátiť poslednú akci"
-                        },
-                        "CTRL+I": {
-                            "key": "CTRL+I",
-                            "description": "Vycentrovat obrázek"
-                        }
-                    }
-                }
-            }
-        },
-        "statistics": {
-            "title": "Statistiky",
-            "total": "Celkový počet anotovaných řasinek",
-            "totalMTDs": "Celkový počet anotovaných řasinek s mikrotubulárním defektem",
-            "totalDA": "Celkový počet anotovaných řasinek s dyneinovými raménky",
-            "totalIDA": "Celkový počet anotovaných řasinek bez vnitřních dyneinových ramének",
-            "totalODA": "Celkový počet anotovaných řasinek bez vnějších dyneinových ramének"
-        }
-    },
-    "welcome": {
-        "welcome": {
-            "title": "Vítejte v CiliaScan",
-            "description": "CiliaScan je inovativní nástroj pro anotaci navržený speciálně pro histopatology.",
-            "goal": "Hlavním cílem je urychlit diagnostiku Primární ciliární dyskineze (PCD) prostřednictvím rychlejší anotace řasinek."
-        },
-        "aiModel": {
-            "title": "Seznamte se s naším AI modelem",
-            "usage": "CiliaScan využívá umělou inteligenci pro přesnou anotaci řasinek.",
-            "training": "Náš AI model byl vyškolen na různorodém souboru dat z obrázků PCD.",
-            "evolving": "Je důležité si uvědomit, že AI model se neustále vyvíjí. Možná nezachytí všechny řasinky hned, ale díky vaší pomoci a zpětné vazbě se bude neustále zlepšovat."
-        },
-        "experience": {
-            "title": "Pochopení vaší zkušenosti",
-            "dataCollection": "Naším cílem je poskytnout co nejlepší diagnostickou zkušenost. Proto sbíráme anonymizované údaje o tom, jak interagujete s aplikací.",
-            "whyData": "Proč sbíráme údaje?",
-            "insights": "Analýzou vašich interakcí získáváme cenné informace o oblastech, kde náš AI model potřebuje zlepšení. To nám umožňuje neustále zlepšovat jeho přesnost a efektivitu.",
-            "agreement": "Rozumím a souhlasím se sběrem údajů."
-        }
-    },
-    "layoutTutorial": {
-        "title": "Rozložení aplikace",
-        "steps": "z 8 kroků",
-        "step1": "Vítejte v tutoriálu! Tento průvodce vás provede rozložením aplikace.",
-        "step2": "Toto tlačítko slouží k automatickému anotování obrázku.",
-        "step3": "Tato tlačítka vám umožní pracovat s obrázkem: vycentrovat ho nebo vrátit poslední akci.",
-        "step4": "Použijte tato tlačítka k výběru mikrotrubulárního defektu a úpravě velikosti a průhlednosti bodů.",
-        "step5": "Levý panel zobrazuje vaše obrázky a jejich anotace.",
-        "step6": "Toto je pracovní prostor, kde můžete přidávat, upravovat nebo mazat anotace na obrázku.",
-        "step7": "Pravý panel obsahuje záložky s přehledy projektu, obrázku a anotací. Mezi nimi můžete přepínat kliknutím na záložku.",
-        "step8": "Podrobnější informace o aplikaci naleznete v Dokumentaci."
-    },
-    "manualAnnotationTutorial": {
-        "title": "Manuální anotace",
-        "steps": "z 8 kroků",
-        "step1": "Tento průvodce vás provede procesem manuální anotace.",
-        "step2": "Vyberte obrázek z levého panelu.",
-        "step3": "V navigaci vyberte kategorii defektu kliknutím na tlačítko \"Vybrat mikrotrubulární defekt\". Typy můžete také měnit pomocí číselných kláves.",
-        "step4": "Kliknutím na obrázek přidejte anotaci.",
-        "step5": "Opakovaným klikaním na anotaci změňte typ dyneinových ramének.",
-        "step6": "Potřebujete upravit anotaci? Klikněte na \"Mikrotrubulární defekt\" nebo \"Dyneinové raménka\" v záložce \"Anotace\" v pravém panelu.",
-        "step7": "Potřebujete smazat anotaci? Pravým kliknutím na ni! Nebo ji smažte v záložce \"Anotace\" v pravém panelu.",
-        "step8": "Pokud jste něco zapomněli, podívejte se do Dokumentace."
-    },
-    "AItutorial": {
-        "title": "Automatická anotace",
-        "ai_helping": "AI pomáhá s rychlejším anotováním, ale zatím se učí!",
-        "normal_cilia_only": "Model momentálně dokáže rozpoznat pouze normální řasinky.",
-        "dynein_not_evaluated": "Dyneinová raménka zatím nevyhodnocuje – tyto anotace je potřeba upravit ručně.",
-        "how_to_work": "Jak pracovat s AI anotacemi?",
-        "ai_marks_cilia": "AI automaticky označí řasinky do boxů, které můžeš upravit stejně jako při ručním označování.",
-        "remember_expert_check": "Nezapomeň: AI je pouze pomocník, tvoje odborná kontrola je stále důležitá.",
-        "agree_button": "Rozumím"
-      },
-    "manualAnnotationTutorialDocumentation": {
-        "title": "Návod na manuální anotaci",
-        "steps": {
-            "0": {
-                "title": "Krok 1: Otevřete snímek",
-                "description": "Vyberte snímek, který chcete anotovat, kliknutím na něj v seznamu snímků na levém bočním panelu."
-            },
-            "1": {
-                "title": "Krok 2: Vyberte kategorii mikrotrubulárního defektu",
-                "description": "V navigaci vyberte kategorii defektu kliknutím na tlačítko \"Vybrat mikrotrubulární defekt\". Typy můžete také měnit pomocí číselných kláves."
-            },
-            "2": {
-                "title": "Krok 3: Vytvořte anotace",
-                "description": "Klikněte na snímek, abyste přidali anotaci. Na stejný snímek můžete umístit více anotací."
-            },
-            "3": {
-                "title": "Krok 4: Vyberte typ dyneinových ramének",
-                "description": "Klikněte na anotaci, abyste změnili typ dyneinových ramének. Jednoduše klikněte na bod, dokud nebudete spokojeni s výběrem. Opakujte tyto kroky, dokud nebudou anotovány všechny cílie na každém snímku."
-            },
-            "4": {
-                "title": "Potřebujete upravit anotaci?",
-                "description": "Klikněte na anotaci a pak vyberte položku \"Anotace\" v pravém bočním panelu, kde můžete upravit kategorii mikrotrubulárního defektu nebo typ dyneinových ramének."
-            },
-            "5": {
-                "title": "Potřebujete smazat anotaci?",
-                "description": "Klikněte na anotaci a pak vyberte položku \"Anotace\" v pravém bočním panelu, abyste ji smazali. Anotaci můžete také smazat pravým kliknutím myši."
-            }
-        }
-    },
-    "status": {
-        "aiDone": "AI anotace dokončena",
-        "aiError": "AI anotace selhala",
-        "images": "Obrázky byly úspěšně nahrány",
-        "imagesError": "Obrázky nebyly nahrány",
-        "imageDeletion": "Obrázek byl úspěšně smazán",
-        "imageDeletionError": "Obrázek nebyl smazán",
-        "imageAnnotations": "Anotace byly úspěšně smazány",
-        "imageAnnotationsError": "Anotace nebyly smazány",
-        "imageAIannotations": "AI anotace byly úspěšně smazány",
-        "imageAIannotationsError": "AI anotace nebyly smazány",
-        "imageReset": "Automatická anotace byla úspěšně obnovena",
-        "imageResetError": "Automatická anotace nebyla obnovena",
-        "class": "Třída mikrotrubulárního defektu byla úspěšně vytvořena",
-        "classError": "Třída mikrotrubulárního defektu nebyla vytvořena",
-        "export": "Report byl úspěšně exportovány a projekt byl uložen",
-        "exportError": "Report nebyl exportován",
-        "save": "Projekt byl úspěšně uložen",
-        "saveError": "Projekt nebyl uložen",
-        "open": "Projekt byl úspěšně otevřen",
-        "openError": "Projekt nebyl otevřen",
-        "zoom": "Přiblížení a oddálení obrázku pomocí kolečka myši",
-        "drag": "Přesunutí obrázku tažením",
-        "undo": "Poslední akce byla vrácena",
-        "upload": "Obrázky se nahrávají, prosím čekejte...",
-        "copy": "Anotace byla zkopírována, přidejte ji kliknutím CTRL + V",
-        "paste": "Anotace byla přidána",
-        "undoDelete": "Vrátit odstránenou kategorii defektu",
-        "undoDeleteConfirm": "Vrátit"
+    "settings": {
+      "settings": "Nastavení",
+      "documentation": "Dokumentace",
+      "userFeedback": "Zpětná vazba"
     }
+  },
+  "leftSidebar": {
+    "search": "Vyhledat snímek",
+    "upload": "Nahrát snímky",
+    "dragAndDrop": "Vyberte snímky nebo je sem přetáhněte"
+  },
+  "rightSidebar": {
+    "ProjectOverview": {
+      "title": "Projekt",
+      "notes": "Poznámky",
+      "notesPlaceholder": "Přidejte poznámky k této inspekci...",
+      "outcomes": "Verdikt inspektora",
+      "outcomesPlaceholder": "Napište celkové hodnocení této restaurace...",
+      "statistics": "Statistiky",
+      "detailedStatistics": "Zobrazit detailní statistiky",
+      "statisticsTotal": "Celkem",
+      "statisticsDefects": "Typ defektu",
+      "statisticsDyneins": "Dyneinová raménka",
+      "statisticsCount": "Počet"
+    },
+    "ImageOverview": {
+      "title": "Snímek",
+      "text": "Výběrte snímek z levého panela pre zobrazenie jeho podrobností."
+    },
+    "AnnotationOverview": {
+      "title": "Anotace",
+      "text": "Vyberte anotaci na obrázku pro zobrazení jejích podrobností.",
+      "microtubularDefect": "Mikrotubulární defekt",
+      "searchDefect": "Vyhledat mikrotubulární defekt",
+      "dyneinType": "Dyneinová raménka",
+      "searchDynein": "Vyhledat dyneinová raménka",
+      "parameters": "Parametry",
+      "parametersAngle": "Úhel",
+      "parametersDistance": "Vzdálenost",
+      "parametersDescription": "Popis",
+      "parametersDescriptionPlaceholder": "Napište sem popis cílie...",
+      "parametersDistancePlaceholder": "Napište sem vzdálenost...",
+      "parametersAnglePlaceholder": "Napište sem úhel..."
+    }
+  },
+  "annotation": {
+    "addNewClass": "Přidat novou třídu",
+    "addNewClassName": "Název",
+    "addNewClassColor": "Barva",
+    "addNewClassButton": "Vytvořit třídu",
+    "addNewClassDescription": "Popis",
+    "addNewClassShortcut": "Klávesová zkratka",
+    "shortcutInfo": "Klávesová zkratka musí být číslo 0-9.",
+    "delete": "Smazat anotaci",
+    "zoomTo": "Přiblížit anotaci",
+    "copy": "Kopírovat anotaci",
+    "warningEmptyName": "Název třídy nemůže být prázdný.",
+    "warningWrongName": "Třída s tímto názvem již existuje.",
+    "warningWrongColor": "Třída s touto barvou již existuje.",
+    "warningWrongShortcut": "Třída s touto klávesovou zkratkou již existuje."
+  },
+  "image": {
+    "ReviewedImage": "Nastavit snímek na zkontrolovaný",
+    "Unseen": "Nastavit jako neviděný",
+    "DeleteImage": "Smazat snímek",
+    "DeleteAnnotations": "Smazat všechny anotace",
+    "DeleteAIAnnotations": "Smazat AI anotace",
+    "ResetAutomaticAnnotation": "Obnovit automatickou anotaci"
+  },
+  "modals": {
+    "export": {
+      "title": "Exportovat Report diagnózy",
+      "title2": "PCD Report diagnózy bude exportovaný jako XLSX soubor.",
+      "exportButton": "Exportovat report"
+    },
+    "imageDeletion": {
+      "title": "Odstranění obrázku",
+      "message": "Opravdu chcete odstranit tento obrázek?",
+      "confirmButton": "Odstranit",
+      "cancelButton": "Zrušit"
+    },
+    "imageReviewed": {
+      "title": "Nastavit obrázek jako zkontrolovaný",
+      "message": "Opravdu chcete nastavit tento obrázek jako zkontrolovaný?",
+      "confirmButton": "Nastavit jako zkontrolovaný",
+      "cancelButton": "Zrušit"
+    },
+    "imageAnnotations": {
+      "title": "Smazat všechny anotace",
+      "message": "Opravdu chcete smazat všechny anotace pro tento obrázek?",
+      "confirmButton": "Smazat",
+      "cancelButton": "Zrušit"
+    },
+    "imageAIannotations": {
+      "title": "Smazat AI anotace",
+      "message": "Opravdu chcete smazat všechny anotace vytvořené AI pro tento obrázek?",
+      "confirmButton": "Smazat",
+      "cancelButton": "Zrušit"
+    },
+    "imageReset": {
+      "title": "Obnovit automatickou anotaci",
+      "message": "Opravdu chcete obnovit automatickou anotaci pro tento obrázek?",
+      "confirmButton": "Obnovit",
+      "cancelButton": "Zrušit"
+    },
+    "loading": {
+      "title": "Načítá se...",
+      "message": "AI model anotuje snímek, prosím, čekejte..."
+    },
+    "settings": {
+      "title": "Nastavení",
+      "settings": {
+        "title": "Nastavení aplikace",
+        "description": "Výběr jazyka:",
+        "languageSK": "SK",
+        "languageEN": "EN",
+        "languageCZ": "CZ"
+      },
+      "defects": {
+        "title": "Mikrotubulární defekty",
+        "description": "Zde můžete spravovat mikrotubulární defekty.",
+        "formDescription": "Použijte formulář níže k přidání nové kategorie mikrotubulárního defektu.",
+        "editButton": "Upravit třídu",
+        "deleteButton": "Smazat třídu",
+        "createButton": "Vytvořit třídu",
+        "cancelButton": "Zrušit",
+        "title2": "Správa mikrotubulárních defektů",
+        "description2": "Níže můžete vidět existující kategorie mikrotubulárních defektů. Můžete je upravit nebo smazat podle potřeby.",
+        "page": "Strana",
+        "of": "z"
+      }
+    },
+    "feedback": {
+      "title": "Zpětná vazba",
+      "data": {
+        "title": "Sběr údajů",
+        "header": "Porozumění vaší zkušenosti",
+        "paragraph1": "Snažíme se poskytnout co nejlepší diagnostickou zkušenost. Za tímto účelem sbíráme anonymizovaná data o tom, jak interagujete s naší aplikací.",
+        "paragraph2": "Analyzujeme vaše interakce, abychom získali cenné informace o oblastech, kde náš AI model může potřebovat vylepšení. To nám umožňuje neustále zlepšovat jeho přesnost a efektivitu.",
+        "toggleLabel": "Rozumím a souhlasím se sběrem údajů."
+      },
+      "feedback": {
+        "title": "Zpětná vazba",
+        "paragraph1": "Vaše zpětná vazba je pro nás velmi důležitá. Pomůže nám zlepšit naši aplikaci a poskytnout lepší diagnostickou zkušenost.",
+        "paragraph2": "Vážíme si vašeho času a úsilí. Prosím, odpovězte na následující otázky.",
+        "question1": "1. Používal/a bych tuto aplikaci znovu pro tento úkol.",
+        "question2": "2. Aplikace se snadno používala.",
+        "question3": "3. Plnění úkolů v aplikaci bylo jasné.",
+        "question4": "4. Při používání aplikace jsem narazil/a na problémy.",
+        "question5": "5. Aplikace byla vizuálně přitažlivá.",
+        "question6": "6. Pokud jsem udělal/a chybu, bylo snadné ji opravit.",
+        "question7": "7. Aplikace byla pro mě zbytečně složitá.",
+        "question8": "8. Myslím si, že lidé by se rychle naučili používat tuto aplikaci.",
+        "question9": "9. Cítil/a jsem se sebejistě při používání aplikace.",
+        "question10": "10. Trvalo mi dlouho naučit se používat aplikaci.",
+        "submit": "Odeslat",
+        "answer1": "Vůbec nesouhlasím",
+        "answer10": "Zcela souhlasím"
+      }
+    },
+    "documentation": {
+      "title": "Dokumentace",
+      "about": {
+        "title": "O CiliaScan"
+      },
+      "layout": {
+        "title": "Rozložení aplikace",
+        "layoutDescription": {
+          "header": "Popis rozložení",
+          "description": "Zde je stručný popis rozložení aplikace.",
+          "altText": "Rozložení aplikace"
+        },
+        "navigation": {
+          "header": "Navigace",
+          "description": "Navigace je umístěna v horní části aplikace. Poskytuje následující funkce:",
+          "features": {
+            "ai": "AI - Spustit automatickou anotaci pro vybraný obrázek.",
+            "centerImage": "Centrovat obrázek, když je přiblížený nebo posunutý.",
+            "undo": "Vrátit poslední akci spat.",
+            "selectDefect": "Vyberte mikrotubulární defekt. Může být také změněn pomocí číselných kláves na klávesnici.",
+            "changeOpacity": "Změnit průhlednost anotací.",
+            "changeSize": "Změnit velikost anotací.",
+            "openProject": "Otevřít projekt - Otevřít existující projekt.",
+            "saveProject": "Uložit projekt - Uložit aktuální stav projektu.",
+            "exportProject": "Exportovat report - Exportovat report diagnostiky do CSV souboru.",
+            "openSettings": "Otevřít nastavení. Zde můžete povolit sběr dat, zmenit jazyk aplikace, a změnit mikrotubulární defekty.",
+            "openDocumentation": "Otevřít dokumentáci nebo zpětnou vazbu."
+          }
+        },
+        "leftSidebar": {
+          "header": "Levý boční panel",
+          "description": "Levý boční panel se nachází na levé straně aplikace.",
+          "imageUpload": "Obrázky mohou být nahrány kliknutím na tlačítko Načíst.",
+          "imageInteractions": {
+            "click": "Kliknutím na obrázek se zobrazí v hlavní oblasti obrázku.",
+            "rightClick": "Pravým kliknutím na obrázek můžete obrázek smazat, označit jako zkontrolovaný, neviděný nebo odstranit všechny anotace pro tento obrázek."
+          },
+          "annotationList": {
+            "header": "Každý obrázek má pod ním seznam anotácií s ich jednotlivými počty."
+          }
+        },
+        "mainImageArea": {
+          "header": "Canvas",
+          "description": "Canvas se nachází ve středu aplikace. Zobrazuje vybraný obrázek a všechny jeho anotace.",
+          "annotation": {
+            "add": "Kliknutím na obrázek můžete přidat anotaci s vybraným mikrotubulárním defektem.",
+            "changeDynein": "Dyneinové raméneka anotace mohou být změněny kliknutím na anotaci.",
+            "delete": "Anotace mohou být smazány pravým kliknutím.",
+            "details": "Kliknutím na anotaci se zobrazí její podrobnosti na pravém bočním panelu.",
+            "move": "Anotaci můžete přesouvat tažením.",
+            "copyPaste": "Anotaci můžete zkopírovat pomocí CTRL + C a vložit pomocí CTRL + V."
+          },
+          "zoom": {
+            "drag": "Obrázek můžete přiblížit a oddálit pomocí kolečka myši. Obrázek můžete přesouvat tažením."
+          }
+        },
+        "rightSidebar": {
+          "header": "Pravý boční panel",
+          "description": "Pravý boční panel se nachází na pravé straně aplikace. Je rozdělen do tří záložek - Projekt, Obrázek, Anotace.",
+          "projectOverview": {
+            "header": "Položka Projekt",
+            "description": "Položka Projekt zobrazuje obecné informace o projektu. Statistiky o projektu jsou zobrazeny zde. Můžete napsat výsledek diagnostiky a přidat poznámky o projektu."
+          },
+          "imageOverview": {
+            "header": "Položka Obrázek",
+            "description": "Položka Obrázek zobrazuje obecné informace o vybraném obrázku. Obrázek může být nastaven jako zkontrolovaný, neviděný nebo smazaný. Anotace pro obrázek mohou být smazány. Můžete také přidat poznámky o obrázku."
+          },
+          "annotationOverview": {
+            "header": "Položka Anotace",
+            "description": "Položka Anotace zobrazuje obecné informace o vybrané anotaci. Můžete změnit mikrotubulární defekt a dyneinové raménka anotace, nebo zmenit parametre."
+          }
+        }
+      },
+      "manualTutorial": {
+        "title": "Manuální anotace",
+        "manualAnnotation": "Manuální anotace je proces ručního označování řasinek na obrázku. To se provádí označením každé řasinky bodem.",
+        "attributes": "Anotace (bod) obsahuje dva atributy: mikrotubulární defekt a dyneinové raménka.",
+        "microtubularDefects": "Mikrotubulární defekty jsou charakterizovány absencí nebo nesprávným zarovnáním mikrotubulů v řasinkách. Tyto defekty mohou být indikátorem PCD a jsou důležité pro identifikaci během diagnostického procesu. Typ defektu je reprezentován barvou anotace.",
+        "dyneinArms": "Dyneinová raménka pomáhají řasinkám se pohybovat. Dyneinová raménka jsou důležitá pro správnou funkci řasinek. Typ dyneinových ramének je reprezentován označením anotace.",
+        "step3": "Kliknutím na anotaci změníte typ dyneinových ramének. Jednoduše klikněte na bod, dokud nebudete s výběrem spokojeni.",
+        "repeat": "Opakujte tyto kroky, dokud nebudou anotovány všechny cílie na každém obrázku.",
+        "newClass": "Potřebujete přidat novou třídu? Vytvořte ji v Nastavení.",
+        "title2": "Proces manuální anotace",
+        "description2": "Tato sekce vám poskytne podrobný návod na manuální anotaci cílí v CiliaScan."
+      },
+      "shortcuts": {
+        "title": "Klávesové zkratky",
+        "description": "Zde jsou klíčové klávesové zkratky, které můžete použít:",
+        "table-col1": "Klávesová zkratka",
+        "table-col2": "Akce",
+        "shortcuts": {
+          "general": {
+            "title": "Všeobecné klávesové zkratky",
+            "CTRL+O": {
+              "key": "CTRL+O",
+              "description": "Otvoriť projekt"
+            },
+            "CTRL+S": {
+              "key": "CTRL+S",
+              "description": "Uložiť projekt"
+            },
+            "CTRL+E": {
+              "key": "CTRL+E",
+              "description": "Exportovať report"
+            }
+          },
+          "annotation": {
+            "title": "Klávesové zkratky pre anotáciu",
+            "description": "Klávesové zkratky pre výber mikrotubulárneho defektu môžu byť zmenené v Nastaveniach.",
+            "CTRL+A": {
+              "key": "CTRL+A",
+              "description": "Vytvoriť novú třídu mikrotubulárneho defektu"
+            },
+            "CTRL+C": {
+              "key": "CTRL+C",
+              "description": "Kopírovať anotácii"
+            },
+            "CTRL+V": {
+              "key": "CTRL+V",
+              "description": "Prilepiť anotácii"
+            }
+          },
+          "navigation": {
+            "title": "Navigačné klávesové skratky",
+            "CTRL+Z": {
+              "key": "CTRL+Z",
+              "description": "Vrátiť poslednú akci"
+            },
+            "CTRL+I": {
+              "key": "CTRL+I",
+              "description": "Vycentrovat obrázek"
+            }
+          }
+        }
+      }
+    },
+    "statistics": {
+      "title": "Statistiky",
+      "total": "Celkový počet anotovaných řasinek",
+      "totalMTDs": "Celkový počet anotovaných řasinek s mikrotubulárním defektem",
+      "totalDA": "Celkový počet anotovaných řasinek s dyneinovými raménky",
+      "totalIDA": "Celkový počet anotovaných řasinek bez vnitřních dyneinových ramének",
+      "totalODA": "Celkový počet anotovaných řasinek bez vnějších dyneinových ramének"
+    }
+  },
+  "welcome": {
+    "welcome": {
+      "title": "Vítejte v CiliaScan",
+      "description": "CiliaScan je inovativní nástroj pro anotaci navržený speciálně pro histopatology.",
+      "goal": "Hlavním cílem je urychlit diagnostiku Primární ciliární dyskineze (PCD) prostřednictvím rychlejší anotace řasinek."
+    },
+    "aiModel": {
+      "title": "Seznamte se s naším AI modelem",
+      "usage": "CiliaScan využívá umělou inteligenci pro přesnou anotaci řasinek.",
+      "training": "Náš AI model byl vyškolen na různorodém souboru dat z obrázků PCD.",
+      "evolving": "Je důležité si uvědomit, že AI model se neustále vyvíjí. Možná nezachytí všechny řasinky hned, ale díky vaší pomoci a zpětné vazbě se bude neustále zlepšovat."
+    },
+    "experience": {
+      "title": "Pochopení vaší zkušenosti",
+      "dataCollection": "Naším cílem je poskytnout co nejlepší diagnostickou zkušenost. Proto sbíráme anonymizované údaje o tom, jak interagujete s aplikací.",
+      "whyData": "Proč sbíráme údaje?",
+      "insights": "Analýzou vašich interakcí získáváme cenné informace o oblastech, kde náš AI model potřebuje zlepšení. To nám umožňuje neustále zlepšovat jeho přesnost a efektivitu.",
+      "agreement": "Rozumím a souhlasím se sběrem údajů."
+    }
+  },
+  "layoutTutorial": {
+    "title": "Rozložení aplikace",
+    "steps": "z 8 kroků",
+    "step1": "Vítejte v tutoriálu! Tento průvodce vás provede rozložením aplikace.",
+    "step2": "Toto tlačítko slouží k automatickému anotování obrázku.",
+    "step3": "Tato tlačítka vám umožní pracovat s obrázkem: vycentrovat ho nebo vrátit poslední akci.",
+    "step4": "Použijte tato tlačítka k výběru mikrotrubulárního defektu a úpravě velikosti a průhlednosti bodů.",
+    "step5": "Levý panel zobrazuje vaše obrázky a jejich anotace.",
+    "step6": "Toto je pracovní prostor, kde můžete přidávat, upravovat nebo mazat anotace na obrázku.",
+    "step7": "Pravý panel obsahuje záložky s přehledy projektu, obrázku a anotací. Mezi nimi můžete přepínat kliknutím na záložku.",
+    "step8": "Podrobnější informace o aplikaci naleznete v Dokumentaci."
+  },
+  "manualAnnotationTutorial": {
+    "title": "Manuální anotace",
+    "steps": "z 8 kroků",
+    "step1": "Tento průvodce vás provede procesem manuální anotace.",
+    "step2": "Vyberte obrázek z levého panelu.",
+    "step3": "V navigaci vyberte kategorii defektu kliknutím na tlačítko \"Vybrat mikrotrubulární defekt\". Typy můžete také měnit pomocí číselných kláves.",
+    "step4": "Kliknutím na obrázek přidejte anotaci.",
+    "step5": "Opakovaným klikaním na anotaci změňte typ dyneinových ramének.",
+    "step6": "Potřebujete upravit anotaci? Klikněte na \"Mikrotrubulární defekt\" nebo \"Dyneinové raménka\" v záložce \"Anotace\" v pravém panelu.",
+    "step7": "Potřebujete smazat anotaci? Pravým kliknutím na ni! Nebo ji smažte v záložce \"Anotace\" v pravém panelu.",
+    "step8": "Pokud jste něco zapomněli, podívejte se do Dokumentace."
+  },
+  "AItutorial": {
+    "title": "Automatická anotace",
+    "ai_helping": "AI pomáhá s rychlejším anotováním, ale zatím se učí!",
+    "normal_cilia_only": "Model momentálně dokáže rozpoznat pouze normální řasinky.",
+    "dynein_not_evaluated": "Dyneinová raménka zatím nevyhodnocuje – tyto anotace je potřeba upravit ručně.",
+    "how_to_work": "Jak pracovat s AI anotacemi?",
+    "ai_marks_cilia": "AI automaticky označí řasinky do boxů, které můžeš upravit stejně jako při ručním označování.",
+    "remember_expert_check": "Nezapomeň: AI je pouze pomocník, tvoje odborná kontrola je stále důležitá.",
+    "agree_button": "Rozumím"
+  },
+  "manualAnnotationTutorialDocumentation": {
+    "title": "Návod na manuální anotaci",
+    "steps": {
+      "0": {
+        "title": "Krok 1: Otevřete snímek",
+        "description": "Vyberte snímek, který chcete anotovat, kliknutím na něj v seznamu snímků na levém bočním panelu."
+      },
+      "1": {
+        "title": "Krok 2: Vyberte kategorii mikrotrubulárního defektu",
+        "description": "V navigaci vyberte kategorii defektu kliknutím na tlačítko \"Vybrat mikrotrubulární defekt\". Typy můžete také měnit pomocí číselných kláves."
+      },
+      "2": {
+        "title": "Krok 3: Vytvořte anotace",
+        "description": "Klikněte na snímek, abyste přidali anotaci. Na stejný snímek můžete umístit více anotací."
+      },
+      "3": {
+        "title": "Krok 4: Vyberte typ dyneinových ramének",
+        "description": "Klikněte na anotaci, abyste změnili typ dyneinových ramének. Jednoduše klikněte na bod, dokud nebudete spokojeni s výběrem. Opakujte tyto kroky, dokud nebudou anotovány všechny cílie na každém snímku."
+      },
+      "4": {
+        "title": "Potřebujete upravit anotaci?",
+        "description": "Klikněte na anotaci a pak vyberte položku \"Anotace\" v pravém bočním panelu, kde můžete upravit kategorii mikrotrubulárního defektu nebo typ dyneinových ramének."
+      },
+      "5": {
+        "title": "Potřebujete smazat anotaci?",
+        "description": "Klikněte na anotaci a pak vyberte položku \"Anotace\" v pravém bočním panelu, abyste ji smazali. Anotaci můžete také smazat pravým kliknutím myši."
+      }
+    }
+  },
+  "status": {
+    "aiDone": "AI anotace dokončena",
+    "aiError": "AI anotace selhala",
+    "images": "Obrázky byly úspěšně nahrány",
+    "imagesError": "Obrázky nebyly nahrány",
+    "imageDeletion": "Obrázek byl úspěšně smazán",
+    "imageDeletionError": "Obrázek nebyl smazán",
+    "imageAnnotations": "Anotace byly úspěšně smazány",
+    "imageAnnotationsError": "Anotace nebyly smazány",
+    "imageAIannotations": "AI anotace byly úspěšně smazány",
+    "imageAIannotationsError": "AI anotace nebyly smazány",
+    "imageReset": "Automatická anotace byla úspěšně obnovena",
+    "imageResetError": "Automatická anotace nebyla obnovena",
+    "class": "Třída mikrotrubulárního defektu byla úspěšně vytvořena",
+    "classError": "Třída mikrotrubulárního defektu nebyla vytvořena",
+    "export": "Report byl úspěšně exportovány a projekt byl uložen",
+    "exportError": "Report nebyl exportován",
+    "save": "Projekt byl úspěšně uložen",
+    "saveError": "Projekt nebyl uložen",
+    "open": "Projekt byl úspěšně otevřen",
+    "openError": "Projekt nebyl otevřen",
+    "zoom": "Přiblížení a oddálení obrázku pomocí kolečka myši",
+    "drag": "Přesunutí obrázku tažením",
+    "undo": "Poslední akce byla vrácena",
+    "upload": "Obrázky se nahrávají, prosím čekejte...",
+    "copy": "Anotace byla zkopírována, přidejte ji kliknutím CTRL + V",
+    "paste": "Anotace byla přidána",
+    "undoDelete": "Vrátit odstránenou kategorii defektu",
+    "undoDeleteConfirm": "Vrátit"
+  }
 }
