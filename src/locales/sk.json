@@ -51,10 +51,10 @@
       "text": "Vyberte snímku z ľavého panela pre zobrazenie jej podrobností."
     },
     "AnnotationOverview": {
-      "title": "Anotácia",
-      "text": "Vyberte anotáciu na obrázku pre zobrazenie jej podrobností.",
-      "microtubularDefect": "Mikrotubulárny defekt",
-      "searchDefect": "Vyhľadať mikrotubulárny defekt",
+      "title": "Label",
+      "text": "Vyberte label na obrázku pre zobrazenie jeho podrobností.",
+      "microtubularDefect": "Typ defektu",
+      "searchDefect": "Vyhľadať typ defektu",
       "dyneinType": "Dyneinové ramienka",
       "searchDynein": "Vyhľadať dyneinové ramienka",
       "parameters": "Parametre",
@@ -74,20 +74,22 @@
     "addNewClassDescription": "Popis",
     "addNewClassShortcut": "Klávesová skratka",
     "shortcutInfo": "Klávesová skratka musí byť číslo 0-9.",
-    "delete": "Vymazať anotáciu",
-    "zoomTo": "Priblížiť anotáciu",
-    "copy": "Kopírovať anotáciu",
+    "delete": "Zmazať label",
+    "zoomTo": "Priblížiť label",
+    "copy": "Kopírovať label",
     "warningEmptyName": "Názov triedy nemôže byť prázdny.",
     "warningWrongName": "Trieda s týmto názvom už existuje.",
     "warningWrongColor": "Trieda s touto farbou už existuje.",
-    "warningWrongShortcut": "Trieda s touto klávesovou skratkou už existuje."
+    "warningWrongShortcut": "Trieda s touto klávesovou skratkou už existuje.",
+    "DeleteAnnotations": "Zmazať všetky labely",
+    "DeleteAIAnnotations": "Zmazať AI labely"
   },
   "image": {
     "ReviewedImage": "Nastaviť skontrolovanú snímku",
     "Unseen": "Nastaviť ako nevidenú",
     "DeleteImage": "Vymazať snímku",
-    "DeleteAnnotations": "Vymazať všetky anotácie",
-    "DeleteAIAnnotations": "Vymazať AI anotácie",
+    "DeleteAnnotations": "Zmazať všetky labely",
+    "DeleteAIAnnotations": "Zmazať AI labely",
     "ResetAutomaticAnnotation": "Obnoviť automatickú anotáciu"
   },
   "modals": {
@@ -109,14 +111,14 @@
       "cancelButton": "Zrušiť"
     },
     "imageAnnotations": {
-      "title": "Vymazať všetky anotácie",
-      "message": "Naozaj chcete vymazať všetky anotácie pre tento obrázok?",
+      "title": "Zmazať všetky labely",
+      "message": "Ste si istí, že chcete zmazať všetky labely pre tento obrázok?",
       "confirmButton": "Vymazať",
       "cancelButton": "Zrušiť"
     },
     "imageAIannotations": {
-      "title": "Vymazať AI anotácie",
-      "message": "Naozaj chcete vymazať všetky anotácie vytvorené AI pre tento obrázok?",
+      "title": "Zmazať AI labely",
+      "message": "Ste si istí, že chcete zmazať všetky AI labely pre tento obrázok?",
       "confirmButton": "Vymazať",
       "cancelButton": "Zrušiť"
     },
@@ -371,13 +373,13 @@
     "step8": "Ak ste niečo zabudli, pozrite sa do Dokumentácie."
   },
   "AItutorial": {
-    "title": "Automatická anotácia",
-    "ai_helping": "AI pomáha pri rýchlejšom anotovaní, ale zatiaľ sa učí!",
-    "normal_cilia_only": "Model aktuálne dokáže rozpoznať iba normálne riasinky.",
+    "title": "AI Labeling",
+    "ai_helping": "AI ti pomáha rýchlejšie lablovať pizze, ale vždy skontroluj jej návrhy!",
+    "normal_cilia_only": "Model detekuje pizze a označuje potenciálne defekty.",
     "dynein_not_evaluated": "Dyneínové ramienka zatiaľ nevyhodnocuje – tieto anotácie je potrebné upraviť ručne.",
-    "how_to_work": "Ako pracovať s AI anotáciami?",
-    "ai_marks_cilia": "AI automaticky označí riasinky do boxov, ktoré môžeš upraviť presne tak, ako pri manuálnom označovaní.",
-    "remember_expert_check": "Nezabudni: AI je len pomocník, tvoja odborná kontrola je stále dôležitá.",
+    "how_to_work": "Ako pracovať s AI labelmi?",
+    "ai_marks_cilia": "AI automaticky označí pizze ohraničovacími boxmi. Každý label môžeš skontrolovať, opraviť alebo zmazať.",
+    "remember_expert_check": "Pamätaj: AI labely sú návrhy — tvoja kontrola je finálne rozhodnutie.",
     "agree_button": "Rozumiem"
   },
   "manualAnnotationTutorialDocumentation": {
@@ -416,10 +418,10 @@
     "imagesError": "Obrázky neboli nahrané",
     "imageDeletion": "Obrázok bol úspešne vymazaný",
     "imageDeletionError": "Obrázok nebol vymazaný",
-    "imageAnnotations": "Anotácie boli úspešne vymazané",
-    "imageAnnotationsError": "Anotácie neboli vymazané",
-    "imageAIannotations": "AI anotácie boli úspešne vymazané",
-    "imageAIannotationsError": "AI anotácie neboli vymazané",
+    "imageAnnotations": "Labely boli úspešne zmazané",
+    "imageAnnotationsError": "Labely neboli zmazané",
+    "imageAIannotations": "AI labely boli úspešne zmazané",
+    "imageAIannotationsError": "AI labely neboli zmazané",
     "imageReset": "Automatická anotácia bola úspešne obnovená",
     "imageResetError": "Automatická anotácia nebola obnovená",
     "class": "Tried mikrotubulárneho defektu bola úspešne vytvorená",
@@ -434,8 +436,8 @@
     "drag": "Presuňte obrázok ťahaním",
     "undo": "Posledná akcia bola vrátená",
     "upload": "Obrázky sa načítavajú, prosím čakajte...",
-    "copy": "Anotácia bola skopírovaná, pridajte ju kliknutím CTRL + V",
-    "paste": "Anotácia bola pridaná",
+    "copy": "Label skopírovaný, stlačte CTRL+V pre vloženie",
+    "paste": "Label vložený",
     "undoDelete": "Vrátiť odstránenú kategóriu defektu",
     "undoDeleteConfirm": "Vrátiť"
   }

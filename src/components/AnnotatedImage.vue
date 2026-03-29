@@ -556,7 +556,7 @@ const drawAIPoint = (ctx, x1, y1, x2, y2, color, defectColor, dynein_arms, opaci
       ? "Likely correct"
       : confidencePct >= 50
         ? "Needs check"
-        : "Needs correction";
+        : "May need correction";
     const labelFontSize = Math.max(10, Math.round((12 * size) / 7));
     const horizontalPadding = Math.max(6, Math.round((8 * size) / 7));
     const verticalPadding = Math.max(3, Math.round((5 * size) / 7));

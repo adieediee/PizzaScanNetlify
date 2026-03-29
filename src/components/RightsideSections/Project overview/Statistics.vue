@@ -23,7 +23,7 @@
           </div>
         </div>
         <div v-else class="chart-empty">
-          <span>No annotations yet</span>
+          <span>No labels yet</span>
         </div>
       </div>
 

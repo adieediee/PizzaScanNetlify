@@ -51,10 +51,10 @@
       "text": "Select an image in the left sidebar to see its details."
     },
     "AnnotationOverview": {
-      "title": "Annotation",
-      "text": "Select an annotation on the image to see its details.",
-      "microtubularDefect": "Microtubular defect",
-      "searchDefect": "Search microtubular defect",
+      "title": "Label",
+      "text": "Select a label on the image to see its details.",
+      "microtubularDefect": "Defect type",
+      "searchDefect": "Search defect type",
       "dyneinType": "Dynein arms",
       "searchDynein": "Search dynein arms",
       "parameters": "Parameters",
@@ -74,20 +74,22 @@
     "addNewClassDescription": "Description",
     "addNewClassShortcut": "Key shortcut",
     "shortcutInfo": "Key shortcut has to be number 0-9.",
-    "delete": "Delete annotation",
-    "zoomTo": "Zoom to annotation",
-    "copy": "Copy annotation",
+    "delete": "Delete label",
+    "zoomTo": "Zoom to label",
+    "copy": "Copy label",
     "warningEmptyName": "Class name cannot be empty.",
     "warningWrongName": "Class with this name already exists.",
     "warningWrongColor": "Class with this color already exists.",
-    "warningWrongShortcut": "Class with this shortcut already exists."
+    "warningWrongShortcut": "Class with this shortcut already exists.",
+    "DeleteAnnotations": "Delete all labels",
+    "DeleteAIAnnotations": "Delete AI labels"
   },
   "image": {
     "ReviewedImage": "Set reviewed image",
     "Unseen": "Set as unseen",
     "DeleteImage": "Delete image",
-    "DeleteAnnotations": "Delete all annotations",
-    "DeleteAIAnnotations": "Delete AI annotations",
+    "DeleteAnnotations": "Delete all labels",
+    "DeleteAIAnnotations": "Delete AI labels",
     "ResetAutomaticAnnotation": "Reset automatic annotation"
   },
   "modals": {
@@ -110,14 +112,14 @@
       "cancelButton": "Cancel"
     },
     "imageAnnotations": {
-      "title": "Delete all annotations",
-      "message": "Are you sure you want to delete all annotations for this image?",
+      "title": "Delete all labels",
+      "message": "Are you sure you want to delete all labels for this image?",
       "confirmButton": "Delete",
       "cancelButton": "Cancel"
     },
     "imageAIannotations": {
-      "title": "Delete AI annotations",
-      "message": "Are you sure you want to delete all AI annotations for this image?",
+      "title": "Delete AI labels",
+      "message": "Are you sure you want to delete all AI labels for this image?",
       "confirmButton": "Delete",
       "cancelButton": "Cancel"
     },
@@ -372,13 +374,13 @@
     "step8": "If you forget anything, check the Documentation."
   },
   "AItutorial": {
-    "title": "Automatic anotation",
-    "ai_helping": "AI helps with faster annotation, but it is still learning!",
-    "normal_cilia_only": "The model currently can only recognize normal cilia.",
+    "title": "AI Labeling",
+    "ai_helping": "AI helps you label pizzas faster, but always review its suggestions!",
+    "normal_cilia_only": "The model detects pizzas and labels potential defects.",
     "dynein_not_evaluated": "It does not yet evaluate dynein arms – these annotations need to be adjusted manually.",
-    "how_to_work": "How to work with AI annotations?",
-    "ai_marks_cilia": "AI automatically marks cilia in boxes, which you can adjust just like with manual annotation.",
-    "remember_expert_check": "Remember: AI is just a helper; your expert review is still important.",
+    "how_to_work": "How to work with AI labels?",
+    "ai_marks_cilia": "AI automatically marks pizzas with bounding boxes. You can review, correct or delete each label.",
+    "remember_expert_check": "Remember: AI labels are suggestions — your review is the final word.",
     "agree_button": "I understand"
   },
   "manualAnnotationTutorialDocumentation": {
@@ -417,10 +419,10 @@
     "imagesError": "Images were not uploaded",
     "imageDeletion": "Image was successfully deleted",
     "imageDeletionError": "Image was not deleted",
-    "imageAnnotations": "Annotations were successfully deleted",
-    "imageAnnotationsError": "Annotations were not deleted",
-    "imageAIannotations": "AI annotations were successfully deleted",
-    "imageAIannotationsError": "AI annotations were not deleted",
+    "imageAnnotations": "Labels were successfully deleted",
+    "imageAnnotationsError": "Labels were not deleted",
+    "imageAIannotations": "AI labels were successfully deleted",
+    "imageAIannotationsError": "AI labels were not deleted",
     "imageReset": "Automatic annotation was successfully reset",
     "imageResetError": "Automatic annotation was not reset",
     "class": "Microtubular defect class was successfully created",
@@ -435,8 +437,8 @@
     "drag": "Move image by dragging it",
     "undo": "Last action was undone",
     "upload": "Loading images, please wait...",
-    "copy": "Annotation copied, press CTRL+V to paste",
-    "paste": "Annotation pasted",
+    "copy": "Label copied, press CTRL+V to paste",
+    "paste": "Label pasted",
     "undoDelete": "Undo deletion of defect category",
     "undoDeleteConfirm": "Undo"
   }

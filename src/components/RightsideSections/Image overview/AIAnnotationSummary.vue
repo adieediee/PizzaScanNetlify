@@ -1,7 +1,7 @@
 <template>
   <div class="ai-summary section" v-if="aiAnnotations.length > 0">
     <div class="ai-summary-header">
-      <span class="ai-summary-title">AI Suggestions</span>
+      <span class="ai-summary-title">AI Labels</span>
       <span class="ai-summary-count">{{ aiAnnotations.length }}</span>
     </div>
 
