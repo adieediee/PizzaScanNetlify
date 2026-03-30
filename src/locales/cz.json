@@ -52,8 +52,8 @@
             "text": "Výběrte snímek z levého panela pre zobrazenie jeho podrobností."
         },
         "AnnotationOverview": {
-            "title": "Anotace",
-            "text": "Vyberte anotaci na obrázku pro zobrazení jejích podrobností.",
+            "title": "Label",
+            "text": "Vyberte label na obrázku pro zobrazení jeho podrobností.",
             "microtubularDefect": "Mikrotubulární defekt",
             "searchDefect": "Vyhledat mikrotubulární defekt",
             "dyneinType": "Dyneinová raménka",
@@ -75,9 +75,9 @@
         "addNewClassDescription": "Popis",
         "addNewClassShortcut": "Klávesová zkratka",
         "shortcutInfo": "Klávesová zkratka musí být číslo 0-9.",
-        "delete": "Smazat anotaci",
-        "zoomTo": "Přiblížit anotaci",
-        "copy": "Kopírovat anotaci",
+        "delete": "Smazat label",
+        "zoomTo": "Přiblížit label",
+        "copy": "Kopírovat label",
         "warningEmptyName": "Název třídy nemůže být prázdný.",
         "warningWrongName": "Třída s tímto názvem již existuje.",
         "warningWrongColor": "Třída s touto barvou již existuje.",
@@ -87,8 +87,8 @@
         "ReviewedImage": "Nastavit snímek na zkontrolovaný",
         "Unseen": "Nastavit jako neviděný",
         "DeleteImage": "Smazat snímek",
-        "DeleteAnnotations": "Smazat všechny anotace",
-        "DeleteAIAnnotations": "Smazat AI anotace",
+        "DeleteAnnotations": "Smazat všechny labely",
+        "DeleteAIAnnotations": "Smazat AI labely",
         "ResetAutomaticAnnotation": "Obnovit automatickou anotaci"
     },
     "modals": {
@@ -110,14 +110,14 @@
             "cancelButton": "Zrušit"
         },
         "imageAnnotations": {
-            "title": "Smazat všechny anotace",
-            "message": "Opravdu chcete smazat všechny anotace pro tento obrázek?",
+            "title": "Smazat všechny labely",
+            "message": "Opravdu chcete smazat všechny labely pro tento obrázek?",
             "confirmButton": "Smazat",
             "cancelButton": "Zrušit"
         },
         "imageAIannotations": {
-            "title": "Smazat AI anotace",
-            "message": "Opravdu chcete smazat všechny anotace vytvořené AI pro tento obrázek?",
+            "title": "Smazat AI labely",
+            "message": "Opravdu chcete smazat všechny labely vytvořené AI pro tento obrázek?",
             "confirmButton": "Smazat",
             "cancelButton": "Zrušit"
         },
