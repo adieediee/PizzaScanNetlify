@@ -117,32 +117,44 @@ watch(() => imageStore.selectedAnnotation, (newAnnotation) => {
 <style scoped>
   .tabs {
     display: flex;
-    justify-content: space-around;
-    background: var(--dark-dark3, #2D2D42);
+    background: #0a0a17;
+    border-bottom: 1px solid #18182c;
+    flex-shrink: 0;
   }
-  
+
   .tab-button {
     background: none;
     border: none;
-    padding: 10px;
+    border-bottom: 2px solid transparent;
+    padding: 11px 8px 9px;
     cursor: pointer;
-    font-weight: 600;
-    color: white;
+    font-weight: 500;
+    font-size: 0.78rem;
+    color: #50506e;
     width: 100%;
+    transition: color 0.15s, border-color 0.15s;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
   }
-    
+
+  .tab-button:hover {
+    color: #9090b8;
+  }
+
   .tab-button.active {
-    background: #3E63DD;
+    color: #c0c0f0;
+    border-bottom-color: #3e63dd;
+    font-weight: 600;
   }
-  
+
   .tab-button.disabled {
-    color: #707070;
+    color: #333350;
     cursor: not-allowed;
   }
 
   .middle-tab {
-    border-left: 1px solid var(--dark-dark1, #101021);
-    border-right: 1px solid var(--dark-dark1, #101021);
+    border-left: none;
+    border-right: none;
   }
 
   .explanation {
@@ -150,15 +162,17 @@ watch(() => imageStore.selectedAnnotation, (newAnnotation) => {
   }
 
   .nonSelected {
-    text-align: center;  
-    color: var(--dark-dark3, #74748b);
-    padding: 20px;
+    text-align: center;
+    color: #44445e;
+    font-size: 0.8rem;
+    padding: 32px 20px;
+    line-height: 1.6;
   }
 
   @media (max-width: 1024px) {
     .tab-button {
-      font-size: 0.6rem;
-      padding: 10px;
+      font-size: 0.68rem;
+      padding: 10px 6px 8px;
     }
   }
 </style>  

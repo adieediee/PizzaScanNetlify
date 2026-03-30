@@ -493,9 +493,11 @@ const drawImageWithPoints = (minimap = true, zooming = true) => {
         ? Math.max(0, Math.min(100, Math.round((point.confidence <= 1 ? point.confidence * 100 : point.confidence))))
         : null;
       const f = canvasStore.aiVisibilityFilter;
-      if (pct !== null && pct >= 80 && !f.showConfident) return;
-      if (pct !== null && pct >= 50 && pct < 80 && !f.showReview) return;
-      if (pct !== null && pct < 50 && !f.showInspection) return;
+      const hideBbox =
+        (pct !== null && pct >= 80 && !f.showConfident) ||
+        (pct !== null && pct >= 50 && pct < 80 && !f.showReview) ||
+        (pct !== null && pct < 50 && !f.showInspection);
+
       let ax1 = point.x1, ay1 = point.y1, ax2 = point.x2, ay2 = point.y2;
       if (point.isSubImageAnnotation) {
         ax1 = point.x1 * canvasStore.imageScale + canvasStore.imageDrawStartWidth;
@@ -503,6 +505,14 @@ const drawImageWithPoints = (minimap = true, zooming = true) => {
         ax2 = point.x2 * canvasStore.imageScale + canvasStore.imageDrawStartWidth;
         ay2 = point.y2 * canvasStore.imageScale + canvasStore.imageDrawStartHeight;
       }
+
+      if (hideBbox) {
+        const cx = (ax1 + ax2) / 2;
+        const cy = (ay1 + ay2) / 2;
+        drawPoint(ctx, cx, cy, point.dyneinArmsValue, point.defectColor || point.color, point.opacity, zooming ? point.size : point.size * canvasStore.zoomScale);
+        return;
+      }
+
       drawAIPoint(
         ctx,
         ax1,

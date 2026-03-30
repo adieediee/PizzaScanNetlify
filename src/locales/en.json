@@ -61,8 +61,8 @@
             "parameters": "Parameters",
             "parametersAngle": "Angle",
             "parametersDistance": "Distance",
-            "parametersDescription": "Description",
-            "parametersDescriptionPlaceholder": "Write description here...",
+            "parametersDescription": "Notes",
+            "parametersDescriptionPlaceholder": "Write notes here...",
             "parametersDistancePlaceholder": "Write angle here...",
             "parametersAnglePlaceholder": "Write distance here..."
         }

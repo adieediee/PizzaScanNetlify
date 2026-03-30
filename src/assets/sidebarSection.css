@@ -1,17 +1,22 @@
 .section {
-  border-bottom: var(--dark-dark3, #2D2D42) 1px solid;
-  padding: 15px;
+  border-bottom: 1px solid #20203a;
+  padding: 14px 14px;
 }
 
 .title-chevron {
   display: flex;
   justify-content: space-between;
-  align-items: center; 
-  margin-bottom: 15px;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .title-chevron h3 {
   margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #55557a;
 }
 
 .title-chevron button {
@@ -19,42 +24,67 @@
   padding: 0;
 }
 
+.title-chevron .svg-inline--fa {
+  font-size: 0.6rem;
+  color: #44446a;
+  transition: transform 0.2s;
+}
+
 .chevron-btn.rotated {
-    transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 .cutout {
-    max-width: 100%;
-    width: 100%;
-    height: 150px;
-    border-radius: 15px;
-    object-fit: cover;
+  max-width: 100%;
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .tools {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 6px;
+}
+
+.tools h4 {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #c0c0e0;
+  font-weight: 600;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .tools .btn {
-  padding: 7px;
+  padding: 6px;
 }
 
 .tools .svg-inline--fa {
-  color: #6A6A8C;
+  color: #50507a;
   cursor: pointer;
+  transition: color 0.15s;
+}
+
+.tools .btn:hover .svg-inline--fa {
+  color: #9090c0;
 }
 
 .buttons {
   display: flex;
+  flex-shrink: 0;
 }
 
 .tooltip-section {
   display: none;
   visibility: visible;
 }
-  
+
 .btn-icon:hover .tooltip-section {
   display: block;
   opacity: 1;
