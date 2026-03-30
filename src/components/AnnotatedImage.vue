@@ -137,9 +137,9 @@ const normalizeConfidence = (confidence) => {
 const formatConfidence = (confidence) => {
   const confidenceValue = normalizeConfidence(confidence);
   if (confidenceValue === null) return "Unknown confidence";
-  if (confidenceValue >= 80) return "AI is confident";
-  if (confidenceValue >= 50) return "Needs review";
-  return "Needs close inspection";
+  if (confidenceValue >= 80) return "Likely correct";
+  if (confidenceValue >= 50) return "Needs check";
+  return "May need correction";
 };
 
 const getConfidenceClass = (confidence) => {
@@ -553,10 +553,10 @@ const drawAIPoint = (ctx, x1, y1, x2, y2, color, defectColor, dynein_arms, opaci
 
   if (confidencePct !== null) {
     const confidenceLabel = confidencePct >= 80
-      ? "High Confidence"
+      ? "Likely correct"
       : confidencePct >= 50
-        ? "Needs Review"
-        : "Needs Close Inspection";
+        ? "Needs check"
+        : "May need correction";
     const labelFontSize = Math.max(10, Math.round((12 * size) / 7));
     const horizontalPadding = Math.max(6, Math.round((8 * size) / 7));
     const verticalPadding = Math.max(3, Math.round((5 * size) / 7));

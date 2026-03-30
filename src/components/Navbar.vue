@@ -32,21 +32,21 @@
               :style="aiFilterItemStyle('#E05C3A', canvasStore.aiVisibilityFilter.showInspection)"
               @click="canvasStore.aiVisibilityFilter.showInspection = !canvasStore.aiVisibilityFilter.showInspection">
               <span class="ai-filter-check">{{ canvasStore.aiVisibilityFilter.showInspection ? '✓' : '' }}</span>
-              Needs Inspection
+              May need correction
             </div>
             <div
               class="ai-filter-item"
               :style="aiFilterItemStyle('#D4920A', canvasStore.aiVisibilityFilter.showReview)"
               @click="canvasStore.aiVisibilityFilter.showReview = !canvasStore.aiVisibilityFilter.showReview">
               <span class="ai-filter-check">{{ canvasStore.aiVisibilityFilter.showReview ? '✓' : '' }}</span>
-              Needs Review
+              Needs check
             </div>
             <div
               class="ai-filter-item"
               :style="aiFilterItemStyle('#4CAF50', canvasStore.aiVisibilityFilter.showConfident)"
               @click="canvasStore.aiVisibilityFilter.showConfident = !canvasStore.aiVisibilityFilter.showConfident">
               <span class="ai-filter-check">{{ canvasStore.aiVisibilityFilter.showConfident ? '✓' : '' }}</span>
-              AI is confident
+              Likely correct
             </div>
           </div>
           <ExplanationComponent v-if="boardingStore.currentStep === 1" :text="$t('layoutTutorial.step1')" />
@@ -92,12 +92,11 @@
             class="btn tb-btn"
             data-button="undoButton"
             @click="undoLastStep"
-            :disabled="!boardingStore.wholeTutorialSeen || !canUndo"
             :class="{ 'highlighted': boardingStore.currentStep === 3 }">
             <fa :icon="['fas', 'rotate-left']" />
             <span v-if="!boardingStore.explainNav" class="tooltip">
-              {{$t('navigation.tooltips.undo')}}
-              <span class="shortcut shortcut-tooltip">CTRL + Z</span>
+              {{ canUndo ? $t('navigation.tooltips.undo') : 'Nothing to undo' }}
+              <span v-if="canUndo" class="shortcut shortcut-tooltip">CTRL + Z</span>
             </span>
           </button>
           <ExplanationComponent
@@ -332,6 +331,7 @@ const handleAiButtonClick = () => {
     pointSizeOpen.value = false;
   } else {
     automaticAnnotation();
+    imageStore.updateActiveTab('Image');
   }
 };
 
