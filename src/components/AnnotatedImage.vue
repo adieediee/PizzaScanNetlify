@@ -470,7 +470,9 @@ const drawImageWithPoints = (minimap = true, zooming = true) => {
   canvasStore.imageDrawStartWidth = x;
   canvasStore.imageDrawStartHeight = y;
   canvasStore.imageScale = drawWidth / imgWidth;
+  ctx.globalAlpha = canvasStore.imageOpacity / 100;
   ctx.drawImage(cachedImage, x, y, drawWidth, drawHeight);
+  ctx.globalAlpha = 1;
 
   annotationStore.annotations.forEach(point => {
     if (point.imageId !== canvasStore.selectedImage.imageId) return;
@@ -708,6 +710,10 @@ watch(() => canvasStore.selectedImage, (newImage) => {
 
 watch(() => canvasStore.currentOpacity, (newOpacity) => {
   annotationStore.updateAllAnnotationOpacities(newOpacity);
+  drawImageWithPoints();
+});
+
+watch(() => canvasStore.imageOpacity, () => {
   drawImageWithPoints();
 });
 

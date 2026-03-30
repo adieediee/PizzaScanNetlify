@@ -185,12 +185,19 @@
             <span v-if="!boardingStore.explainNav && !opacityOpen" class="tooltip">{{$t('navigation.tooltips.changeOpacity')}}</span>
             <div v-if="opacityOpen" class="opacity-modal" ref="opacityModal">
               <div class="opacity-input">
-                <p>Opacity:</p>
+                <p>Labels:</p>
                 <input type="number" v-model="sliderValue" class="slider-value-input" min="0" max="100"
                   @input="updateOpacity(sliderValue)" @click.stop />
               </div>
               <input class="slider" type="range" min="0" max="100" v-model="sliderValue"
                 @input="updateOpacity(sliderValue)" />
+              <div class="opacity-input">
+                <p>Image:</p>
+                <input type="number" v-model="imageSliderValue" class="slider-value-input" min="0" max="100"
+                  @input="updateImageOpacity(imageSliderValue)" @click.stop />
+              </div>
+              <input class="slider" type="range" min="0" max="100" v-model="imageSliderValue"
+                @input="updateImageOpacity(imageSliderValue)" />
             </div>
           </button>
         </div>
@@ -332,6 +339,7 @@ const opacityOpen = ref(false);
 const pointSizeOpen = ref(false);
 const aiFilterOpen = ref(false);
 const sliderValue = ref(canvasStore.currentOpacity);
+const imageSliderValue = ref(canvasStore.imageOpacity);
 const pointValue = ref(canvasStore.currentSize);
 const opacityModal = ref(null);
 const pointSizeModal = ref(null);
@@ -448,6 +456,10 @@ const togglePointSize = (event) => {
 
 const updateOpacity = (value) => {
   canvasStore.setOpacity(parseInt(value, 10));
+};
+
+const updateImageOpacity = (value) => {
+  canvasStore.setImageOpacity(parseInt(value, 10));
 };
 
 const updatePointSize = (value) => {

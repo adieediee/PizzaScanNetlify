@@ -20,6 +20,7 @@ export const useCanvasStore = defineStore('canvas', {
     selectedAnnotationType: 'normal',
     currentOpacity: 100,
     currentSize: 7,
+    imageOpacity: 75,
     activeZoom: false,
     activeDragging: false,
     activeAnnotation: false,
@@ -63,6 +64,10 @@ export const useCanvasStore = defineStore('canvas', {
 
     setOpacity(opacity) {
       this.currentOpacity = opacity;
+    },
+
+    setImageOpacity(opacity) {
+      this.imageOpacity = opacity;
     },
 
     setSize(size) {
