@@ -110,9 +110,19 @@ const closeAiReviewPopup = () => {
 const acceptAiAnnotation = () => {
   const annotation = aiReviewPopup.value.annotation;
   if (annotation) {
-    annotation.x = (annotation.x1 + annotation.x2) / 2;
-    annotation.y = (annotation.y1 + annotation.y2) / 2;
-    annotation.type = 'manual';
+    const convertToManual = (a) => {
+      if (a.type !== 'AI') return;
+      a.x = (a.x1 + a.x2) / 2;
+      a.y = (a.y1 + a.y2) / 2;
+      a.x1 = null;
+      a.y1 = null;
+      a.x2 = null;
+      a.y2 = null;
+      a.type = 'manual';
+    };
+    convertToManual(annotation);
+    const linked = annotationStore.getLinkedAnnotation(annotation);
+    if (linked) convertToManual(linked);
     drawImageWithPoints();
   }
   aiReviewPopup.value.visible = false;
@@ -191,14 +201,9 @@ const handlePopupDefectTypeChange = (event) => {
   );
   if (!selectedDefect) return;
 
-  if (popupAnnotation.type === 'AI') {
-    feedbackToastStore.trackAIOverride(popupAnnotation.imageId, popupAnnotation.confidence);
-  }
-
-  popupAnnotation.microtubularDefectValue = selectedDefect.value;
-  popupAnnotation.microtubularDefect = selectedDefect.name;
+  // updateAnnotationDefect handles feedback tracking, sync to linked, and AI→manual conversion
+  annotationStore.updateAnnotationDefect(popupAnnotation.id, selectedDefect.name);
   popupAnnotation.defectColor = selectedDefect.color;
-  popupAnnotation.color = selectedDefect.color;
 };
 
 watch(() => boardingStore.wholeTutorialSeen, (seen) => {
@@ -341,10 +346,11 @@ const handleCanvasClick = (event) => {
         if (pct !== null && pct >= 80 && !f.showConfident) return false;
         if (pct !== null && pct >= 50 && pct < 80 && !f.showReview) return false;
         if (pct !== null && pct < 50 && !f.showInspection) return false;
-        return (
-          x >= point.x1 && x <= point.x2 &&
-          y >= point.y1 && y <= point.y2
-        );
+        const bx1 = point.isSubImageAnnotation ? point.x1 * canvasStore.imageScale + canvasStore.imageDrawStartWidth : point.x1;
+        const by1 = point.isSubImageAnnotation ? point.y1 * canvasStore.imageScale + canvasStore.imageDrawStartHeight : point.y1;
+        const bx2 = point.isSubImageAnnotation ? point.x2 * canvasStore.imageScale + canvasStore.imageDrawStartWidth : point.x2;
+        const by2 = point.isSubImageAnnotation ? point.y2 * canvasStore.imageScale + canvasStore.imageDrawStartHeight : point.y2;
+        return x >= bx1 && x <= bx2 && y >= by1 && y <= by2;
       }
       return false;
     });
@@ -405,10 +411,11 @@ const handleRightCanvasClick = (event) => {
         const distance = Math.sqrt((x - ax) ** 2 + (y - ay) ** 2);
         return distance < 20 / canvasStore.zoomScale;
       } else if (annotation.type === "AI") {
-        return (
-          x >= annotation.x1 && x <= annotation.x2 &&
-          y >= annotation.y1 && y <= annotation.y2
-        );
+        const bx1 = annotation.isSubImageAnnotation ? annotation.x1 * canvasStore.imageScale + canvasStore.imageDrawStartWidth : annotation.x1;
+        const by1 = annotation.isSubImageAnnotation ? annotation.y1 * canvasStore.imageScale + canvasStore.imageDrawStartHeight : annotation.y1;
+        const bx2 = annotation.isSubImageAnnotation ? annotation.x2 * canvasStore.imageScale + canvasStore.imageDrawStartWidth : annotation.x2;
+        const by2 = annotation.isSubImageAnnotation ? annotation.y2 * canvasStore.imageScale + canvasStore.imageDrawStartHeight : annotation.y2;
+        return x >= bx1 && x <= bx2 && y >= by1 && y <= by2;
       }
       return false;
     });
@@ -475,12 +482,19 @@ const drawImageWithPoints = (minimap = true, zooming = true) => {
       if (pct !== null && pct >= 80 && !f.showConfident) return;
       if (pct !== null && pct >= 50 && pct < 80 && !f.showReview) return;
       if (pct !== null && pct < 50 && !f.showInspection) return;
+      let ax1 = point.x1, ay1 = point.y1, ax2 = point.x2, ay2 = point.y2;
+      if (point.isSubImageAnnotation) {
+        ax1 = point.x1 * canvasStore.imageScale + canvasStore.imageDrawStartWidth;
+        ay1 = point.y1 * canvasStore.imageScale + canvasStore.imageDrawStartHeight;
+        ax2 = point.x2 * canvasStore.imageScale + canvasStore.imageDrawStartWidth;
+        ay2 = point.y2 * canvasStore.imageScale + canvasStore.imageDrawStartHeight;
+      }
       drawAIPoint(
         ctx,
-        point.x1,
-        point.y1,
-        point.x2,
-        point.y2,
+        ax1,
+        ay1,
+        ax2,
+        ay2,
         point.color,
         point.defectColor,
         point.dyneinArmsValue,
@@ -821,20 +835,16 @@ const handleDragging = (event) => {
       point.y = y;
     }
 
+    // Drag sync: linked annotations share position
+    // Sub-image annotation (isSubImageAnnotation) stores pixel coords; mapped stores canvas coords.
+    // We only sync when dragging the sub-image side — the mapped annotation keeps its canvas coords
+    // (it was placed at the AI bbox center which is the correct reference point).
+    // Dragging the main-image side does NOT move the sub-image annotation (position is approximate anyway).
     const linked = annotationStore.getLinkedAnnotation(point);
-    if (linked) {
-      const crop = point.isSubImageAnnotation ? point.subImageCrop : linked.subImageCrop;
-      if (crop) {
-        if (point.isSubImageAnnotation) {
-          // sub-image dragged → sync mapped (main image pixel = sub pixel * scale + crop)
-          linked.x = point.x * 2 + crop.x;
-          linked.y = point.y * 2 + crop.y;
-        } else {
-          // main image dragged → sync sub-image (sub pixel = (main pixel - crop) / scale)
-          linked.x = (point.x - crop.x) / 2;
-          linked.y = (point.y - crop.y) / 2;
-        }
-      }
+    if (linked && point.isSubImageAnnotation) {
+      // Sub-image dragged: move linked (canvas coords) by the same canvas delta
+      // Linked is in canvas space — we don't have a reliable inverse formula, so skip for now
+      // All attribute changes (defect, dynein, etc.) still sync via linkedAnnotationId
     }
 
   } else {

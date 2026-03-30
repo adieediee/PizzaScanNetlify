@@ -343,10 +343,19 @@ const isDetectionDone = computed(() => !!(canvasStore.selectedImage?.subImages?.
 
 const hasAIAnnotations = computed(() => {
   if (!canvasStore.selectedImage) return false;
-  return !!canvasStore.selectedImage.aiAnnotated ||
-    annotationStore.annotations.some(
-      (a) => a.imageId === canvasStore.selectedImage.imageId && a.type === 'AI'
-    );
+  const image = canvasStore.selectedImage;
+
+  if (image.aiAnnotated) return true;
+  if (annotationStore.annotations.some((a) => a.imageId === image.imageId && a.type === 'AI')) return true;
+
+  // For sub-images: inherit parent image's annotated state
+  if (image.isSubImage && image.parentImageId) {
+    const parentImage = imageStore.uploadedImages.find((img) => img.imageId === image.parentImageId);
+    if (parentImage?.aiAnnotated) return true;
+    if (annotationStore.annotations.some((a) => a.imageId === image.parentImageId && a.type === 'AI')) return true;
+  }
+
+  return false;
 });
 
 const handleAiButtonClick = () => {

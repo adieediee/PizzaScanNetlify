@@ -11,6 +11,10 @@ const loadPizzaSubImages = (imageStore, canvasStore) => {
   const subImages = Array.from({ length: PIZZA_SUB_IMAGE_COUNT }, (_, i) => {
     const name = `pizza-${i + 1}`;
     const crop = subImageMap.find((m) => m.name === name) || null;
+    const sq = squareAnnotations[i];
+    const mainPixelCenter = sq
+      ? { x: (Number(sq.x1) + Number(sq.x2)) / 2, y: (Number(sq.y1) + Number(sq.y2)) / 2 }
+      : null;
     return {
       imageName: name,
       imageUrl: `/${name}.png`,
@@ -19,6 +23,9 @@ const loadPizzaSubImages = (imageStore, canvasStore) => {
       parentImageId,
       subImageIndex: i,
       crop,
+      pngWidth: 1854,
+      pngHeight: 1854,
+      mainPixelCenter,
     };
   });
 
@@ -54,7 +61,7 @@ const addSquaresFromJson = (annotationStore, canvasStore) => {
 
   canvasStore.selectedImage.aiAnnotated = true;
 
-  squareAnnotations.forEach((square) => {
+  squareAnnotations.forEach((square, index) => {
     const parsedSquare = normalizeSquare(square);
     if (!parsedSquare) return;
 
@@ -69,14 +76,22 @@ const addSquaresFromJson = (annotationStore, canvasStore) => {
     const cx2 = x2 * scale + offsetX;
     const cy2 = y2 * scale + offsetY;
 
-    annotationStore.addAIannotation(imageId, defectType, cx1, cy1, cx2, cy2);
-
-    const createdAnnotation = annotationStore.annotations[annotationStore.annotations.length - 1];
-    if (createdAnnotation) {
-      createdAnnotation.confidence = Number.isFinite(confidence) ? confidence : null;
-      createdAnnotation.defectColor =
+    // index maps annotation[i] → pizza-(i+1) sub-image
+    const mainAnnotation = annotationStore.addAIannotation(imageId, defectType, cx1, cy1, cx2, cy2, index);
+    if (mainAnnotation) {
+      const conf = Number.isFinite(confidence) ? confidence : null;
+      const defectColor =
         annotationStore.microtubularDefects.find((defect) => defect.value === defectType)?.color ||
-        createdAnnotation.color;
+        mainAnnotation.color;
+      mainAnnotation.confidence = conf;
+      mainAnnotation.defectColor = defectColor;
+      if (mainAnnotation.linkedAnnotationId) {
+        const linked = annotationStore.getLinkedAnnotation(mainAnnotation);
+        if (linked) {
+          linked.confidence = conf;
+          linked.defectColor = defectColor;
+        }
+      }
     }
   });
 };

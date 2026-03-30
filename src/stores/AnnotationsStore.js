@@ -152,31 +152,26 @@ export const useAnnotationStore = defineStore("annotation", {
       // Ak anotujeme sub-image, premapuj anotáciu na main image
       const imageStore = useImageStore();
       const activeSubImage = imageStore.activeSubImage;
-      if (activeSubImage?.isSubImage && activeSubImage.crop) {
+      if (activeSubImage?.isSubImage && activeSubImage.mainPixelCenter) {
         const canvasStore = useCanvasStore();
         const scale = canvasStore.imageScale;
-        // Convert canvas CSS → sub-image pixel coords
-        const subPxX = (x - canvasStore.imageDrawStartWidth) / scale;
-        const subPxY = (y - canvasStore.imageDrawStartHeight) / scale;
-        // Sub-image annotation: store in sub-image pixel space
-        annotation.x = subPxX;
-        annotation.y = subPxY;
-        // Mapped annotation: main image pixel = sub-image pixel + crop offset
-        const crop = activeSubImage.crop;
-        const mappedX = subPxX * 2 + crop.x;
-        const mappedY = subPxY * 2 + crop.y;
 
-        const linkedId = uuidv4();
-        annotation.linkedAnnotationId = linkedId;
+        // sub-image pixel space
+        annotation.x = (x - canvasStore.imageDrawStartWidth) / scale;
+        annotation.y = (y - canvasStore.imageDrawStartHeight) / scale;
         annotation.isSubImageAnnotation = true;
         annotation.subImageCrop = activeSubImage.crop;
+
+        // main image: use JSON pixel center — same coords the bounding boxes use
+        const linkedId = uuidv4();
+        annotation.linkedAnnotationId = linkedId;
 
         const mappedAnnotation = {
           ...annotation,
           id: this.annotations.length + 1,
           imageId: activeSubImage.parentImageId,
-          x: mappedX,
-          y: mappedY,
+          x: activeSubImage.mainPixelCenter.x,
+          y: activeSubImage.mainPixelCenter.y,
           linkedAnnotationId: linkedId,
           isMappedFromSubImage: true,
           isSubImageAnnotation: false,
@@ -197,7 +192,7 @@ export const useAnnotationStore = defineStore("annotation", {
       );
     },
 
-    addAIannotation(imageId, microtubularDefectValue, x1, y1, x2, y2) {
+    addAIannotation(imageId, microtubularDefectValue, x1, y1, x2, y2, subImageIndex) {
       const defectName = this.microtubularDefects.find(
         (defect) => defect.value === microtubularDefectValue,
       ).name;
@@ -249,6 +244,43 @@ export const useAnnotationStore = defineStore("annotation", {
           description: annotation.description,
         },
       });
+
+      // If subImageIndex provided, create paired annotation at center of that sub-image
+      if (subImageIndex !== undefined) {
+        const imageStore = useImageStore();
+        const mainImage = imageStore.uploadedImages.find((img) => img.imageId === imageId);
+        const subImage = mainImage?.subImages?.[subImageIndex];
+        if (subImage) {
+          const linkedId = uuidv4();
+          annotation.linkedAnnotationId = linkedId;
+
+          // Place centered box using 10% margin in sub-image pixel space (1854×1854)
+          const pngW = subImage.pngWidth ?? 1854;
+          const pngH = subImage.pngHeight ?? 1854;
+          const margin = Math.round(pngW * 0.1);
+
+          const subAnnotation = {
+            ...annotation,
+            id: this.annotations.length + 1,
+            imageId: subImage.imageId,
+            x1: margin,
+            y1: margin,
+            x2: pngW - margin,
+            y2: pngH - margin,
+            linkedAnnotationId: linkedId,
+            isSubImageAnnotation: true,
+            subImageCrop: subImage.crop,
+          };
+          this.annotations.push(subAnnotation);
+
+          this.microtubularDefects.find(
+            (defect) => defect.value === microtubularDefectValue,
+          ).count++;
+          this.dyneinArms.find((arm) => arm.value === "unknown").count++;
+        }
+      }
+
+      return annotation;
     },
 
     getAnnotations(image) {
@@ -529,6 +561,15 @@ export const useAnnotationStore = defineStore("annotation", {
         linked.microtubularDefectValue =
           this.annotations[index].microtubularDefectValue;
         linked.color = this.annotations[index].color;
+        if (linked.type === "AI") {
+          linked.x = (linked.x1 + linked.x2) / 2;
+          linked.y = (linked.y1 + linked.y2) / 2;
+          linked.x1 = null;
+          linked.y1 = null;
+          linked.x2 = null;
+          linked.y2 = null;
+          linked.type = "manual";
+        }
       }
     },
 
@@ -598,6 +639,15 @@ export const useAnnotationStore = defineStore("annotation", {
       if (linked) {
         linked.dyneinArms = this.annotations[index].dyneinArms;
         linked.dyneinArmsValue = this.annotations[index].dyneinArmsValue;
+        if (linked.type === "AI") {
+          linked.x = (linked.x1 + linked.x2) / 2;
+          linked.y = (linked.y1 + linked.y2) / 2;
+          linked.x1 = null;
+          linked.y1 = null;
+          linked.x2 = null;
+          linked.y2 = null;
+          linked.type = "manual";
+        }
       }
     },
 
