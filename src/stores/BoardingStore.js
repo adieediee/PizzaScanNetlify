@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia';
-import { useAnnotationStore } from './AnnotationsStore';
 
 export const useBoardingStore = defineStore('boarding', {
   state: () => ({
@@ -132,7 +131,6 @@ export const useBoardingStore = defineStore('boarding', {
       this.aiCurrentStep = step;
       if (this.aiCurrentStep >= 6) {
         this.setAutomaticAnnotationTutorialOff();
-        useAnnotationStore().automaticAnnotation();
       }
     },
 

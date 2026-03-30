@@ -96,15 +96,28 @@ const addSquaresFromJson = (annotationStore, canvasStore) => {
   });
 };
 
-export const createAutomaticAnnotationHandler = (boardingStore, annotationStore, canvasStore) => {
+export const createAutomaticAnnotationHandler = (boardingStore, annotationStore, canvasStore, imageStore) => {
   return () => {
-    if (!boardingStore.automaticAnnotationTutorialSeen) {
-      boardingStore.setAutomaticAnnotationTutorialOn();
-    } else {
-      annotationStore.automaticAnnotation();
-    }
+    if (!canvasStore.selectedImage) return;
 
-    addSquaresFromJson(annotationStore, canvasStore);
+    // Reset so annotations can be re-added on repeat runs
+    imageStore.setRightClickedImage(canvasStore.selectedImage);
+    canvasStore.selectedImage.aiAnnotated = false;
+    annotationStore.deleteAIAnnotations();
+
+    // Show loading modal first
+    annotationStore.loading = true;
+
+    const delay = Math.floor(Math.random() * 2 + 2) * 1000; // 2–3 s
+    setTimeout(() => {
+      addSquaresFromJson(annotationStore, canvasStore);
+      annotationStore.loading = false;
+
+      // Only after loading done → show tutorial (first time only)
+      if (!boardingStore.automaticAnnotationTutorialSeen) {
+        boardingStore.setAutomaticAnnotationTutorialOn();
+      }
+    }, delay);
   };
 };
 
