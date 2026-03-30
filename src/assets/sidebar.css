@@ -23,7 +23,7 @@ aside::-webkit-scrollbar-thumb:hover {
   }
   
 .right-sidebar {
-    flex: 2;
+    flex: 1.5;
     border-left: 1px solid var(--dark-dark3, #2D2D42);
 }
 

@@ -1,7 +1,25 @@
 <template>
   <nav id="navigation" class="navbar" :style="{ zIndex: boardingStore.explainNav ? 10 : 1 }">
     <div class="navbar-left">
-       <img :src="Logo" alt="logo" class="logo" />
+      <span class="brand-logo">
+        <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- crust -->
+          <path d="M4 28 L16 4 L28 28 Z" fill="#D4820A" />
+          <!-- cheese base -->
+          <path d="M7.5 24 L16 8 L24.5 24 Z" fill="#F5C842" />
+          <!-- tomato sauce -->
+          <path d="M11 21 L16 11 L21 21 Z" fill="#C0392B" />
+          <!-- pepperoni 1 -->
+          <circle cx="16" cy="18" r="2" fill="#8B1A1A" />
+          <!-- pepperoni 2 -->
+          <circle cx="13" cy="22" r="1.5" fill="#8B1A1A" />
+          <!-- pepperoni 3 -->
+          <circle cx="19" cy="22" r="1.5" fill="#8B1A1A" />
+          <!-- crust highlight -->
+          <path d="M4 28 Q16 31 28 28" stroke="#B8691A" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        </svg>
+        PizzaScan
+      </span>
     </div>
     <div class="navbar-middle">
       <div class="toolbar-pill">
@@ -16,6 +34,8 @@
             :disabled="!boardingStore.wholeTutorialSeen"
             :class="{ 'highlighted': boardingStore.currentStep === 2, 'tb-btn-active': aiFilterOpen }">
             <span class="tb-ai-label">AI</span>
+            <span v-if="!hasAIAnnotations" class="tb-label">Labels</span>
+            <span v-if="!boardingStore.explainNav" class="tooltip">Run AI annotation</span>
             <template v-if="hasAIAnnotations">
               <span
                 v-for="dot in aiFilterDots"
@@ -53,6 +73,8 @@
           <ExplanationComponent v-if="boardingStore.currentStep === 2" :text="$t('layoutTutorial.step2')" />
         </div>
 
+        <div class="toolbar-sep"></div>
+
         <!-- AI Detection -->
         <div class="toolbar-item">
           <button
@@ -61,7 +83,7 @@
             @click="aiDetection"
             :disabled="!boardingStore.wholeTutorialSeen || !canvasStore.selectedImage">
             <fa :icon="['fas', 'wand-magic-sparkles']" />
-            <span class="tb-label">Detect</span>
+            <span v-if="!isDetectionDone" class="tb-label">Detect</span>
             <span v-if="!boardingStore.explainNav" class="tooltip">Run AI pizza detection</span>
           </button>
         </div>
@@ -297,6 +319,8 @@ const pointSizeModal = ref(null);
 const aiFilterModal = ref(null);
 const microtubularDefectsOpen = ref(false);
 const selectedTool = ref('normal');
+
+const isDetectionDone = computed(() => !!(canvasStore.selectedImage?.subImages?.length > 0));
 
 const hasAIAnnotations = computed(() => {
   if (!canvasStore.selectedImage) return false;
@@ -655,6 +679,7 @@ defineExpose({
     border-bottom: 1px solid #1e1e32;
     box-shadow: 0 2px 12px rgba(0,0,0,0.4);
     z-index: 10;
+    box-sizing: border-box;
   }
 
   .navbar-left,
@@ -665,22 +690,36 @@ defineExpose({
   }
 
   .navbar-left {
-    width: 15%;
+    flex: 1;
   }
 
-  .logo {
-    width: 30%;
+  .navbar-middle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  /* ── Toolbar pill ── */
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #ffffff;
+  }
+
+  .brand-icon {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+
+  /* ── Toolbar (flat, integrated into navbar) ── */
   .toolbar-pill {
     display: flex;
     align-items: center;
     gap: 2px;
-    background: #16162a;
-    border: 1px solid #2a2a40;
-    border-radius: 12px;
-    padding: 4px 6px;
   }
 
   .toolbar-item {
@@ -689,9 +728,9 @@ defineExpose({
 
   .toolbar-sep {
     width: 1px;
-    height: 22px;
-    background: #2a2a40;
-    margin: 0 4px;
+    height: 18px;
+    background: #252540;
+    margin: 0 6px;
     flex-shrink: 0;
   }
 
@@ -700,14 +739,14 @@ defineExpose({
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    height: 34px;
-    min-width: 34px;
-    padding: 0 10px;
-    border-radius: 8px;
-    font-size: 0.82rem;
+    gap: 5px;
+    height: 32px;
+    min-width: 32px;
+    padding: 0 9px;
+    border-radius: 7px;
+    font-size: 0.8rem;
     font-weight: 600;
-    color: #a0a0c0;
+    color: #7878a0;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -716,29 +755,40 @@ defineExpose({
   }
 
   .tb-btn:hover:not(:disabled) {
-    background: #222238;
-    color: #e0e0ff;
+    background: #1a1a30;
+    color: #d0d0f0;
   }
 
   .tb-btn:disabled {
-    opacity: 0.35;
+    opacity: 0.3;
     cursor: not-allowed;
   }
 
   .tb-btn-active,
   .tb-btn-active:hover {
-    background: #1e2d5a;
-    color: #7aacff;
+    background: #1a2448;
+    color: #6a9aee;
   }
 
+  /* ── Expand label (hidden → slides in on hover) ── */
   .tb-label {
-    font-size: 0.78rem;
+    font-size: 0.77rem;
     font-weight: 600;
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-width 0.18s ease, opacity 0.14s ease;
+    white-space: nowrap;
+  }
+
+  .tb-btn:hover:not(:disabled) .tb-label {
+    max-width: 72px;
+    opacity: 1;
   }
 
   .tb-chevron {
     font-size: 0.6rem;
-    opacity: 0.6;
+    opacity: 0.5;
     transition: transform 0.2s;
   }
 
@@ -746,49 +796,39 @@ defineExpose({
     transform: rotate(180deg);
   }
 
-  /* ── AI button ── */
-  .tb-btn-ai {
-    width: 90px;
-    justify-content: flex-start;
-    gap: 5px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: #7aacff;
-    border: 1px solid #2a3a60;
+  /* ── AI + Detect: shared accent style ── */
+  .tb-btn-ai,
+  .tb-btn-detect {
+    color: #8888b8;
+    border: 1px solid #22223a;
   }
 
-  .tb-btn-ai:hover:not(:disabled) {
-    background: #1e2d5a;
-    border-color: #4a6aaa;
-    color: #a0c8ff;
+  .tb-btn-ai:hover:not(:disabled),
+  .tb-btn-detect:hover:not(:disabled) {
+    background: #1a1a30;
+    color: #d0d0f0;
+    border-color: #44447a;
   }
 
+  .tb-btn-ai.tb-btn-active,
+  .tb-btn-ai.tb-btn-active:hover {
+    background: #1a2448;
+    border-color: #3a5aaa;
+    color: #6a9aee;
+  }
+
+  /* ── AI badge ("AI" text as icon) ── */
   .tb-ai-label {
+    font-size: 0.75rem;
     font-weight: 800;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
   }
 
   .ai-filter-dot {
-    width: 9px;
-    height: 9px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     flex-shrink: 0;
-  }
-
-  /* ── AI Detect button ── */
-  .tb-btn-detect {
-    color: #95F204;
-    border: 1px solid #3a5010;
-  }
-
-  .tb-btn-detect:hover:not(:disabled) {
-    background: #1e2e08;
-    color: #b0f040;
-    border-color: #6a8020;
-  }
-
-  .tb-btn-detect:disabled {
-    opacity: 0.3;
   }
 
   /* ── Defect selector ── */
@@ -977,6 +1017,8 @@ defineExpose({
   /* ── Right side buttons ── */
   .navbar-right {
     gap: 6px;
+    flex: 1;
+    justify-content: flex-end;
   }
 
   .navbar-right .btn-outlined {
