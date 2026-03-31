@@ -42,6 +42,7 @@
     <AIDetectionTutorial />
     <DetailedStatistics />
     <Documentation />
+    <DefectExamples />
     <Settings />
     <UserFeedback @systemStatus="handleStatusMessage" />
     <ReportProblemModal />
@@ -74,6 +75,7 @@ import RightSidebar from '@/components/RightSidebar.vue';
 import AnnotatedImage from '@/components/AnnotatedImage.vue';
 import DetailedStatistics from './components/Modals/DetailedStatistics.vue';
 import Documentation from './components/Modals/Documentation.vue';
+import DefectExamples from './components/Modals/DefectExamples.vue';
 import Settings from './components/Modals/Settings.vue';
 import UserFeedback from './components/Modals/UserFeedback.vue';
 import ReportProblemModal from './components/Modals/ReportProblemModal.vue';

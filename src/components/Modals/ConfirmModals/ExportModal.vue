@@ -30,255 +30,121 @@ const imageStore = useImageStore();
 
 
 const exportToExcel = async () => {
-  const defectNames = annotationStore.microtubularDefects.map(defect => defect.name);
-  const dyneinNames = annotationStore.dyneinArms.map(arm => arm.name).filter(name => name !== 'Unknown');
+  const defects = annotationStore.microtubularDefects;
+  const defectNames = defects.map(d => d.name);
+  const images = imageStore.uploadedImages;
+
   const workbook = new ExcelJS.Workbook();
-  const worksheet = workbook.addWorksheet("PCD Diagnosis");
+  const worksheet = workbook.addWorksheet("Pizza Inspection");
 
   const headerStyle = {
-    font: { bold: true, color: { argb: "000000" }, size: 10},
+    font: { bold: true, color: { argb: "000000" }, size: 10 },
     fill: { type: "pattern", pattern: "solid", fgColor: { argb: "C5D9F1" } },
-    alignment: { horizontal: "center", vertical: "middle", wrapText: true }
+    alignment: { horizontal: "center", vertical: "middle", wrapText: true },
+    border: { top: { style: "thin" }, left: { style: "thin" }, bottom: { style: "thin" }, right: { style: "thin" } }
   };
 
   const normalStyle = {
-    alignment: { horizontal: "center", wrapText: true},
-    font: {size: 10},
-    border: {
-      top: { style: "thin" },
-      left: { style: "thin" },
-      bottom: { style: "thin" },
-      right: { style: "thin" }
-    }
+    alignment: { horizontal: "center", wrapText: true },
+    font: { size: 10 },
+    border: { top: { style: "thin" }, left: { style: "thin" }, bottom: { style: "thin" }, right: { style: "thin" } }
   };
 
   const normalBoldStyle = {
-    font: { bold: true, size: 10},
+    font: { bold: true, size: 10 },
     alignment: { horizontal: "center", wrapText: true },
-    border: {
-      top: { style: "thin" },
-      left: { style: "thin" },
-      bottom: { style: "thin" },
-      right: { style: "thin" }
-    }
+    border: { top: { style: "thin" }, left: { style: "thin" }, bottom: { style: "thin" }, right: { style: "thin" } }
   };
 
-  const noBorderStyle = {
-    font: {size: 10},
-    alignment: { horizontal: "center", wrapText: true },
-    font: { bold: true },
-  };
-
+  // Title row
   worksheet.addRow([]);
   worksheet.addRow([]);
-  worksheet.addRow(["ELECTRON MICROSCOPY OF NASAL BRUSHING FOR PCD DIAGNOSIS"]);
-  worksheet.mergeCells("A3:P3");
-  worksheet.getCell("A3").font = { bold: true, size: 12 };
+  const titleColEnd = String.fromCharCode('B'.charCodeAt(0) + defectNames.length + 1);
+  worksheet.addRow(["PIZZA INSPECTION REPORT"]);
+  worksheet.mergeCells(`A3:${titleColEnd}3`);
+  worksheet.getCell("A3").font = { bold: true, size: 13 };
   worksheet.getCell("A3").alignment = { horizontal: "center" };
   worksheet.getCell("A3").fill = { type: "pattern", pattern: "solid", fgColor: { argb: "C5D9F1" } };
 
+  // Meta rows
   worksheet.addRow([]);
-  worksheet.addRow(["DOB", "", "HS No", "", "Counted by", ""]).eachCell(cell => { Object.assign(cell, normalStyle);});
-  worksheet.addRow(["Hospital No", "", "Sample from", "", "Sample date", ""]).eachCell(cell => {Object.assign(cell, normalStyle);});
+  worksheet.addRow(["Inspector", "", "Batch No", "", "Date", ""]).eachCell(cell => { Object.assign(cell, normalStyle); });
+  worksheet.addRow(["Location", "", "Line", "", "Shift", ""]).eachCell(cell => { Object.assign(cell, normalStyle); });
   worksheet.addRow([]);
 
-  worksheet.addRow(["No cells counted", "Orientation", ...defectNames, ...dyneinNames, "TOTAL"]);
-  worksheet.getRow(8).eachCell(cell => {
-    Object.assign(cell, normalBoldStyle);
-  });
+  // Column headers: Image | defect1 | defect2 | ... | TOTAL
+  const dataStartRow = 9;
+  worksheet.addRow(["Image", ...defectNames, "TOTAL"]);
+  worksheet.getRow(dataStartRow - 1).eachCell(cell => { Object.assign(cell, normalBoldStyle); });
 
-  let rowIndex = 9;
-  const defectEndCol = 2 + defectNames.length;
-  const dyneinStartCol = defectEndCol + 1;
-
-  imageStore.uploadedImages.forEach(image => {
+  // Data rows — one per image
+  let rowIndex = dataStartRow;
+  images.forEach(image => {
     const annotations = annotationStore.getAnnotations(image);
-    const rowData = [0, ""];
-
-    for (const defect of defectNames) {
-      rowData.push(annotations.filter(a => a.microtubularDefect === defect).length);
-    }
-
-    for (const dynein of dyneinNames) {
-      rowData.push(annotations.filter(a => a.dyneinArms === dynein).length);
-    }
-
-    rowData.push({ formula: `=SUM(C${rowIndex}:${String.fromCharCode('B'.charCodeAt(0) + defectNames.length)}${rowIndex})` });
-
-    worksheet.addRow(rowData).eachCell(cell => {
-      Object.assign(cell, normalStyle);
-    });
-
-    const addedRow = worksheet.getRow(rowIndex);
-    addedRow.getCell(defectEndCol).border = {
-      ...normalStyle.border,
-      right: { style: "thick" }
-    };
-    addedRow.getCell(dyneinStartCol).border = {
-      ...normalStyle.border,
-      left: { style: "thick" }
-    };
-
+    const counts = defectNames.map(name =>
+      annotations.filter(a => a.microtubularDefect === name).length
+    );
+    const totalFormula = { formula: `=SUM(B${rowIndex}:${String.fromCharCode('A'.charCodeAt(0) + defectNames.length)}${rowIndex})` };
+    const row = worksheet.addRow([image.imageName, ...counts, totalFormula]);
+    row.eachCell(cell => { Object.assign(cell, normalStyle); });
     rowIndex++;
   });
 
-  const defectCounts = defectNames.map((_, index) => {
-      const columnLetter = String.fromCharCode('C'.charCodeAt(0) + index);
-      return {
-          formula: `=SUM(${columnLetter}9:${columnLetter}${9 + imageStore.uploadedImages.length - 1})`
-      };
-  });
-
-  const dyneinCounts = dyneinNames.map((_, index) => {
-      const columnLetter = String.fromCharCode('C'.charCodeAt(0) + defectNames.length + index);
-      return {
-        formula: `=SUM(${columnLetter}9:${columnLetter}${9 + imageStore.uploadedImages.length - 1})`
-      };
-  });
-
-  const total = { formula: `=SUM(${String.fromCharCode('C'.charCodeAt(0) + defectNames.length + dyneinNames.length)}9:${String.fromCharCode('C'.charCodeAt(0) + defectNames.length + dyneinNames.length)}${9 + imageStore.uploadedImages.length - 1})` };
-  const totalCell = `${String.fromCharCode('C'.charCodeAt(0) + defectNames.length + dyneinNames.length)}${9 + imageStore.uploadedImages.length}`;
-
-  worksheet.addRow([0, "", ...defectCounts, ...dyneinCounts, total]).eachCell(cell => {
-    Object.assign(cell, normalBoldStyle);
-  });
-
-  const totalRow = worksheet.getRow(rowIndex);
-  totalRow.getCell(defectEndCol).border = {
-    ...normalBoldStyle.border,
-    right: { style: "thick" }
-  };
-  totalRow.getCell(dyneinStartCol).border = {
-    ...normalBoldStyle.border,
-    left: { style: "thick" }
-  };
+  // Totals row
+  const sumRow = defectNames.map((_, i) => ({
+    formula: `=SUM(${String.fromCharCode('B'.charCodeAt(0) + i)}${dataStartRow}:${String.fromCharCode('B'.charCodeAt(0) + i)}${rowIndex - 1})`
+  }));
+  const totalSumFormula = { formula: `=SUM(${String.fromCharCode('B'.charCodeAt(0) + defectNames.length)}${dataStartRow}:${String.fromCharCode('B'.charCodeAt(0) + defectNames.length)}${rowIndex - 1})` };
+  const totalsRow = worksheet.addRow(["TOTAL", ...sumRow, totalSumFormula]);
+  totalsRow.eachCell(cell => { Object.assign(cell, normalBoldStyle); });
   rowIndex++;
 
-  const defectCountsPercentage = defectCounts.map((_, index) => {
-      const columnLetter = String.fromCharCode('C'.charCodeAt(0) + index);
-      return {
-        formula: `=ROUND(${columnLetter}${9 + imageStore.uploadedImages.length} / ${totalCell} * 100, 2)`
-      };
-    });
-
-  const dyneinCountsPercentage = dyneinCounts.map((_, index) => {
-      const columnLetter = String.fromCharCode('C'.charCodeAt(0) + defectNames.length + index);
-      return {
-        formula: `=ROUND(${columnLetter}${9 + imageStore.uploadedImages.length} / ${totalCell} * 100, 2)`
-      };
-    });
-
-  const percentageRow = worksheet.addRow(["%", "", ...defectCountsPercentage, ...dyneinCountsPercentage]);
-  percentageRow.eachCell((cell, colNumber) => {
+  // Percentage row
+  const totalCol = String.fromCharCode('B'.charCodeAt(0) + defectNames.length);
+  const totalCellRef = `${totalCol}${rowIndex - 1}`;
+  const pctRow = defectNames.map((_, i) => ({
+    formula: `=IF(${totalCellRef}=0,0,ROUND(${String.fromCharCode('B'.charCodeAt(0) + i)}${rowIndex - 1}/${totalCellRef}*100,1))`
+  }));
+  const pctTotalFormula = { formula: `=IF(${totalCellRef}=0,0,ROUND(${totalCellRef}/${totalCellRef}*100,1))` };
+  const percentRow = worksheet.addRow(["%", ...pctRow, pctTotalFormula]);
+  percentRow.eachCell((cell, colNumber) => {
     Object.assign(cell, normalBoldStyle);
-
-    if (colNumber > 2) {
-      cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "99CCFF" } };
-    }
+    if (colNumber > 1) cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "99CCFF" } };
   });
 
-  const normalIndex = defectNames.indexOf("Normal");
-  const idaIndexes = dyneinNames
-    .map((name, index) => ({ name, index }))
-    .filter(({ name }) => name === "Inner arms missing" || name === "Both arms missing")
-    .map(({ index }) => `${String.fromCharCode('C'.charCodeAt(0) + defectNames.length + index) + (9 + imageStore.uploadedImages.length + 1)}`);
-
-  const odaIndexes = dyneinNames
-    .map((name, index) => ({ name, index }))
-    .filter(({ name }) => name === "Outer arms missing" || name === "Both arms missing")
-    .map(({ index }) => `${String.fromCharCode('C'.charCodeAt(0) + defectNames.length + index) + (9 + imageStore.uploadedImages.length + 1)}`);
-
+  // Outcome and notes
   worksheet.addRow([]);
-  worksheet.addRow(["", "", "", "", "", "", "", "", "", "", "", "Total MTD"]).eachCell(cell => {
-    Object.assign(cell, noBorderStyle);
-  });
-  worksheet.addRow(["", "", "", "", "", "", "", "", "", "", "", "Total IDA"]).eachCell(cell => {
-    Object.assign(cell, noBorderStyle);
-  });
-  worksheet.addRow(["", "", "", "", "", "", "", "", "", "", "", "Total ODA"]).eachCell(cell => {
-    Object.assign(cell, noBorderStyle);
-  });
-
-  worksheet.getCell(`M${9 + imageStore.uploadedImages.length + 3}`).value = {
-    formula: `ROUND(SUM(${defectCountsPercentage
-        .map((_, index) => ({ col: String.fromCharCode('C'.charCodeAt(0) + index), originalIndex: index }))
-        .filter(({ originalIndex }) => originalIndex !== normalIndex) 
-        .map(({ col }) => col + (9 + imageStore.uploadedImages.length + 1)) 
-        .join(", ")}), 2)`
-  };
-  worksheet.getCell(`M${9 + imageStore.uploadedImages.length + 3}`).fill = { type: "pattern", pattern: "solid", fgColor: { argb: "92CDDC" } };
-
-
-  worksheet.getCell(`M${9 + imageStore.uploadedImages.length + 4}`).value = {
-    formula: `ROUND(SUM(${idaIndexes.join(", ")}), 2)`
-  };
-  worksheet.getCell(`M${9 + imageStore.uploadedImages.length + 4}`).fill = { type: "pattern", pattern: "solid", fgColor: { argb: "92CDDC" } };  
-
-  worksheet.getCell(`M${9 + imageStore.uploadedImages.length + 5}`).value = {
-    formula: `ROUND(SUM(${odaIndexes.join(", ")}), 2)`
-  };
-  worksheet.getCell(`M${9 + imageStore.uploadedImages.length + 5}`).fill = { type: "pattern", pattern: "solid", fgColor: { argb: "92CDDC" } };
-
-  worksheet.addRow([]);
-
-  const outcomeRow = worksheet.addRow(["Outcome:", imageStore.projectOutcome]);
+  const outcomeRow = worksheet.addRow(["Outcome:", imageStore.projectOutcome || ""]);
   outcomeRow.getCell(1).style = headerStyle;
   outcomeRow.getCell(2).style = normalStyle;
-  
-  const commentRow = worksheet.addRow(["Comments:", imageStore.projectDescription]);
+
+  const commentRow = worksheet.addRow(["Notes:", imageStore.projectDescription || ""]);
   commentRow.getCell(1).style = headerStyle;
   commentRow.getCell(2).style = normalStyle;
 
-  const firstImage = imageStore.uploadedImages[0];
-
-  if (firstImage) {
-    if(firstImage.description) {
-      const descriptionRow = worksheet.addRow(["Image description:", firstImage.imageName, firstImage.description]);
-      descriptionRow.getCell(1).style = headerStyle;
-      descriptionRow.getCell(2).style = normalStyle;
-      descriptionRow.getCell(3).style = normalStyle;
-    } else {
-      const descriptionRow = worksheet.addRow(["Image description:", ""]);
-      descriptionRow.getCell(1).style = headerStyle;
-      descriptionRow.getCell(2).style = normalStyle;
-      descriptionRow.getCell(3).style = normalStyle;
-    }
-    
-    imageStore.uploadedImages.slice(1).forEach(image => {
-      if(image.description) {
-        const imageRow = worksheet.addRow(["", image.imageName, image.description]);
-        imageRow.getCell(2).style = normalStyle;
-        imageRow.getCell(3).style = normalStyle;
-      } 
+  // Image descriptions
+  const hasDescriptions = images.some(img => img.description);
+  if (hasDescriptions) {
+    worksheet.addRow([]);
+    const descHeader = worksheet.addRow(["Image", "Description"]);
+    descHeader.eachCell(cell => { Object.assign(cell, normalBoldStyle); });
+    images.forEach(image => {
+      if (image.description) {
+        const r = worksheet.addRow([image.imageName, image.description]);
+        r.getCell(1).style = normalStyle;
+        r.getCell(2).style = normalStyle;
+      }
     });
   }
 
-  worksheet.columns.forEach(column => {
-    column.width = 12;
-  });
-
-  worksheet.getRow(8).getCell(defectEndCol).border = {
-    ...normalBoldStyle.border,
-    right: { style: "thick" }
-  };
-
-  worksheet.getRow(8).getCell(dyneinStartCol).border = {
-    ...normalBoldStyle.border,
-    left: { style: "thick" }
-  };
-
-  const addedRow = worksheet.getRow(rowIndex);
-  addedRow.getCell(defectEndCol).border = {
-    ...normalStyle.border,
-    right: { style: "thick" }
-  };
-  addedRow.getCell(dyneinStartCol).border = {
-    ...normalStyle.border,
-    left: { style: "thick" }
-  };
+  // Column widths
+  worksheet.getColumn(1).width = 20;
+  for (let i = 2; i <= defectNames.length + 2; i++) {
+    worksheet.getColumn(i).width = 14;
+  }
 
   const buffer = await workbook.xlsx.writeBuffer();
-  saveAs(new Blob([buffer]), "PCD_Diagnosis_Report.xlsx");
+  saveAs(new Blob([buffer]), "PizzaScan_Inspection_Report.xlsx");
 
   modalStore.closeModal();
 };
