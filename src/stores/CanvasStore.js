@@ -19,7 +19,7 @@ export const useCanvasStore = defineStore('canvas', {
     selectedAnnotationColor: '#95F204',
     selectedAnnotationType: 'normal',
     currentOpacity: 100,
-    currentSize: 7,
+    currentSize: 9,
     imageOpacity: 75,
     activeZoom: false,
     activeDragging: false,
