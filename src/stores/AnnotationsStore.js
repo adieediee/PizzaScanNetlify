@@ -355,7 +355,8 @@ export const useAnnotationStore = defineStore("annotation", {
     },
 
     deleteAllAnnotations() {
-      const imageId = useImageStore().rightClickedImage.imageId;
+      const image = useImageStore().rightClickedImage;
+      const imageId = image?.imageId;
 
       if (imageId === undefined) {
         console.error("Could not get image id");
@@ -366,26 +367,37 @@ export const useAnnotationStore = defineStore("annotation", {
         (annotation) => annotation.imageId === imageId && annotation.active,
       );
 
-      // Collect linkedAnnotationIds from annotations being deleted, to also remove sub-image counterparts
+      // Collect all imageIds to delete: parent + all sub-images
+      const subImageIds = new Set((image.subImages || []).map(si => si.imageId));
+      const allImageIds = new Set([imageId, ...subImageIds]);
+
+      // Collect all linkedAnnotationIds from annotations being deleted
       const linkedIds = new Set(
         this.annotations
-          .filter((a) => a.imageId === imageId && a.linkedAnnotationId)
+          .filter((a) => allImageIds.has(a.imageId) && a.linkedAnnotationId)
           .map((a) => a.linkedAnnotationId)
       );
 
+      const toDelete = new Set(
+        this.annotations
+          .filter((a) => allImageIds.has(a.imageId) || linkedIds.has(a.linkedAnnotationId))
+          .map((a) => a.id)
+      );
+
       this.annotations.forEach((annotation) => {
-        if (annotation.imageId === imageId || linkedIds.has(annotation.linkedAnnotationId)) {
-          this.microtubularDefects.find(
+        if (toDelete.has(annotation.id)) {
+          const defect = this.microtubularDefects.find(
             (defect) => defect.value === annotation.microtubularDefectValue,
-          ).count--;
-          this.dyneinArms.find(
-            (arm) => arm.value === annotation.dyneinArmsValue,
-          ).count--;
-          this.annotations = this.annotations.filter(
-            (annot) => annot.id !== annotation.id,
           );
+          if (defect) defect.count--;
+          const arm = this.dyneinArms.find(
+            (arm) => arm.value === annotation.dyneinArmsValue,
+          );
+          if (arm) arm.count--;
         }
       });
+
+      this.annotations = this.annotations.filter((a) => !toDelete.has(a.id));
 
       this.annotationHistory = [];
 
