@@ -28,11 +28,5 @@
     "alternative": "extra-salami",
     "alternativeName": "Extra salami",
     "alternativeConfidence": 19
-  },
-  "other-defect": {
-    "reasoning": "Unusual pattern detected that does not clearly match any known defect type.",
-    "alternative": "extra-salami",
-    "alternativeName": "Extra salami",
-    "alternativeConfidence": 15
   }
 }

@@ -9,7 +9,6 @@ export const useShortcutStore = defineStore('shortcuts',() => {
       'one-center-salami': '3',
       'extra-salami': '4',
       'wrong-slices': '5',
-      'other-defect': '6',
     })
 
     const globalShortcuts = ref({
@@ -25,10 +24,13 @@ export const useShortcutStore = defineStore('shortcuts',() => {
 
     const pizzaDefectKeys = new Set(Object.keys(defaultKeyBindings.value));
     const oldCiliaKeys = new Set(['disarranged', 'extra-tuble', 'single-tuble', 'compound', 'transposition', 'one-of-pair-missing', 'both-missing']);
+    const removedDefects = new Set(['other-defect']);
 
     const storedBindings = JSON.parse(localStorage.getItem('userKeyBindings')) || [];
     const hasOldKeys = storedBindings.some(b => oldCiliaKeys.has(b.key));
-    const userKeyBindings = ref(hasOldKeys ? [] : storedBindings);
+    const hasRemovedKeys = storedBindings.some(b => removedDefects.has(b.key));
+    const cleanedBindings = hasOldKeys ? [] : storedBindings.filter(b => !removedDefects.has(b.key));
+    const userKeyBindings = ref((hasOldKeys || hasRemovedKeys) ? cleanedBindings : storedBindings);
 
     const saveKeyBindings = () => {
       localStorage.setItem('userKeyBindings', JSON.stringify(userKeyBindings.value));

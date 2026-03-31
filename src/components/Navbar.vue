@@ -617,7 +617,6 @@ async function openProject(file) {
       { name: 'Transposition', value: 'transposition', color: '#FFFF00', count: 0, description: ""},
       { name: 'One of central pair missing', value: 'one-of-pair-missing', color: '#FFA03B', count: 0, description: ""},
       { name: 'Both missing', value: 'both-missing', color: '#0000FF', count: 0, description: ""},
-      { name: 'Other defect', value: 'other-defect', color: '#8B4513', count: 0, description: ""},
     ];
     annotationStore.dyneinArms = projectData.annotations.dyneinArms || [
       { name: 'Unknown', value: 'unknown', count: 0},

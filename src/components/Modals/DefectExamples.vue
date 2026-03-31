@@ -50,10 +50,35 @@ const defectItems = [
   width: fit-content;
   min-width: 400px;
   max-width: 780px;
+  height: auto;
+  max-height: 90vh;
 }
 
 .modal-body {
   flex-direction: column;
+  overflow-y: auto;
+  min-height: 0;
+  padding-left: 4px;
+  padding-right: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #3E63DD44 transparent;
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #3E63DD66;
+  border-radius: 99px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #3E63DDaa;
 }
 
 .subtitle {
