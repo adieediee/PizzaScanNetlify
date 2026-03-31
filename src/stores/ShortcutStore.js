@@ -5,14 +5,11 @@ import { defineStore } from 'pinia';
 export const useShortcutStore = defineStore('shortcuts',() => {
     const defaultKeyBindings = ref({
       'normal': '1',
-      'disarranged': '2',
-      'extra-tuble': '3',
-      'single-tuble': '4',
-      'compound': '5',
-      'transposition': '6',
-      'one-of-pair-missing': '7',
-      'both-missing': '8',
-      'other-defect': '9',
+      'missing-center-salami': '2',
+      'one-center-salami': '3',
+      'extra-salami': '4',
+      'wrong-slices': '5',
+      'other-defect': '6',
     })
 
     const globalShortcuts = ref({
@@ -26,7 +23,12 @@ export const useShortcutStore = defineStore('shortcuts',() => {
       'CTRL + E': 'export project',
     })
 
-    const userKeyBindings = ref(JSON.parse(localStorage.getItem('userKeyBindings')) || []);
+    const pizzaDefectKeys = new Set(Object.keys(defaultKeyBindings.value));
+    const oldCiliaKeys = new Set(['disarranged', 'extra-tuble', 'single-tuble', 'compound', 'transposition', 'one-of-pair-missing', 'both-missing']);
+
+    const storedBindings = JSON.parse(localStorage.getItem('userKeyBindings')) || [];
+    const hasOldKeys = storedBindings.some(b => oldCiliaKeys.has(b.key));
+    const userKeyBindings = ref(hasOldKeys ? [] : storedBindings);
 
     const saveKeyBindings = () => {
       localStorage.setItem('userKeyBindings', JSON.stringify(userKeyBindings.value));

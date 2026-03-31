@@ -56,7 +56,7 @@
             :class="{ 'highlighted': boardingStore.currentStep === 2, 'tb-btn-active': aiFilterOpen, 'tb-btn-ai--filter': hasAIAnnotations }">
             <span class="tb-ai-label">AI</span>
             <span v-if="!hasAIAnnotations" class="tb-label">Labels</span>
-            <span v-if="!boardingStore.explainNav" class="tooltip">Run AI annotation</span>
+            <span v-if="!boardingStore.explainNav" class="tooltip">Run AI Labeling</span>
             <template v-if="hasAIAnnotations">
               <span
                 v-for="dot in aiFilterDots"
@@ -280,21 +280,14 @@
           id="documentation-button"
           class="btn btn-icon"
           data-button="documentationButton"
-          @click="openDocumentationModal"
+          @click="toggleSettings"
           :disabled="!boardingStore.wholeTutorialSeen">
             <fa :icon="['fas', 'circle-question']" />
-            <span v-if="!boardingStore.explainNav" class="tooltip">{{$t('navigation.settings.documentation')}}</span>
-        </button>
-      </div>
-      <div>
-        <button
-          id="feedback-button"
-          class="btn btn-icon"
-          data-button="feedbackButton"
-          @click="openFeedbackModal"
-          :disabled="!boardingStore.wholeTutorialSeen">
-            <fa :icon="['fas', 'comment']" />
-            <span v-if="!boardingStore.explainNav" class="tooltip">{{$t('navigation.settings.userFeedback')}}</span>
+            <span v-if="!boardingStore.explainNav && !settingsOpen" class="tooltip">{{$t('navigation.settings.documentation')}}</span>
+            <ul v-if="settingsOpen" class="dropdown-content dropdown-settings">
+              <li id="settings-documentation" @click="openDocumentationModal">{{$t('navigation.settings.documentation')}}</li>
+              <li id="settings-defect-examples" @click="openDefectExamplesModal">{{$t('navigation.settings.defectExamples')}}</li>
+            </ul>
         </button>
       </div>
       <div>
@@ -426,6 +419,10 @@ const toggleSettings = () => {
 
 const openDocumentationModal = () => {
   modalStore.openModal('documentation')
+};
+
+const openDefectExamplesModal = () => {
+  modalStore.openModal('defectExamples');
 };
 
 const openFeedbackModal = () => {

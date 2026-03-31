@@ -24,14 +24,18 @@
         "settings": {
             "settings": "Nastavení",
             "documentation": "Dokumentace",
-            "userFeedback": "Zpětná vazba"
+            "userFeedback": "Zpětná vazba",
+            "defectExamples": "Příklady defektů",
+            "export": "Exportovat zprávu"
         },
         "reportProblem": "Nahlásit problém"
     },
     "leftSidebar": {
         "search": "Vyhledat snímek",
         "upload": "Nahrát snímky",
-        "dragAndDrop": "Vyberte snímky nebo je sem přetáhněte"
+        "dragAndDrop": "Vyberte snímky nebo je sem přetáhněte",
+        "searchDefect": "Hledat defekt",
+        "microtubularDefect": "Kategorie defektu"
     },
     "rightSidebar": {
         "ProjectOverview": {
@@ -93,9 +97,9 @@
     },
     "modals": {
         "export": {
-            "title": "Exportovat Report diagnózy",
-            "title2": "PCD Report diagnózy bude exportovaný jako XLSX soubor.",
-            "exportButton": "Exportovat report"
+            "title": "Exportovat inspekční zprávu",
+            "title2": "Inspekční zpráva pizzy bude exportována jako XLSX soubor.",
+            "exportButton": "Exportovat zprávu"
         },
         "imageDeletion": {
             "title": "Odstranění obrázku",
@@ -141,15 +145,15 @@
                 "languageCZ": "CZ"
             },
             "defects": {
-                "title": "Mikrotubulární defekty",
-                "description": "Zde můžete spravovat mikrotubulární defekty.",
-                "formDescription": "Použijte formulář níže k přidání nové kategorie mikrotubulárního defektu.",
-                "editButton": "Upravit třídu",
-                "deleteButton": "Smazat třídu",
-                "createButton": "Vytvořit třídu",
+                "title": "Kategorie defektů",
+                "description": "Zde můžete spravovat kategorie defektů.",
+                "formDescription": "Pomocí formuláře níže přidejte novou kategorii defektu.",
+                "editButton": "Upravit kategorii",
+                "deleteButton": "Smazat kategorii",
+                "createButton": "Vytvořit kategorii",
                 "cancelButton": "Zrušit",
-                "title2": "Správa mikrotubulárních defektů",
-                "description2": "Níže můžete vidět existující kategorie mikrotubulárních defektů. Můžete je upravit nebo smazat podle potřeby.",
+                "title2": "Správa kategorií defektů",
+                "description2": "Níže vidíte existující kategorie defektů. Můžete je upravovat nebo mazat.",
                 "page": "Strana",
                 "of": "z"
             }
@@ -194,90 +198,95 @@
         "documentation": {
             "title": "Dokumentace",
             "about": {
-                "title": "O CiliaScan"
+                "title": "O PizzaScan"
             },
             "layout": {
                 "title": "Rozložení aplikace",
                 "layoutDescription": {
-                    "header": "Popis rozložení",
-                    "description": "Zde je stručný popis rozložení aplikace.",
-                    "altText": "Rozložení aplikace"
+                    "header": "Přehled",
+                    "description": "PizzaScan je rozdělen do čtyř hlavních oblastí: horní panel nástrojů, levý panel, centrální pracovní plocha a pravý panel."
                 },
                 "navigation": {
-                    "header": "Navigace",
-                    "description": "Navigace je umístěna v horní části aplikace. Poskytuje následující funkce:",
+                    "header": "Panel nástrojů",
+                    "description": "Panel nástrojů se nachází v horní části aplikace a obsahuje hlavní nástroje:",
                     "features": {
-                        "ai": "AI - Spustit automatickou anotaci pro vybraný obrázek.",
-                        "centerImage": "Centrovat obrázek, když je přiblížený nebo posunutý.",
-                        "undo": "Vrátit poslední akci spat.",
-                        "selectDefect": "Vyberte mikrotubulární defekt. Může být také změněn pomocí číselných kláves na klávesnici.",
-                        "changeOpacity": "Změnit průhlednost anotací.",
-                        "changeSize": "Změnit velikost anotací.",
-                        "openProject": "Otevřít projekt - Otevřít existující projekt.",
-                        "saveProject": "Uložit projekt - Uložit aktuální stav projektu.",
-                        "exportProject": "Exportovat report - Exportovat report diagnostiky do CSV souboru.",
-                        "openSettings": "Otevřít nastavení. Zde můžete povolit sběr dat, zmenit jazyk aplikace, a změnit mikrotubulární defekty.",
-                        "openDocumentation": "Otevřít dokumentáci nebo zpětnou vazbu."
+                        "ai": "spustí automatickou anotaci na aktuálně otevřeném obrázku.",
+                        "aiDetection": "detekuje jednotlivé pizzy a ořeže každou do samostatného podobrázku.",
+                        "centerImage": "Centrovat — vrátí pizzu do zobrazení po přiblížení nebo posunutí.",
+                        "undo": "Zpět — vrátí poslední provedenou akci.",
+                        "selectDefect": "Výběr defektu — vyberte defekt nebo kategorii pro nové anotace. Přepínat lze i číselnými klávesami.",
+                        "changeOpacity": "Průhlednost — nastavte průhlednost anotačních čtverců.",
+                        "changeSize": "Velikost bodu — nastavte velikost anotačních markerů.",
+                        "openProject": "Otevřít projekt — načtěte dříve uložený projekt.",
+                        "saveProject": "Uložit projekt — uložte aktuální stav projektu.",
+                        "exportProject": "Exportovat zprávu — exportuje výsledky inspekce do XLSX souboru.",
+                        "openSettings": "Nastavení — změňte jazyk, kategorie defektů a nastavení sběru dat.",
+                        "openDocumentation": "Nápověda — otevřít tuto dokumentaci nebo prohlínout příklady defektů."
                     }
                 },
                 "leftSidebar": {
-                    "header": "Levý boční panel",
-                    "description": "Levý boční panel se nachází na levé straně aplikace.",
-                    "imageUpload": "Obrázky mohou být nahrány kliknutím na tlačítko Načíst.",
+                    "header": "Levý panel",
+                    "description": "Levý panel zobrazuje seznam všech obrázků v projektu. Obrázky lze nahrát kliknutím na tlačítko Nahrát nebo jejich přetažením do panelu.",
                     "imageInteractions": {
-                        "click": "Kliknutím na obrázek se zobrazí v hlavní oblasti obrázku.",
-                        "rightClick": "Pravým kliknutím na obrázek můžete obrázek smazat, označit jako zkontrolovaný, neviděný nebo odstranit všechny anotace pro tento obrázek."
+                        "click": "Kliknutím na obrázek ho otevřete v pracovní ploše.",
+                        "rightClick": "Pravým tlačítkem myši na obrázku ho můžete smazat, označit jako zkontrolovaný, neviděný nebo odebrat všechny jeho anotace.",
+                        "subImages": "Po spuštění AI detekce se pod-obrázky zobrazí vnořeně pod nadřazený obrázek. Kliknutím ho otevřete."
                     },
                     "annotationList": {
-                        "header": "Každý obrázek má pod ním seznam anotácií s ich jednotlivými počty."
+                        "header": "Každý obrázek zobrazuje počet anotací. Rozbalte ho, abyste viděli jednotlivé anotace."
                     }
                 },
                 "mainImageArea": {
-                    "header": "Canvas",
-                    "description": "Canvas se nachází ve středu aplikace. Zobrazuje vybraný obrázek a všechny jeho anotace.",
+                    "header": "Pracovní plocha",
+                    "description": "Centrální pracovní plocha zobrazuje vybraný obrázek se všemi anotacemi. Zde pizzu prohlížíte a rozhodujete o anotacích.",
                     "annotation": {
-                        "add": "Kliknutím na obrázek můžete přidat anotaci s vybraným mikrotubulárním defektem.",
-                        "changeDynein": "Dyneinové raméneka anotace mohou být změněny kliknutím na anotaci.",
-                        "delete": "Anotace mohou být smazány pravým kliknutím.",
-                        "details": "Kliknutím na anotaci se zobrazí její podrobnosti na pravém bočním panelu.",
-                        "move": "Anotaci můžete přesouvat tažením.",
-                        "copyPaste": "Anotaci můžete zkopírovat pomocí CTRL + C a vložit pomocí CTRL + V."
+                        "add": "Kliknutím na obrázek přidáte nový anotační čtverec na danou pozici.",
+                        "delete": "Pravým kliknutím na anotaci ji smažete.",
+                        "details": "Kliknutím na anotaci ji vyberete a zobrazíte její detaily v pravém panelu.",
+                        "move": "Uchopením anotace ji přesunete na jiné místo.",
+                        "copyPaste": "Anotaci zkopírujete pomocí CTRL+C a vložíte pomocí CTRL+V."
                     },
                     "zoom": {
-                        "drag": "Obrázek můžete přiblížit a oddálit pomocí kolečka myši. Obrázek můžete přesouvat tažením."
+                        "drag": "Podržte levé tlačítko myši a táhněte pro posun obrázku. Kolečkem myši přiblížíte nebo oddálíte."
+                    },
+                    "subNavigation": {
+                        "header": "Navigace pod-obrázků",
+                        "description": "Při prohlížení pod-obrázku se v dolní části pracovní plochy zobrazí šipky. Pomocí nich se přesunete na předchozí nebo následující pod-obrázek bez návratu do panelu."
                     }
                 },
                 "rightSidebar": {
-                    "header": "Pravý boční panel",
-                    "description": "Pravý boční panel se nachází na pravé straně aplikace. Je rozdělen do tří záložek - Projekt, Obrázek, Anotace.",
+                    "header": "Pravý panel",
+                    "description": "Pravý panel je rozdělen do tří záložek: Projekt, Obrázek a Anotace.",
                     "projectOverview": {
-                        "header": "Položka Projekt",
-                        "description": "Položka Projekt zobrazuje obecné informace o projektu. Statistiky o projektu jsou zobrazeny zde. Můžete napsat výsledek diagnostiky a přidat poznámky o projektu."
+                        "header": "Záložka: Projekt",
+                        "description": "Zobrazuje celkové statistiky projektu a umožňuje přidávat poznámky nebo zaznamenat výsledek inspekce pro celý projekt."
                     },
                     "imageOverview": {
-                        "header": "Položka Obrázek",
-                        "description": "Položka Obrázek zobrazuje obecné informace o vybraném obrázku. Obrázek může být nastaven jako zkontrolovaný, neviděný nebo smazaný. Anotace pro obrázek mohou být smazány. Můžete také přidat poznámky o obrázku."
+                        "header": "Záložka: Obrázek",
+                        "description": "Zobrazuje detaily aktuálně otevřeného obrázku. Můžete ho označit jako zkontrolovaný nebo neviděný, odstranit všechny jeho anotace nebo přidat poznámky."
                     },
                     "annotationOverview": {
-                        "header": "Položka Anotace",
-                        "description": "Položka Anotace zobrazuje obecné informace o vybrané anotaci. Můžete změnit mikrotubulární defekt a dyneinové raménka anotace, nebo zmenit parametre."
+                        "header": "Záložka: Label",
+                        "description": "Zobrazuje detaily vybrané anotace. Můžete změnit její kategorii defektu a aktualizovat související pole."
                     }
                 }
             },
             "manualTutorial": {
-                "title": "Manuální anotace",
-                "manualAnnotation": "Manuální anotace je proces ručního označování řasinek na obrázku. To se provádí označením každé řasinky bodem.",
-                "attributes": "Anotace (bod) obsahuje dva atributy: mikrotubulární defekt a dyneinové raménka.",
-                "microtubularDefects": "Mikrotubulární defekty jsou charakterizovány absencí nebo nesprávným zarovnáním mikrotubulů v řasinkách. Tyto defekty mohou být indikátorem PCD a jsou důležité pro identifikaci během diagnostického procesu. Typ defektu je reprezentován barvou anotace.",
-                "dyneinArms": "Dyneinová raménka pomáhají řasinkám se pohybovat. Dyneinová raménka jsou důležitá pro správnou funkci řasinek. Typ dyneinových ramének je reprezentován označením anotace.",
-                "step3": "Kliknutím na anotaci změníte typ dyneinových ramének. Jednoduše klikněte na bod, dokud nebudete s výběrem spokojeni.",
-                "repeat": "Opakujte tyto kroky, dokud nebudou anotovány všechny cílie na každém obrázku.",
-                "newClass": "Potřebujete přidat novou třídu? Vytvořte ji v Nastavení.",
-                "title2": "Proces manuální anotace",
-                "description2": "Tato sekce vám poskytne podrobný návod na manuální anotaci cílí v CiliaScan."
+                "title": "Ruční anotace",
+                "intro": "Ruční anotace umožňuje označovat oblasti s defekty na obrázcích pizzy kreslením anotačních čtverců. Každý čtverec je propojen s kategorií defektu, kterou představuje jeho barva.",
+                "newClass": "Potřebujete kategorii, která neexistuje? Vytvořte si vlastní v Nastavení.",
+                "steps": {
+                    "header": "Postup krok za krokem",
+                    "step1": "Vyberte obrázek z levého panelu a otevřete ho v pracovní ploše.",
+                    "step2": "Zvolte defekt nebo kategorii pomocí barevného výběru v horním panelu. Kategorie lze přepínat číselnými klávesami.",
+                    "step3": "Klikněte na obrázek pizzy a umístěte anotační čtverec.",
+                    "step4": "Přidejte tolik anotačních čtverců, kolik potřebujete. Jeden na každou oblast s defektem.",
+                    "step5": "Pro úpravu anotace ji vyberte kliknutím a použijte záložku Label vpravo ke změně kategorie nebo aktualizaci polí.",
+                    "step6": "Pro smazání anotace klikněte pravým tlačítkem myši, nebo použijte možnost odebrat v záložce Anotace."
+                }
             },
             "shortcuts": {
-              "title": "Klávesové zkratky",
+                "title": "Klávesové zkratky",
                 "description": "Zde jsou klíčové klávesové zkratky, které můžete použít:",
                 "table-col1": "Klávesová zkratka",
                 "table-col2": "Akce",
@@ -299,10 +308,10 @@
                     },
                     "annotation": {
                         "title": "Klávesové zkratky pre anotáciu",
-                        "description": "Klávesové zkratky pre výber mikrotubulárneho defektu môžu byť zmenené v Nastaveniach.",
+                        "description": "Klávesové zkratky pro výběr kategorie defektu lze změnit v Nastavení.",
                         "CTRL+A": {
                             "key": "CTRL+A",
-                            "description": "Vytvoriť novú třídu mikrotubulárneho defektu"
+                            "description": "Vytvořit novou kategorii defektu"
                         },
                         "CTRL+C": {
                             "key": "CTRL+C",
@@ -325,6 +334,36 @@
                         }
                     }
                 }
+            },
+            "aiAnnotation": {
+                "title": "AI anotace",
+                "intro": "AI anotace automaticky prohledá aktuální obrázek a umístí anotační čtverce kolem detekovaných oblastí s defekty. Vy zůstáváte v kontrole: každý návrh zkontrolujte a změňte cokoliv, s čím nesouhlasíte.",
+                "howItWorks": {
+                    "header": "Jak to funguje",
+                    "step1": "Otevřete obrázek v pracovní ploše a klikněte na tlačítko AI v horním panelu.",
+                    "step2": "AI umístí anotační čtverce na obrázek. Každý čtverec má barvu představující detekovaný typ defektu a úroveň jistoty.",
+                    "step3": "Klikněte na libovolný anotační čtverec a otevřete popup pro kontrolu. Popup zobrazuje typ defektu a úroveň jistoty.",
+                    "step4": "Klikněte Přijmout, pokud chcete návrh ponechat, nebo Odmítnout, pokud ho chcete odstranit.",
+                    "step5": "Každou anotaci můžete také volně přesunout, změnit její velikost nebo kategorii defektu, stejně jako u ručních anotací."
+                },
+                "confidence": {
+                    "header": "Úrovně jistoty",
+                    "description": "Každý návrh AI má úroveň jistoty: Vysoká, Střední nebo Nízká. Nízká jistota znamená, že AI si nebyla tak jistá. Tyto anotace si zaslouží zvláštní pozornost."
+                },
+                "tip": "AI anotace je výchozím bodem. Je rychlejší než anotace od začátku, ale výsledky byste měli vždy zkontrolovat. Nesprávné návrhy lze odmítnout nebo opravit."
+            },
+            "aiDetection": {
+                "title": "AI detekce",
+                "intro": "AI detekce najde jednotlivé pizzy na snímku z kamery a každou ořízne do samostatného pod-obrázku. To vám umožní zkontrolovat a anotovat každou pizzu zvlášť.",
+                "howItWorks": {
+                    "header": "Jak to funguje",
+                    "step1": "Otevřete obrázek obsahující více pizz a klikněte na tlačítko AI detekce v horním panelu.",
+                    "step2": "Pod-obrázky se automaticky vytvoří a zobrazí v levém panelu pod původním obrázkem.",
+                    "step3": "Kliknutím otevřete pod-obrázek v pracovní ploše, nebo použijte šipky v dolní části pracovní plochy pro navigaci.",
+                    "step4": "Každý pod-obrázek anotujte ručně nebo použijte tlačítko AI pro automatické návrhy.",
+                    "step5": "Anotace přidané k pod-obrázku se zobrazí i na původním obrázku, takže máte vždy celkový přehled."
+                },
+                "tip": "AI detekce je výchozím bodem. Můžete odstranit nesprávně detekované pod-obrázky nebo ručně doplnit pizzy, které byly přehlédnuty."
             }
         },
         "statistics": {
@@ -334,6 +373,10 @@
             "totalDA": "Celkový počet anotovaných řasinek s dyneinovými raménky",
             "totalIDA": "Celkový počet anotovaných řasinek bez vnitřních dyneinových ramének",
             "totalODA": "Celkový počet anotovaných řasinek bez vnějších dyneinových ramének"
+        },
+        "defectExamples": {
+            "title": "Příklady defektů",
+            "subtitle": "Vizuální reference pro každou kategorii defektu používanou při inspekci pizzy."
         }
     },
     "welcome": {
@@ -365,7 +408,7 @@
         "step4": "Použijte tyto ovládací prvky k výběru defektu nebo kategorie pro anotace a k úpravě velikosti a průhlednosti bodů, aby byly značky na pizzě dobře vidět.",
         "step5": "V levém panelu je seznam obrázků; obrázek můžete rozbalit a pod ním uvidíte jeho anotace.",
         "step6": "Střed obrazovky je pracovní plocha: kontrolujte pizzu, přidávejte nebo upravujte anotace a přibližujte nebo posouvejte pohled podle potřeby.",
-        "step7": "V pravém panelu jsou záložky Projekt, Obrázek a Anotace s přehledy a detaily. Přepínejte mezi nimi kliknutím na záložku."
+        "step7": "V pravém panelu jsou záložky Projekt, Obrázek a Label s přehledy a detaily. Přepínejte mezi nimi kliknutím na záložku."
     },
     "manualAnnotationTutorial": {
         "title": "Manuální anotace",
@@ -394,34 +437,34 @@
         "step2": "Po spuštění AI anotace AI navrhne kategorii závady u každé pizzy na snímku.",
         "step3": "Barva každého anotačního čtverce znamená jistotu AI: zelená je vysoká, oranžová střední a červená zpravidla vyžaduje úpravu.",
         "step4": "Klikněte na anotační čtverec a otevře se panel pro kontrolu. Změňte kategorii závady pokud potřebujete, pak stiskněte Přijmout nebo Odmítnout. Zbytek zůstane tak, jak navrhlo AI.",
-        "step5": "Pro úpravu dalších detailů vyberte anotaci a použijte záložku Anotace v pravém panelu."
+        "step5": "Pro úpravu dalších detailů vyberte anotaci a použijte záložku Label v pravém panelu."
     },
     "manualAnnotationTutorialDocumentation": {
-        "title": "Návod na manuální anotaci",
+        "title": "Manuální anotace",
         "steps": {
             "0": {
-                "title": "Krok 1: Otevřete snímek",
-                "description": "Vyberte snímek, který chcete anotovat, kliknutím na něj v seznamu snímků na levém bočním panelu."
+                "title": "Krok 1: Otevřete obrázek",
+                "description": "Kliknutím na obrázek v levém panelu vyberte obrázek, který chcete anotovat."
             },
             "1": {
-                "title": "Krok 2: Vyberte kategorii mikrotrubulárního defektu",
-                "description": "V navigaci vyberte kategorii defektu kliknutím na tlačítko \"Vybrat mikrotrubulární defekt\". Typy můžete také měnit pomocí číselných kláves."
+                "title": "Krok 2: Vyberte kategorii defektu",
+                "description": "V navigační liště vyberte kategorii defektu pomocí barevného voliče. Kategorie můžete přepínat také numerickými klávesami."
             },
             "2": {
                 "title": "Krok 3: Vytvořte anotace",
-                "description": "Klikněte na snímek, abyste přidali anotaci. Na stejný snímek můžete umístit více anotací."
+                "description": "Kliknutím na obrázek pizzy přidáte anotační čtverec. Na jeden obrázek můžete přidat více anotací."
             },
             "3": {
-                "title": "Krok 4: Vyberte typ dyneinových ramének",
-                "description": "Klikněte na anotaci, abyste změnili typ dyneinových ramének. Jednoduše klikněte na bod, dokud nebudete spokojeni s výběrem. Opakujte tyto kroky, dokud nebudou anotovány všechny cílie na každém snímku."
+                "title": "Krok 4: Zkontrolujte anotace",
+                "description": "Každá anotace je zobrazena jako barevný čtverec. Kliknutím ji vyberte a zkontrolujte kategorii defektu v pravém panelu."
             },
             "4": {
                 "title": "Potřebujete upravit anotaci?",
-                "description": "Klikněte na anotaci a pak vyberte položku \"Anotace\" v pravém bočním panelu, kde můžete upravit kategorii mikrotrubulárního defektu nebo typ dyneinových ramének."
+                "description": "Klikněte na anotaci a otevřete záložku Label v pravém panelu, kde můžete změnit kategorii defektu nebo další detaily."
             },
             "5": {
                 "title": "Potřebujete smazat anotaci?",
-                "description": "Klikněte na anotaci a pak vyberte položku \"Anotace\" v pravém bočním panelu, abyste ji smazali. Anotaci můžete také smazat pravým kliknutím myši."
+                "description": "Klikněte pravým tlačítkem myši na anotaci a vyberte možnost smazat, nebo ji vyberte a použijte záložku Label v pravém panelu."
             }
         }
     },
@@ -438,10 +481,10 @@
         "imageAIannotationsError": "AI anotace nebyly smazány",
         "imageReset": "Automatická anotace byla úspěšně obnovena",
         "imageResetError": "Automatická anotace nebyla obnovena",
-        "class": "Třída mikrotrubulárního defektu byla úspěšně vytvořena",
-        "classError": "Třída mikrotrubulárního defektu nebyla vytvořena",
-        "export": "Report byl úspěšně exportovány a projekt byl uložen",
-        "exportError": "Report nebyl exportován",
+        "class": "Kategorie defektu byla úspěšně vytvořena",
+        "classError": "Kategorii defektu se nepodařilo vytvořit",
+        "export": "Zpráva byla úspěšně exportována a projekt byl uložen",
+        "exportError": "Zpráva nebyla exportována",
         "save": "Projekt byl úspěšně uložen",
         "saveError": "Projekt nebyl uložen",
         "open": "Projekt byl úspěšně otevřen",

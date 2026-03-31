@@ -13,7 +13,7 @@
             "export": "Export report"
         },
         "tooltips": {
-            "ai": "Automatic annotation",
+            "ai": "Automatic label",
             "centerImage": "Center image",
             "chooseMicrotubularDefect": "Choose defect or category",
             "changeOpacity": "Change point opacity",
@@ -24,14 +24,18 @@
         "settings": {
             "settings": "Settings",
             "documentation": "Documentation",
-            "userFeedback": "Feedback"
+            "userFeedback": "Feedback",
+            "defectExamples": "Defect Examples",
+            "export": "Export report"
         },
         "reportProblem": "Report problem"
     },
     "leftSidebar": {
         "search": "Search image",
         "upload": "Upload images",
-        "dragAndDrop": "Choose files or drag them here"
+        "dragAndDrop": "Choose files or drag them here",
+        "searchDefect": "Search defect",
+        "microtubularDefect": "Defect category"
     },
     "rightSidebar": {
         "ProjectOverview": {
@@ -89,48 +93,48 @@
         "DeleteImage": "Delete image",
         "DeleteAnnotations": "Delete all labels",
         "DeleteAIAnnotations": "Delete AI labels",
-        "ResetAutomaticAnnotation": "Reset automatic annotation"
+        "ResetAutomaticAnnotation": "Reset automatic labeling"
     },
     "modals": {
         "export": {
-            "title": "Export Diagnosis Report",
-            "title2": "PCD Diagnosis Report will be exported as a XLSX file.",
+            "title": "Export Inspection Report",
+            "title2": "Pizza Inspection Report will be exported as a XLSX file.",
             "exportButton": "Export report"
         },
         "imageDeletion": {
-          "title": "Delete image",
-          "message": "Are you sure you want to delete this image?",
-          "confirmButton": "Delete",
-          "cancelButton": "Cancel"
+            "title": "Delete image",
+            "message": "Are you sure you want to delete this image?",
+            "confirmButton": "Delete",
+            "cancelButton": "Cancel"
         },
         "imageReviewed": {
-          "title": "Set image as reviewed",
-          "message": "Are you sure you want to set this image as reviewed?",
-          "confirmButton": "Set as reviewed",
-          "confirmButton2": "Set as unreviewed",
-          "cancelButton": "Cancel"
+            "title": "Set image as reviewed",
+            "message": "Are you sure you want to set this image as reviewed?",
+            "confirmButton": "Set as reviewed",
+            "confirmButton2": "Set as unreviewed",
+            "cancelButton": "Cancel"
         },
         "imageAnnotations": {
-          "title": "Delete all labels",
-          "message": "Are you sure you want to delete all labels for this image?",
-          "confirmButton": "Delete",
-          "cancelButton": "Cancel"
+            "title": "Delete all labels",
+            "message": "Are you sure you want to delete all labels for this image?",
+            "confirmButton": "Delete",
+            "cancelButton": "Cancel"
         },
         "imageAIannotations": {
-          "title": "Delete AI labels",
-          "message": "Are you sure you want to delete all AI labels for this image?",
-          "confirmButton": "Delete",
-          "cancelButton": "Cancel"
+            "title": "Delete AI labels",
+            "message": "Are you sure you want to delete all AI labels for this image?",
+            "confirmButton": "Delete",
+            "cancelButton": "Cancel"
         },
         "imageReset": {
-          "title": "Reset automatic annotation",
-          "message": "Are you sure you want to reset automatic annotation for this image?",
-          "confirmButton": "Reset",
-          "cancelButton": "Cancel"
+            "title": "Reset automatic labeling",
+            "message": "Are you sure you want to reset automatic labeling for this image?",
+            "confirmButton": "Reset",
+            "cancelButton": "Cancel"
         },
         "loading": {
             "title": "Loading",
-            "message": "AI modal is annotating image, please wait..."
+            "message": "AI modal is labeling image, please wait..."
         },
         "settings": {
             "title": "Settings",
@@ -142,15 +146,15 @@
                 "languageCZ": "CZ"
             },
             "defects": {
-                "title": "Microtubular defects",
-                "description": "Here you can manage microtubular defects.",
-                "formDescription": "Use the form below to add a new microtubular defect.",
-                "editButton": "Edit class",
-                "deleteButton": "Delete class",
-                "createButton": "Create class",
+                "title": "Defect categories",
+                "description": "Here you can manage defect categories.",
+                "formDescription": "Use the form below to add a new defect category.",
+                "editButton": "Edit category",
+                "deleteButton": "Delete category",
+                "createButton": "Create category",
                 "cancelButton": "Cancel",
-                "title2":"Managment of microtubular defects ",
-                "description2": "Below you can see the existing microtubular defect categories. You can edit or delete them as needed.",
+                "title2": "Management of defect categories",
+                "description2": "Below you can see the existing defect categories. You can edit or delete them as needed.",
                 "page": "Page",
                 "of": "of"
             }
@@ -168,7 +172,7 @@
                 "title": "Feedback",
                 "paragraph1": "Your feedback is essential to help us improve this application. By answering these questions, you help us understand what works well and what could be enhanced.",
                 "paragraph2": "We appreciate your time and insights!",
-                "question1": "1. I would use the app again for this task.", 
+                "question1": "1. I would use the app again for this task.",
                 "question2": "2. The app was easy to use.",
                 "question3": "3. It was clear how to perform actions within the app.",
                 "question4": "4. I encountered issues or errors that slowed me down.",
@@ -195,252 +199,291 @@
         "documentation": {
             "title": "Documentation",
             "about": {
-                "title": "About CiliaScan"
+                "title": "About PizzaScan"
             },
             "layout": {
                 "title": "Application Layout",
                 "layoutDescription": {
-                    "header": "Layout Description",
-                    "description": "Here is a brief description of the layout of the application.",
-                    "altText": "Application Layout"
+                    "header": "Overview",
+                    "description": "PizzaScan is divided into four main areas: the top navigation bar, the left sidebar, the central workspace, and the right sidebar."
                 },
                 "navigation": {
-                  "header": "Navigation",
-                  "description": "Navigation is located on top of the application. It provides the following functionalities:",
-                  "features": {
-                    "ai": "AI - Run automatic annotation for selected image.",
-                    "centerImage": "Center the image when it's zoomed or moved.",
-                    "undo": "Undo the last action.",
-                    "selectDefect": "Select microtubular defect for annotating. It can also be changed using the number keys on the keyboard.",
-                    "changeOpacity": "Change opacity of annotations.",
-                    "changeSize": "Change size of annotations.",
-                    "openProject": "Open project - Open existing project.",
-                    "saveProject": "Save project - Save current state of the project.",
-                    "exportProject": "Export report - Export diagnosis report into CSV file.",
-                    "openSettings": "Open settings. Here you can allow data collection,  change language of application, and change of microtubular defects.", 
-                    "openDocumentation": "Open documentation or user feedback questionnaire."
-                  }
+                    "header": "Navigation Bar",
+                    "description": "The navigation bar runs along the top of the application and contains the main tools:",
+                    "features": {
+                        "ai": "run automatic labeling on the currently open image.",
+                        "aiDetection": "detect individual pizzas and crop each one into a separate sub-image.",
+                        "centerImage": "Center image — fit the pizza into view after zooming or panning.",
+                        "undo": "Undo — reverse the last action.",
+                        "selectDefect": "Defect selector — choose the defect or category for new labels. Can also be switched with number keys.",
+                        "changeOpacity": "Opacity — adjust the transparency of labels.",
+                        "changeSize": "Point size — adjust the size of label markers.",
+                        "openProject": "Open project — load a previously saved project.",
+                        "saveProject": "Save project — save the current state of the project.",
+                        "exportProject": "Export report — export inspection results to an XLSX file.",
+                        "openSettings": "Settings — change language, configure defect categories, and manage data collection preferences.",
+                        "openDocumentation": "Help — open this documentation or browse defect examples."
+                    }
                 },
                 "leftSidebar": {
-                  "header": "Left Sidebar",
-                  "description": "Left sidebar is located on the left side of the application.",
-                  "imageUpload": "Images can be uploaded by clicking on the Upload button or drag-and-dropped to the left sidebar.",
-                  "imageInteractions": {
-                    "click": "By clicking on an image, it will be displayed in the main image area.",
-                    "rightClick": "By right-clicking on an image, you can delete it, mark it as reviewed, unseen, or delete all annotations for that image."
-                  },
-                  "annotationList": {
-                    "header": "Each image has a list of annotations with its counts below it."
-                  }
+                    "header": "Left Sidebar",
+                    "description": "The left sidebar lists all images in the current project. Images can be uploaded by clicking the Upload button or dragging and dropping files into the sidebar.",
+                    "imageInteractions": {
+                        "click": "Click an image to open it in the workspace.",
+                        "rightClick": "Right-click an image to delete it, mark it as reviewed or unseen, or remove all its labels.",
+                        "subImages": "When AI Detection is run, sub-images appear nested under the parent image. Click one to open it."
+                    },
+                    "annotationList": {
+                        "header": "Each image shows its label count. Expand it to see individual labels listed below."
+                    }
                 },
                 "mainImageArea": {
-                  "header": "Canvas",
-                  "description": "Canvas is located in the center of the application. It displays the selected image and all the annotations for that image.",
-                  "annotation": {
-                    "add": "By clicking on the image, you can add an annotation with the selected microtubular defect.",
-                    "changeDynein": "Dynein arms of an annotation can be changed by clicking on the annotation and selecting new dynein arms.",
-                    "delete": "Annotations can be deleted by right-clicking on them.",
-                    "details": "Clicking on an annotation will show its details on the right sidebar.",
-                    "move": "Annotation can be moved by dragging it.",
-                    "copyPaste": "Annotation can be copied by pressing CTRL+C and pasted by pressing CTRL+V."
-                  },
-                  "zoom": {
-                    "drag": "You can drag the image by holding the left mouse button and moving it. You can zoom in and out by scrolling the mouse wheel."
-                  }
+                    "header": "Workspace",
+                    "description": "The central workspace displays the selected image along with all its labels. This is where you inspect the pizza and make label decisions.",
+                    "annotation": {
+                        "add": "Click on the image to add a new label at that position.",
+                        "delete": "Right-click a label to delete it.",
+                        "details": "Click a label to select it and view its details in the right sidebar.",
+                        "move": "Drag a label to reposition it.",
+                        "copyPaste": "Copy a label with CTRL+C and paste it with CTRL+V."
+                    },
+                    "zoom": {
+                        "drag": "Hold the left mouse button and drag to pan the image. Use the mouse wheel to zoom in and out."
+                    },
+                    "subNavigation": {
+                        "header": "Sub-image Navigation",
+                        "description": "When viewing a sub-image, arrow controls appear at the bottom of the workspace. Use them to move to the previous or next sub-image without returning to the sidebar."
+                    }
                 },
                 "rightSidebar": {
-                  "header": "Right Sidebar",
-                  "description": "Right sidebar is located on the right side of the application. It is separated into three tabs - Project, Image, Annotation.",
-                  "projectOverview": {
-                    "header": "Tab Project",
-                    "description": "Tab Project displays general information about the project. Statistics about the project are displayed here. You can write the outcome of the diagnosis and add notes about the project."
-                  },
-                  "imageOverview": {
-                    "header": "Tab Image",
-                    "description": "Tab Image displays general information about the selected image. The image can be set as reviewed, unseen, or deleted. Annotations for the image can be deleted. You can also add notes about the image."
-                  },
-                  "annotationOverview": {
-                    "header": "Tab Annotation",
-                    "description": "Tab Annotation displays general information about the selected annotation. You can change the microtubular defect and dynein arms of the annotation, or update its parametres."
+                    "header": "Right Sidebar",
+                    "description": "The right sidebar is split into three tabs: Project, Image, and Label.",
+                    "projectOverview": {
+                        "header": "Tab: Project",
+                        "description": "Shows overall project statistics and lets you add notes or record the inspection outcome for the entire project."
+                    },
+                    "imageOverview": {
+                        "header": "Tab: Image",
+                        "description": "Shows details about the currently open image. You can mark it as reviewed or unseen, delete all its labels, or add image-level notes."
+                    },
+                    "annotationOverview": {
+                        "header": "Tab: Label",
+                        "description": "Shows details about the selected label. You can change its defect category and update any related fields."
                     }
-                }               
+                }
             },
             "manualTutorial": {
-                "title": "Manual annotation",
-                "step3": "Click on an annotation to change the dynein arm type. Simply click on the point until you’re satisfied with the selection.",
-                "repeat": "Repeat these steps until each cilium in every image is annotated.",
-                "newClass": "Need a different category? Create your own in the Settings.",
-                "title2": "Manual Annotation Process",
-                "description2": "This section explains the steps for manual annotation.",
-                "manualAnnotation": "Manual annotation is the process of manually annotating cilia in an image. This is done by marking each cilium with a point.",
-                "attributes": "Annotation (point) consists of two attributes: microtubular defect and dynein arms.",
-                "microtubularDefects": "Microtubular defects are characterized by the absence or misalignment of microtubules in the cilia. These defects can be indicative of PCD and are important to identify during the diagnostic process. The defect category is represented by the color of the annotation.",
-                "dyneinArms": "Dynein arms are protein complexes that help cilia move. Dynein arms are important for the proper function of cilia. The dynein arm type is represented by the mark of the annotation."
+                "title": "Manual Label",
+                "intro": "Manual Labeling lets you mark defect areas on pizza images by drawing labels. Each square is linked to a defect category represented by its color.",
+                "newClass": "Need a category that does not exist? Create your own in Settings.",
+                "steps": {
+                    "header": "Step-by-step",
+                    "step1": "Select an image from the left sidebar to open it in the workspace.",
+                    "step2": "Choose a defect or category using the colored selector in the top bar. Number keys switch categories quickly.",
+                    "step3": "Click on the pizza image to place a label.",
+                    "step4": "Add as many labels as needed. One per defect area.",
+                    "step5": "To edit a label, click it to select it, then use the Label tab on the right to change its category or update related fields.",
+                    "step6": "To delete a label, right-click it, or use the remove option in the Label tab."
+                }
             },
             "shortcuts": {
-              "title": "Key Shortcuts",
-              "description": "Here are the key shortcuts you can use:",
-              "table-col1": "Key",
-              "table-col2": "Action",
-              "shortcuts": {
-                "general": {
-                  "title": "General shortcuts",
-                  "CTRL+O": {
-                    "key": "CTRL+O",
-                    "description": "Open project"
-                  },
-                  "CTRL+S": {
-                    "key": "CTRL+S",
-                    "description": "Save project"
-                  },
-                  "CTRL+E": {
-                    "key": "CTRL+E",
-                    "description": "Export project report"
-                  }
-                },
-                "annotation": {
-                  "title": "Annotation shortcuts",
-                  "description": "Shortcuts to select microtubular defect can be changed in the Settings.",
-                  "CTRL+A": {
-                    "key": "CTRL+A",
-                    "description": "Crate new defect class"
-                  },
-                  "CTRL+C": {
-                    "key": "CTRL+C",
-                    "description": "Copy annotation"
-                  },
-                  "CTRL+V": {
-                    "key": "CTRL+V",
-                    "description": "Paste annotation"
-                  }
-                },
-                "navigation": {
-                  "title": "Toolbar shortcuts",
-                  "CTRL+Z": {
-                    "key": "CTRL+Z",
-                    "description": "Undo last action"
-                  },
-                  "CTRL+I": {
-                    "key": "CTRL+I",
-                    "description": "Center image"
-                  }
+                "title": "Key Shortcuts",
+                "description": "Here are the key shortcuts you can use:",
+                "table-col1": "Key",
+                "table-col2": "Action",
+                "shortcuts": {
+                    "general": {
+                        "title": "General shortcuts",
+                        "CTRL+O": {
+                            "key": "CTRL+O",
+                            "description": "Open project"
+                        },
+                        "CTRL+S": {
+                            "key": "CTRL+S",
+                            "description": "Save project"
+                        },
+                        "CTRL+E": {
+                            "key": "CTRL+E",
+                            "description": "Export project report"
+                        }
+                    },
+                    "annotation": {
+                        "title": "Label shortcuts",
+                        "description": "Shortcuts to select defect category can be changed in Settings.",
+                        "CTRL+A": {
+                            "key": "CTRL+A",
+                            "description": "Create new defect category"
+                        },
+                        "CTRL+C": {
+                            "key": "CTRL+C",
+                            "description": "Copy label"
+                        },
+                        "CTRL+V": {
+                            "key": "CTRL+V",
+                            "description": "Paste label"
+                        }
+                    },
+                    "navigation": {
+                        "title": "Toolbar shortcuts",
+                        "CTRL+Z": {
+                            "key": "CTRL+Z",
+                            "description": "Undo last action"
+                        },
+                        "CTRL+I": {
+                            "key": "CTRL+I",
+                            "description": "Center image"
+                        }
+                    }
                 }
-              }
-          }
+            },
+            "aiAnnotation": {
+                "title": "AI Label",
+                "intro": "AI Label automatically scans the current image and places labels around detected defect areas. You stay in control: review every suggestion and change anything you disagree with.",
+                "howItWorks": {
+                    "header": "How it works",
+                    "step1": "Open an image in the workspace, then click the AI button in the top bar.",
+                    "step2": "AI places labels on the image. Each square has a color representing the detected defect type and a confidence level.",
+                    "step3": "Click any label to open a review popup. The popup shows the detected defect type and confidence.",
+                    "step4": "Click Accept to keep the suggestion as-is, or Decline to remove it.",
+                    "step5": "You can also freely move, resize, or change the defect category of any label, just like with manual labels."
+                },
+                "confidence": {
+                    "header": "Confidence levels",
+                    "description": "Each AI suggestion comes with a confidence level: High, Medium, or Low. Low confidence means the AI was less certain. These labels deserve extra attention."
+                },
+                "tip": "AI Label is a starting point. It is faster than labeling from scratch, but you should always review the results. Incorrect suggestions can be declined or corrected."
+            },
+            "aiDetection": {
+                "title": "AI Detection",
+                "intro": "AI Detection finds individual pizzas within a single camera image and crops each one into a separate sub-image. This lets you inspect and label each pizza one by one.",
+                "howItWorks": {
+                    "header": "How it works",
+                    "step1": "Open an image containing multiple pizzas, then click the AI Detection button in the top bar.",
+                    "step2": "Sub-images are created automatically and listed in the left sidebar under the original image.",
+                    "step3": "Click a sub-image to open it in the workspace, or use the arrows at the bottom of the workspace to navigate between sub-images.",
+                    "step4": "Label each sub-image manually or use the AI button to get automatic suggestions.",
+                    "step5": "Labels added to a sub-image also appear on the original image, so you always have the full picture."
+                },
+                "tip": "AI Detection is a starting point. You can remove incorrectly detected sub-images or manually handle any pizzas that were missed."
+            }
         },
         "statistics": {
             "title": "Statistics",
-            "total": "Total number of annotated cilia",
-            "totalMTDs": "Total number of annotated cilia with microtubular defect",
-            "totalDA": "Total number of annotated cilia with dynein arms",
-            "totalIDA": "Total number of annotated cilia without inner dynein arms",
-            "totalODA": "Total number of annotated cilia without outer dynein arms"
+            "total": "Total number of labeled cilia",
+            "totalMTDs": "Total number of labeled cilia with microtubular defect",
+            "totalDA": "Total number of labeled cilia with dynein arms",
+            "totalIDA": "Total number of labeled cilia without inner dynein arms",
+            "totalODA": "Total number of labeled cilia without outer dynein arms"
+        },
+        "defectExamples": {
+            "title": "Defect Examples",
+            "subtitle": "Visual reference for each defect category used in pizza inspection."
         }
     },
-    "welcome":{
+    "welcome": {
         "welcome": {
-          "title": "Welcome to PizzaScan",
-          "description": "Inspect pizzas one by one, work faster, stay organized, and cut down on repetitive work.",
-          "goal": ""
+            "title": "Welcome to PizzaScan",
+            "description": "Inspect pizzas one by one, work faster, stay organized, and cut down on repetitive work.",
+            "goal": ""
         },
         "aiModel": {
-          "title": "AI assistance",
-          "usage": "PizzaScan can suggest initial annotations and highlight regions to inspect, so you spend less time on repetitive pointing and clicking, and more time on review decisions.",
-          "training": "The model was trained on a diverse set of pizza inspection images.",
-          "evolving": "Suggestions are not guaranteed to be perfect: edge cases, unusual toppings, lighting, or occlusion can still be challenging. Treat AI output as a starting point: verify, correct when needed, and share feedback so the system can improve."
+            "title": "AI assistance",
+            "usage": "PizzaScan can suggest initial labels and highlight regions to inspect, so you spend less time on repetitive pointing and clicking, and more time on review decisions.",
+            "training": "The model was trained on a diverse set of pizza inspection images.",
+            "evolving": "Suggestions are not guaranteed to be perfect: edge cases, unusual toppings, lighting, or occlusion can still be challenging. Treat AI output as a starting point: verify, correct when needed, and share feedback so the system can improve."
         },
         "experience": {
-          "title": "Usage data & privacy",
-          "dataCollection": "To improve AI localization and annotation, we'd like your permission to collect anonymized usage data about how you interact with AI features, including how often you use them, whether you accept or modify suggestions, and how you work with generated results.",
-          "whyData": "Why data collection?",
-          "insights": "This data is used only to understand usage patterns and improve our AI features. You can change this preference later in Settings.",
-          "agreement": "I understand and agree to the collection of anonymized usage data as described above."
+            "title": "Usage data & privacy",
+            "dataCollection": "To improve AI localization and label, we'd like your permission to collect anonymized usage data about how you interact with AI features, including how often you use them, whether you accept or modify suggestions, and how you work with generated results.",
+            "whyData": "Why data collection?",
+            "insights": "This data is used only to understand usage patterns and improve our AI features. You can change this preference later in Settings.",
+            "agreement": "I understand and agree to the collection of anonymized usage data as described above."
         }
-    },      
+    },
     "layoutTutorial": {
         "title": "App layout",
         "steps": "of 7 steps",
         "step1": "Welcome to the tutorial! This tour highlights the main areas of PizzaScan: top bar, sidebars, and workspace.",
-        "step2": "Use the AI button to automatically annotate the image, and the AI Detection button to detect pizzas on the image and crop them into individual images.",
+        "step2": "Use the AI button to automatically label the image, and the AI Detection button to detect pizzas on the image and crop them into individual images.",
         "step3": "Use the Center image button to fit the pizza in view, and the Undo button to reverse your last change.",
-        "step4": "Use these controls to choose the defect or category for annotations, and to adjust point size and opacity so marks are easy to see on the pizza.",
-        "step5": "The left sidebar lists your images; expand an image to see its annotations underneath.",
-        "step6": "The center is your workspace: inspect the pizza, add or adjust annotations, and zoom or pan to see details.",
-        "step7": "The right sidebar has Project, Image, and Annotation tabs for summaries and details. Click a tab to switch."
+        "step4": "Use these controls to choose the defect or category for labels, and to adjust point size and opacity so marks are easy to see on the pizza.",
+        "step5": "The left sidebar lists your images; expand an image to see its labels underneath.",
+        "step6": "The center is your workspace: inspect the pizza, add or adjust labels, and zoom or pan to see details.",
+        "step7": "The right sidebar has Project, Image, and Label tabs for summaries and details. Click a tab to switch."
     },
     "manualAnnotationTutorial": {
-        "title": "Manual annotation",
+        "title": "Manual labeling",
         "steps": "of 7 steps",
-        "step1": "This short guide walks you through manual annotation on pizza images.",
+        "step1": "This short guide walks you through manual labeling on pizza images.",
         "step2": "Select an image in the left sidebar to open it.",
         "step3": "Pick a defect or category in the top bar (colored selector).",
-        "step4": "Click on the pizza image to add an annotation.",
-        "step5": "You can add more than one annotation on the same pizza image.",
-        "step6": "To edit an annotation, select it and use the Annotation tab on the right to change the defect category and related fields.",
-        "step7": "To delete an annotation, right-click it, or remove it in the Annotation tab on the right."
+        "step4": "Click on the pizza image to add a label.",
+        "step5": "You can add more than one label on the same pizza image.",
+        "step6": "To edit a label, select it and use the Label tab on the right to change the defect category and related fields.",
+        "step7": "To delete a label, right-click it, or remove it in the Label tab on the right."
     },
     "aiDetectionTutorial": {
         "title": "AI Detection",
         "steps": "of 5 steps",
         "step1": "This short guide walks you through AI Detection. AI finds individual pizzas on the image and crops each one into a separate sub-image.",
         "step2": "Sub-images appear in the left sidebar, listed under the original image. Click one to open it in the workspace.",
-        "step3": "Annotate each sub-image just like a regular image. Your annotations are linked to that sub-image.",
-        "step4": "Any annotation you add to a sub-image also appears on the main image. You always have the full picture.",
-        "step5": "You can annotate sub-images manually, or let AI do it automatically using the AI button."
+        "step3": "Label each sub-image just like a regular image. Your labels are linked to that sub-image.",
+        "step4": "Any label you add to a sub-image also appears on the main image. You always have the full picture.",
+        "step5": "You can label sub-images manually, or let AI do it automatically using the AI button."
     },
     "AItutorial": {
-        "title": "AI annotation",
+        "title": "AI Labeling",
         "steps": "of 5 steps",
-        "step1": "This short guide walks you through reviewing AI-suggested annotations on pizza images. You stay in control. Only change what needs changing.",
-        "step2": "When you run AI annotation, AI suggests a defect category for each pizza on the image.",
-        "step3": "Each annotation square is color-coded by confidence: green is high, orange is medium, and red means the suggestion most likely needs a change.",
-        "step4": "Click an annotation square to open a review panel. Change the defect category if needed, then press Accept to keep it or Decline to remove it. Everything else stays as AI suggested.",
-        "step5": "To edit more details, select the annotation and use the Annotation tab on the right sidebar."
+        "step1": "This short guide walks you through reviewing AI-suggested labels on pizza images. You stay in control. Only change what needs changing.",
+        "step2": "When you run AI Labeling, AI suggests a defect category for each pizza on the image.",
+        "step3": "Each label is color-coded by confidence: green is high, orange is medium, and red means the suggestion most likely needs a change.",
+        "step4": "Click a label to open a review panel. Change the defect category if needed, then press Accept to keep it or Decline to remove it. Everything else stays as AI suggested.",
+        "step5": "To edit more details, select the label and use the Label tab on the right sidebar."
     },
     "manualAnnotationTutorialDocumentation": {
-        "title": "Manual Annotation Tutorial",
+        "title": "Manual Labeling",
         "steps": {
-          "0": {
-            "title": "Step 1: Open the Image",
-            "description": "Select the image you want to annotate by clicking on it in the list of images in the Left Sidebar."
-          },
-          "1": {
-            "title": "Step 2: Choose a Microtubular Defect Type",
-            "description": "In the navigation, select a category of defect by clicking the \"Choose Microtubular Defect\" button. You can also switch categories using the numeric keys."
-          },
-          "2": {
-            "title": "Step 3: Create Annotations",
-            "description": "Click on the image to add an annotation. You can place multiple annotations on the same image."
-          },
-          "3": {
-            "title": "Step 4: Select Dynein Arm Type",
-            "description": "Click on an annotation to change the dynein arm type. Simply click on the point until you’re satisfied with the selection. Repeat these steps until each cilium in every image is annotated."
-          },
-          "4": {
-            "title": "Need to Edit an Annotation?",
-            "description": "Click on the annotation, then select tab \"Annotation\" in the Right Sidebar to edit the microtubular defect category or dynein arms type."
-          },
-          "5": {
-            "title": "Need to Delete an Annotation?",
-            "description": "Click on the annotation, then select tab \"Annotation\" in the Right Sidebar to delete it. You can also delete an annotation by right-clicking on it."
-          }
-    }
-  },
-  "status": {
-        "aiDone": "AI annotation done",
-        "aiError": "AI annotation failed",
+            "0": {
+                "title": "Step 1: Open the Image",
+                "description": "Select the image you want to label by clicking on it in the left sidebar."
+            },
+            "1": {
+                "title": "Step 2: Choose a Defect Category",
+                "description": "In the navigation bar, select a defect category using the colored selector. You can also switch categories using the numeric keys."
+            },
+            "2": {
+                "title": "Step 3: Create Labels",
+                "description": "Click on the pizza image to add a label. You can place multiple labels on the same image."
+            },
+            "3": {
+                "title": "Step 4: Review Your Labels",
+                "description": "Each label is shown as a colored square. Click on it to select it and review or confirm its defect category in the right sidebar."
+            },
+            "4": {
+                "title": "Need to Edit an Label?",
+                "description": "Click on a label, then open the Label tab in the right sidebar to change the defect category or any related details."
+            },
+            "5": {
+                "title": "Need to Delete an Label?",
+                "description": "Right-click a label to delete it directly, or select it and use the Label tab in the right sidebar."
+            }
+        }
+    },
+    "status": {
+        "aiDone": "AI Labeling done",
+        "aiError": "AI Labeling failed",
         "images": "Images were successfully uploaded",
         "imagesError": "Images were not uploaded",
         "imageDeletion": "Image was successfully deleted",
         "imageDeletionError": "Image was not deleted",
-        "imageAnnotations": "Annotations were successfully deleted",
-        "imageAnnotationsError": "Annotations were not deleted",
-        "imageAIannotations": "AI annotations were successfully deleted",
-        "imageAIannotationsError": "AI annotations were not deleted",
-        "imageReset": "Automatic annotation was successfully reset",
-        "imageResetError": "Automatic annotation was not reset",
-        "class": "Microtubular defect class was successfully created",
-        "classError": "Microtubular defect class was not created",
+        "imageAnnotations": "Labels were successfully deleted",
+        "imageAnnotationsError": "Labels were not deleted",
+        "imageAIannotations": "AI labels were successfully deleted",
+        "imageAIannotationsError": "AI labels were not deleted",
+        "imageReset": "Automatic label was successfully reset",
+        "imageResetError": "Automatic label was not reset",
+        "class": "Defect category was successfully created",
+        "classError": "Defect category was not created",
         "export": "Report was successfully exported and project was saved",
         "exportError": "Report was not exported",
         "save": "Project was successfully saved",
@@ -451,8 +494,8 @@
         "drag": "Move image by dragging it",
         "undo": "Last action was undone",
         "upload": "Loading images, please wait...",
-        "copy": "Annotation copied, press CTRL+V to paste",
-        "paste": "Annotation pasted",
+        "copy": "Label copied, press CTRL+V to paste",
+        "paste": "Label pasted",
         "undoDelete": "Undo deletion of defect category",
         "undoDeleteConfirm": "Undo"
     }
