@@ -5,18 +5,18 @@
     <template v-if="isAIAnnotation && explainability">
       <div class="ai-card" :class="cardClass">
 
-        <!-- Header: title + pill -->
+        <!-- Header: title left, pill right -->
         <div class="ai-card-header">
           <span class="ai-card-title">AI Assessment</span>
           <span class="confidence-pill" :class="confidenceClass">{{ confidenceLabel }}</span>
         </div>
 
-        <!-- Action hint — most important, reads first -->
+        <!-- Action hint — directly under confidence tag -->
         <p class="action-hint">{{ actionHint }}</p>
 
         <div class="ai-divider"></div>
 
-        <!-- Reasoning — supporting detail -->
+        <!-- Reasoning — main LLM explanation -->
         <p class="reasoning-text">{{ explainability.reasoning }}</p>
 
         <div class="ai-divider"></div>
@@ -134,8 +134,9 @@ const alternativeColor = computed(() => {
 
 .ai-card-header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
 }
 
 .ai-card-title {
@@ -149,7 +150,7 @@ const alternativeColor = computed(() => {
 .confidence-pill {
   font-size: 0.75rem;
   font-weight: 600;
-  padding: 2px 9px;
+  padding: 3px 12px;
   border-radius: 20px;
 }
 
@@ -157,11 +158,11 @@ const alternativeColor = computed(() => {
 .label-check      { color: #D4920A; background: #d4920a30; }
 .label-correction { color: #E05C3A; background: #e05c3a30; }
 
-.action-hint {
+.reasoning-text {
   font-size: 0.82rem;
-  font-weight: 600;
-  color: rgba(235, 235, 235, 0.9);
-  line-height: 1.5;
+  font-weight: 500;
+  color: rgba(235, 235, 235, 0.88);
+  line-height: 1.65;
   margin: 0;
 }
 
@@ -170,10 +171,11 @@ const alternativeColor = computed(() => {
   background: rgba(255, 255, 255, 0.06);
 }
 
-.reasoning-text {
-  font-size: 0.77rem;
-  color: rgba(235, 235, 235, 0.5);
-  line-height: 1.6;
+.action-hint {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: rgba(235, 235, 235, 0.4);
+  line-height: 1.5;
   margin: 0;
 }
 

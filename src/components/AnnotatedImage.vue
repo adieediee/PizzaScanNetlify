@@ -31,34 +31,36 @@
       @click.stop
     >
       <div class="popup-header">
-        <div class="popup-title">
-          AI SUGGESTION
-        </div>
-        <div class="popup-confidence" :class="getConfidenceClass(aiReviewPopup.annotation.confidence)">
+        <span class="popup-title">AI Suggestion</span>
+        <span class="popup-badge" :class="getConfidenceClass(aiReviewPopup.annotation.confidence)">
           {{ formatConfidence(aiReviewPopup.annotation.confidence) }}
-        </div>
+        </span>
       </div>
       <div class="popup-body">
-        <div class="popup-label">DEFECT TYPE</div>
-        <div class="popup-select-wrapper">
-          <select
-            class="popup-defect-select"
-            :value="aiReviewPopup.annotation.microtubularDefectValue"
-            @change="handlePopupDefectTypeChange($event)"
-          >
-            <option
+        <span class="popup-section-label">Defect type</span>
+        <div class="popup-dropdown" :class="{ open: popupDropdownOpen }">
+          <div class="popup-dropdown-trigger" @click.stop="popupDropdownOpen = !popupDropdownOpen">
+            <span class="popup-dot" :style="{ background: selectedPopupDefect?.color }"></span>
+            <span class="popup-dropdown-value">{{ selectedPopupDefect?.name }}</span>
+            <fa :icon="['fas', 'chevron-down']" class="popup-dropdown-chevron" />
+          </div>
+          <div v-if="popupDropdownOpen" class="popup-dropdown-list" @click.stop>
+            <div
               v-for="defect in annotationStore.microtubularDefects"
               :key="defect.value"
-              :value="defect.value"
+              class="popup-dropdown-item"
+              :class="{ active: defect.value === aiReviewPopup.annotation?.microtubularDefectValue }"
+              @click.stop="handlePopupDefectSelect(defect)"
             >
+              <span class="popup-dot" :style="{ background: defect.color }"></span>
               {{ defect.name }}
-            </option>
-          </select>
+            </div>
+          </div>
         </div>
       </div>
       <div class="popup-footer">
-        <button class="popup-btn popup-btn-delete" @click="deleteAiAnnotation">Delete</button>
-        <button class="popup-btn popup-btn-accept" @click="acceptAiAnnotation">Accept</button>
+        <button class="popup-btn-delete" @click="deleteAiAnnotation">Delete</button>
+        <button class="popup-btn-accept" @click="acceptAiAnnotation">Accept</button>
       </div>
     </div>
 
@@ -84,7 +86,7 @@ import { useImageStore } from '@/stores/ImageStore';
 import { useBoardingStore } from '@/stores/BoardingStore';
 import { useFeedbackToastStore } from '@/stores/FeedbackToastStore';
 import { useTrustCalibrationStore } from '@/stores/TrustCalibrationStore';
-import { onMounted, watch, ref, defineExpose, nextTick, onUnmounted } from 'vue';
+import { onMounted, watch, ref, computed, defineExpose, nextTick, onUnmounted } from 'vue';
 import { useWebsocketStore } from '@/stores/websocketStore';
 
 import Tv17 from '@/assets/images/Tv17.png';
@@ -115,9 +117,27 @@ const aiReviewPopup = ref({
   annotation: null
 });
 
+const popupDropdownOpen = ref(false);
+
+const selectedPopupDefect = computed(() =>
+  annotationStore.microtubularDefects.find(
+    d => d.value === aiReviewPopup.value.annotation?.microtubularDefectValue
+  )
+);
+
 const closeAiReviewPopup = () => {
   aiReviewPopup.value.visible = false;
   aiReviewPopup.value.annotation = null;
+  popupDropdownOpen.value = false;
+};
+
+const handlePopupDefectSelect = (defect) => {
+  const popupAnnotation = aiReviewPopup.value.annotation;
+  if (!popupAnnotation) return;
+  annotationStore.updateAnnotationDefect(popupAnnotation.id, defect.name);
+  popupAnnotation.defectColor = defect.color;
+  popupDropdownOpen.value = false;
+  closeAiReviewPopup();
 };
 
 const acceptAiAnnotation = () => {
@@ -1091,113 +1111,175 @@ canvas {
 
 .annotation-review-popup {
   position: fixed;
-  width: 320px;
-  background: #1a2540;
+  width: 310px;
+  background: #1c1c2e;
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 14px;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7), 0 2px 8px rgba(0, 0, 0, 0.4);
   z-index: 1000;
   color: #ffffff;
-  overflow: hidden;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .popup-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 18px 20px 16px;
+  justify-content: space-between;
 }
 
 .popup-title {
-  font-size: 15px;
-  letter-spacing: 1px;
+  font-size: 0.9rem;
   font-weight: 700;
   color: #ffffff;
-  text-transform: uppercase;
 }
 
-.popup-confidence {
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
+.popup-badge {
+  font-size: 0.72rem;
   font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
   white-space: nowrap;
 }
 
-.confidence-high {
-  background: #4CAF50;
-  color: #ffffff;
-}
-
-.confidence-medium {
-  background: #D4920A;
-  color: #ffffff;
-}
-
-.confidence-low {
-  background: #E05C3A;
-  color: #ffffff;
-}
+.confidence-high   { color: #4CAF50; background: rgba(76, 175, 80, 0.15); border: 1px solid rgba(76, 175, 80, 0.3); }
+.confidence-medium { color: #D4920A; background: rgba(212, 146, 10, 0.15); border: 1px solid rgba(212, 146, 10, 0.3); }
+.confidence-low    { color: #E05C3A; background: rgba(224, 92, 58, 0.15); border: 1px solid rgba(224, 92, 58, 0.3); }
 
 .popup-body {
-  padding: 16px 20px 20px;
-}
-
-.popup-label {
-  font-size: 11px;
-  letter-spacing: 1.2px;
-  font-weight: 600;
-  color: #8a96b0;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-
-.popup-select-wrapper {
   display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
-.popup-defect-select {
-  width: 100%;
-  min-height: 42px;
-  border-radius: 8px;
-  border: 1px solid #2d3d60;
-  background: #131f38;
-  color: #d5dbe8;
-  padding: 0 12px;
-  font-size: 14px;
+.popup-section-label {
+  font-size: 0.7rem;
   font-weight: 600;
-  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.popup-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.popup-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: border-color 0.15s;
+  user-select: none;
+}
+
+.popup-dropdown-trigger:hover,
+.popup-dropdown.open .popup-dropdown-trigger {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.popup-dropdown-value {
+  flex: 1;
+}
+
+.popup-dropdown-chevron {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.35);
+  transition: transform 0.15s;
+}
+
+.popup-dropdown.open .popup-dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.popup-dropdown-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #252538;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 10;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.popup-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.popup-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.popup-dropdown-item.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.popup-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .popup-footer {
   display: flex;
-  justify-content: space-between;
-  padding: 0 20px 20px;
-  gap: 10px;
+  gap: 8px;
 }
 
-.popup-btn {
+.popup-btn-delete,
+.popup-btn-accept {
   flex: 1;
   border: none;
-  border-radius: 10px;
-  padding: 12px;
-  font-size: 15px;
-  font-weight: 700;
-  color: #ffffff;
+  border-radius: 8px;
+  padding: 9px;
+  font-size: 0.82rem;
+  font-weight: 600;
   cursor: pointer;
   transition: opacity 0.15s;
 }
 
-.popup-btn:hover {
-  opacity: 0.88;
+.popup-btn-delete:hover,
+.popup-btn-accept:hover {
+  opacity: 0.85;
 }
 
 .popup-btn-delete {
-  background: #f07070;
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.popup-btn-delete:hover {
+  color: #E05C3A;
+  background: rgba(224, 92, 58, 0.12);
+  border-color: rgba(224, 92, 58, 0.25);
+  opacity: 1;
 }
 
 .popup-btn-accept {
-  background: #22c57a;
+  background: #3E63DD;
+  color: #ffffff;
 }
 
 @media (max-width: 1024px) {

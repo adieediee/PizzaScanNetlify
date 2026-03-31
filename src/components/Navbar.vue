@@ -72,21 +72,21 @@
               class="ai-filter-item"
               :style="aiFilterItemStyle('#E05C3A', canvasStore.aiVisibilityFilter.showInspection)"
               @click="canvasStore.aiVisibilityFilter.showInspection = !canvasStore.aiVisibilityFilter.showInspection">
-              <span class="ai-filter-check">{{ canvasStore.aiVisibilityFilter.showInspection ? '✓' : '' }}</span>
+              <span class="ai-filter-check"><fa v-if="canvasStore.aiVisibilityFilter.showInspection" :icon="['fas', 'check']" /></span>
               May need correction
             </div>
             <div
               class="ai-filter-item"
               :style="aiFilterItemStyle('#D4920A', canvasStore.aiVisibilityFilter.showReview)"
               @click="canvasStore.aiVisibilityFilter.showReview = !canvasStore.aiVisibilityFilter.showReview">
-              <span class="ai-filter-check">{{ canvasStore.aiVisibilityFilter.showReview ? '✓' : '' }}</span>
+              <span class="ai-filter-check"><fa v-if="canvasStore.aiVisibilityFilter.showReview" :icon="['fas', 'check']" /></span>
               Needs check
             </div>
             <div
               class="ai-filter-item"
               :style="aiFilterItemStyle('#4CAF50', canvasStore.aiVisibilityFilter.showConfident)"
               @click="canvasStore.aiVisibilityFilter.showConfident = !canvasStore.aiVisibilityFilter.showConfident">
-              <span class="ai-filter-check">{{ canvasStore.aiVisibilityFilter.showConfident ? '✓' : '' }}</span>
+              <span class="ai-filter-check"><fa v-if="canvasStore.aiVisibilityFilter.showConfident" :icon="['fas', 'check']" /></span>
               Likely correct
             </div>
           </div>
