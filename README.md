@@ -67,35 +67,15 @@ Each AI label has a color indicating its confidence level:
 | 🟠 Orange | Medium — needs check        | Review carefully, then accept or decline |
 | 🔴 Red    | Low — most likely incorrect | Decline or correct                       |
 
-**Accepting a label:** click the label → click **Accept** to keep it (converts to a manual label).
-
-**Declining a label:** click the label → click **Decline** to remove it.
-
-**Accepting all at once:** click **Accept all** in the AI Annotation Summary panel on the right.
-
 > After 3 overrides of high-confidence (green) labels, a feedback prompt appears asking why you overrode the AI.
 
 ---
 
 ## Trust calibration
 
-The app monitors how quickly you accept or decline labels and shows a nudge message if your behavior seems off:
-
-- **5 accepts in a row within 12 seconds** → *"AI suggestions may not always be correct. Please review them before confirming."*
-- **5 declines in a row within 12 seconds** (on medium or high confidence labels) → *"AI suggestions have a high success rate and can save you time. At least try to review them before rejecting them."*
+- **5 accepts in a row within 12 seconds** → _"AI suggestions may not always be correct. Please review them before confirming."_
+- **5 declines in a row within 12 seconds** (on medium or high confidence labels) → _"AI suggestions have a high success rate and can save you time. At least try to review them before rejecting them."_
 
 The message appears as a banner at the top of the screen and disappears after 8 seconds or when closed manually.
-
----
-
-## What the colleague implemented
-
-- Privacy consent screen at startup (option to decline data collection)
-- Trust calibration banner (described above)
-- Onboarding / tutorial flow for AI detection and AI labeling
-- Defect type examples modal (visual reference for each defect category)
-- Removed "Other" category from defect types
-- Unsupported pizza images trigger an AI error screen (banana, sardine)
-- Feedback response after submitting override reason
 
 ---
