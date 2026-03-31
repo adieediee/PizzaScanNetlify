@@ -9,51 +9,67 @@
       @click.stop
     >
       <div class="toast-glow" aria-hidden="true"></div>
-      <div class="toast-header">
-        <span class="toast-title">Why did you override the AI?</span>
-        <button class="toast-close" @click="skip" aria-label="Close">
-          <fa :icon="['fas', 'xmark']" />
-        </button>
-      </div>
 
-      <div class="toast-options">
-        <button
-          v-for="opt in PRESET_OPTIONS"
-          :key="opt"
-          class="option-btn"
-          :class="{ selected: selectedReason === opt }"
-          @click="selectReason(opt)"
-        >
-          <span class="option-radio">
-            <span class="option-radio-inner" v-if="selectedReason === opt" />
-          </span>
-          {{ opt }}
-        </button>
-
-        <div class="option-btn other-option" :class="{ selected: otherActive }">
-          <span class="option-radio">
-            <span class="option-radio-inner" v-if="otherActive" />
-          </span>
-          <input
-            ref="otherInputRef"
-            v-model="otherText"
-            class="other-input"
-            placeholder="Other reason..."
-            maxlength="200"
-            @focus="onOtherFocus"
-            @input="onOtherInput"
-          />
+      <template v-if="thanksMode">
+        <div class="thanks-body">
+          <fa :icon="['fas', 'circle-check']" class="thanks-icon" />
+          <div>
+            <div class="toast-title">{{ $t('modals.reportProblem.thanksTitle') }}</div>
+            <p class="thanks-text">{{ $t('modals.reportProblem.thanksBody') }}</p>
+          </div>
         </div>
-      </div>
+        <div class="toast-timer">
+          <div class="timer-bar" :style="{ width: thanksPct + '%' }"></div>
+        </div>
+      </template>
 
-      <div v-if="!timerStopped" class="toast-timer">
-        <div class="timer-bar" :style="{ width: timerPct + '%' }"></div>
-      </div>
+      <template v-else>
+        <div class="toast-header">
+          <span class="toast-title">Why did you override the AI?</span>
+          <button class="toast-close" @click="skip" aria-label="Close">
+            <fa :icon="['fas', 'xmark']" />
+          </button>
+        </div>
 
-      <div class="toast-actions">
-        <button class="btn-skip" @click="skip">Skip</button>
-        <button class="btn-submit" :disabled="!canSubmit" @click="submit">Submit</button>
-      </div>
+        <div class="toast-options">
+          <button
+            v-for="opt in PRESET_OPTIONS"
+            :key="opt"
+            class="option-btn"
+            :class="{ selected: selectedReason === opt }"
+            @click="selectReason(opt)"
+          >
+            <span class="option-radio">
+              <span class="option-radio-inner" v-if="selectedReason === opt" />
+            </span>
+            {{ opt }}
+          </button>
+
+          <div class="option-btn other-option" :class="{ selected: otherActive }">
+            <span class="option-radio">
+              <span class="option-radio-inner" v-if="otherActive" />
+            </span>
+            <input
+              ref="otherInputRef"
+              v-model="otherText"
+              class="other-input"
+              placeholder="Other reason..."
+              maxlength="200"
+              @focus="onOtherFocus"
+              @input="onOtherInput"
+            />
+          </div>
+        </div>
+
+        <div v-if="!timerStopped" class="toast-timer">
+          <div class="timer-bar" :style="{ width: timerPct + '%' }"></div>
+        </div>
+
+        <div class="toast-actions">
+          <button class="btn-skip" @click="skip">Skip</button>
+          <button class="btn-submit" :disabled="!canSubmit" @click="submit">Submit</button>
+        </div>
+      </template>
     </div>
   </Transition>
 </template>
@@ -63,7 +79,6 @@ import { ref, computed, watch, nextTick, onUnmounted } from 'vue';
 import { useFeedbackToastStore } from '@/stores/FeedbackToastStore';
 import { useLoggingStore } from '@/stores/LoggStore';
 import { useCanvasStore } from '@/stores/CanvasStore';
-import { useModalStore } from '@/stores/ModalStore';
 
 const GAP = 16;
 
@@ -75,10 +90,10 @@ const PRESET_OPTIONS = [
 const toastStore = useFeedbackToastStore();
 const loggingStore = useLoggingStore();
 const canvasStore = useCanvasStore();
-const modalStore = useModalStore();
 
 const TIMER_DURATION = 15000;
 const TIMER_STEP = 100;
+const THANKS_DURATION = 3000;
 
 const selectedReason = ref(null);
 const otherText = ref('');
@@ -87,8 +102,12 @@ const toastRight = ref(GAP);
 const toastBottom = ref(GAP);
 const timerPct = ref(100);
 const timerStopped = ref(false);
+const thanksMode = ref(false);
+const thanksPct = ref(100);
 let dismissTimer = null;
 let timerInterval = null;
+let thanksTimer = null;
+let thanksInterval = null;
 
 const otherActive = computed(() => otherText.value.trim().length > 0 || (selectedReason.value === null && document.activeElement === otherInputRef.value));
 
@@ -152,7 +171,13 @@ function resetState() {
   otherText.value = '';
   timerPct.value = 100;
   timerStopped.value = false;
+  thanksMode.value = false;
+  thanksPct.value = 100;
   stopTimer();
+  clearTimeout(thanksTimer);
+  clearInterval(thanksInterval);
+  thanksTimer = null;
+  thanksInterval = null;
 }
 
 function skip() {
@@ -165,9 +190,20 @@ function submit() {
   stopTimer();
   const reason = otherText.value.trim() || selectedReason.value;
   loggingStore.submitOverrideFeedback(reason, null, toastStore.currentImageId);
-  toastStore.dismiss();
-  resetState();
-  modalStore.openModal('reportProblem', { initialPhase: 'thanks' });
+  selectedReason.value = null;
+  otherText.value = '';
+  timerStopped.value = false;
+  thanksMode.value = true;
+  thanksPct.value = 100;
+  let elapsed = 0;
+  thanksInterval = setInterval(() => {
+    elapsed += TIMER_STEP;
+    thanksPct.value = Math.max(0, 100 - (elapsed / THANKS_DURATION) * 100);
+  }, TIMER_STEP);
+  thanksTimer = setTimeout(() => {
+    toastStore.dismiss();
+    resetState();
+  }, THANKS_DURATION);
 }
 
 watch(() => toastStore.visible, (visible) => {
@@ -182,7 +218,11 @@ watch(() => toastStore.visible, (visible) => {
 });
 
 
-onUnmounted(() => stopTimer());
+onUnmounted(() => {
+  stopTimer();
+  clearTimeout(thanksTimer);
+  clearInterval(thanksInterval);
+});
 
 // Dismiss toast when navigating to a different image
 watch(() => canvasStore.selectedImage?.imageId, (newId, oldId) => {
@@ -232,6 +272,26 @@ watch(() => canvasStore.selectedImage?.imageId, (newId, oldId) => {
 @keyframes micro-out {
   from { transform: translateY(0); opacity: 1; }
   to   { transform: translateY(8px); opacity: 0; }
+}
+
+.thanks-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.thanks-icon {
+  font-size: 1.2rem;
+  color: #55cc88;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.thanks-text {
+  margin: 4px 0 0;
+  font-size: 0.76rem;
+  color: #9090b8;
+  line-height: 1.4;
 }
 
 .feedback-toast {
