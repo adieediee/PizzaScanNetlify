@@ -131,7 +131,7 @@
         },
         "loading": {
             "title": "Načítava sa...",
-            "message": "AI modal anotuje snímku, prosím čakajte..."
+            "message": "AI model anotuje snímku, prosím čakajte..."
         },
         "settings": {
             "title": "Nastavenia",

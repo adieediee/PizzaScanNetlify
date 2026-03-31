@@ -45,6 +45,22 @@
     <div class="navbar-middle">
       <div class="toolbar-pill">
 
+        <!-- AI Detection -->
+        <div class="toolbar-item">
+          <button
+            id="ai-detection-button"
+            class="btn tb-btn tb-btn-detect"
+            @click="aiDetection"
+            :disabled="!boardingStore.wholeTutorialSeen || !canvasStore.selectedImage"
+            :class="{ 'highlighted': boardingStore.currentStep === 2 }">
+            <fa :icon="['fas', 'wand-magic-sparkles']" />
+            <span v-if="!isDetectionDone" class="tb-label">Detect</span>
+            <span v-if="!boardingStore.explainNav" class="tooltip">Run AI pizza detection</span>
+          </button>
+        </div>
+
+        <div class="toolbar-sep"></div>
+
         <!-- AI filter button -->
         <div class="toolbar-item" style="position: relative;">
           <button
@@ -92,22 +108,6 @@
           </div>
           <ExplanationComponent v-if="boardingStore.currentStep === 1" :text="$t('layoutTutorial.step1')" />
           <ExplanationComponent v-if="boardingStore.currentStep === 2" :text="$t('layoutTutorial.step2')" />
-        </div>
-
-        <div class="toolbar-sep"></div>
-
-        <!-- AI Detection -->
-        <div class="toolbar-item">
-          <button
-            id="ai-detection-button"
-            class="btn tb-btn tb-btn-detect"
-            @click="aiDetection"
-            :disabled="!boardingStore.wholeTutorialSeen || !canvasStore.selectedImage"
-            :class="{ 'highlighted': boardingStore.currentStep === 2 }">
-            <fa :icon="['fas', 'wand-magic-sparkles']" />
-            <span v-if="!isDetectionDone" class="tb-label">Detect</span>
-            <span v-if="!boardingStore.explainNav" class="tooltip">Run AI pizza detection</span>
-          </button>
         </div>
 
         <div class="toolbar-sep"></div>

@@ -266,11 +266,6 @@ export const useAnnotationStore = defineStore("annotation", {
             subImageCrop: subImage.crop,
           };
           this.annotations.push(subAnnotation);
-
-          this.microtubularDefects.find(
-            (defect) => defect.value === microtubularDefectValue,
-          ).count++;
-          this.dyneinArms.find((arm) => arm.value === "unknown").count++;
         }
       }
 
@@ -379,7 +374,7 @@ export const useAnnotationStore = defineStore("annotation", {
       );
 
       this.annotations.forEach((annotation) => {
-        if (toDelete.has(annotation.id)) {
+        if (toDelete.has(annotation.id) && !annotation.isSubImageAnnotation) {
           const defect = this.microtubularDefects.find(
             (defect) => defect.value === annotation.microtubularDefectValue,
           );
@@ -394,6 +389,12 @@ export const useAnnotationStore = defineStore("annotation", {
       this.annotations = this.annotations.filter((a) => !toDelete.has(a.id));
 
       this.annotationHistory = [];
+
+      // Reset aiAnnotated on parent and all sub-images
+      const allImages = useImageStore().uploadedImages;
+      allImages.filter((img) => allImageIds.has(img.imageId)).forEach((img) => {
+        img.aiAnnotated = false;
+      });
 
       useStatisticStore().computeStatistics(
         this.microtubularDefects,
@@ -436,6 +437,9 @@ export const useAnnotationStore = defineStore("annotation", {
           !(annotation.imageId === imageId && annotation.type === "AI"),
       );
 
+      const image = useImageStore().uploadedImages.find((img) => img.imageId === imageId);
+      if (image) image.aiAnnotated = false;
+
       useStatisticStore().computeStatistics(
         this.microtubularDefects,
         this.dyneinArms,
@@ -459,10 +463,21 @@ export const useAnnotationStore = defineStore("annotation", {
         (annotation) => annotation.imageId === imageId && annotation.type === "AI",
       );
 
+      const convertToManual = (a) => {
+        if (a.type !== "AI") return;
+        a.x = (a.x1 + a.x2) / 2;
+        a.y = (a.y1 + a.y2) / 2;
+        a.x1 = null;
+        a.y1 = null;
+        a.x2 = null;
+        a.y2 = null;
+        a.type = "manual";
+      };
+
       aiAnnotations.forEach((annotation) => {
-        annotation.x = (annotation.x1 + annotation.x2) / 2;
-        annotation.y = (annotation.y1 + annotation.y2) / 2;
-        annotation.type = "manual";
+        convertToManual(annotation);
+        const linked = this.getLinkedAnnotation(annotation);
+        if (linked) convertToManual(linked);
       });
 
       const image = useImageStore().uploadedImages.find((img) => img.imageId === imageId);
@@ -806,7 +821,7 @@ export const useAnnotationStore = defineStore("annotation", {
 
       this.annotations = this.annotations.filter((a) => !idsToDelete.has(a.id));
 
-      toDelete.forEach((a) => {
+      toDelete.filter((a) => !a.isSubImageAnnotation).forEach((a) => {
         this.microtubularDefects.find(
           (defect) => defect.value === a.microtubularDefectValue,
         ).count--;

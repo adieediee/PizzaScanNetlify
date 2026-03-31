@@ -134,7 +134,7 @@
         },
         "loading": {
             "title": "Loading",
-            "message": "AI modal is labeling image, please wait..."
+            "message": "AI model is labeling image, please wait..."
         },
         "aiError": {
             "title": "AI could not process the image",
